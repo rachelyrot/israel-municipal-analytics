@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd /c \"cd /d c:\\\\new\\\\frontend && npm run build\")",
+      "Read(//c/new/frontend/**)",
+      "Bash(npm run *)",
+      "PowerShell(cd c:\\\\new\\\\backend; $env:PYTHONIOENCODING=\"utf-8\"; c:\\\\new\\\\venv\\\\Scripts\\\\python.exe scripts/reingest_all.py)"
+    ]
+  }
+}

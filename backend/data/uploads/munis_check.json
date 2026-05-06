@@ -1,0 +1,66 @@
+[
+  {
+    "name": "אום אל-פחם",
+    "symbol_cbs": "2710",
+    "district": "חיפה",
+    "municipality_type": "עיר",
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "אופקים",
+    "symbol_cbs": "31",
+    "district": "דרום",
+    "municipality_type": "עיר",
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "אור יהודה",
+    "symbol_cbs": "2400",
+    "district": "תל אביב",
+    "municipality_type": "עיר",
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "אור עקיבא",
+    "symbol_cbs": "1020",
+    "district": "חיפה",
+    "municipality_type": "עיר",
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "אילת",
+    "symbol_cbs": "2600",
+    "district": "דרום",
+    "municipality_type": "עיר",
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "אלעד",
+    "symbol_cbs": "1309",
+    "district": "מרכז",
+    "municipality_type": "עיר",
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "אריאל",
+    "symbol_cbs": "3570",
+    "district": "אזור יהודה והשומרון",
+    "municipality_type": "עיר",
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "אשדוד",
+    "symbol_cbs": "70",
+    "district": "דרום",
+    "municipality_type": "עיר",
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  }
+]
