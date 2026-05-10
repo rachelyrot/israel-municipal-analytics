@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.services.analytics import comparison, trends, rankings
+from app.services.analytics import comparison, trends, rankings, whatif
 
 router = APIRouter(prefix="/analytics", tags=["analytics"])
 
@@ -62,3 +62,18 @@ def rank(
         return rankings.get_rankings(db, indicator_code, year, district, municipality_type, limit, offset)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
+
+
+@router.get("/forecast/{municipality_id}")
+def forecast(
+    municipality_id: int,
+    indicator_code: str = Query(...),
+    delta_pct: float = 0.0,
+    years_ahead: int = 5,
+    db: Session = Depends(get_db),
+):
+    """
+    תחזית What-If: מגמה ליניארית + delta% שנתי נוסף.
+    GET /api/v1/analytics/forecast/504?indicator_code=POP_TOTAL&delta_pct=2.5&years_ahead=5
+    """
+    return whatif.forecast(db, municipality_id, indicator_code, delta_pct, years_ahead)

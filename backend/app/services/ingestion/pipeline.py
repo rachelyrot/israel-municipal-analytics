@@ -108,12 +108,20 @@ def run(file_path: Path, year: int, db: Session) -> IngestionResult:
             })
             affected.add((ind_id, year))
 
-    # דדופליקציה — שמור רק את הרשומה הראשונה לכל (municipality, indicator, year)
-    # הרשומה הראשונה = העמודה הישירה ביותר (לפני עמודות נגזרות)
+    # דדופליקציה — מעדיף גיליונות "כלליים" / "פיזיים" על פני תקציב / סקר / שימושי קרקע
+    def _sheet_rank(sheet_name: str) -> int:
+        """ציון נמוך = עדיפות גבוהה."""
+        s = sheet_name or ""
+        if any(k in s for k in ["כלל", "פיזי", "מאפיין", "כללי", "אוכלוסייה"]):
+            return 0
+        if any(k in s for k in ["תקציב", "ארנונה", "הסקר", "שימושי קרקע", "רווחה"]):
+            return 2
+        return 1
+
     deduped: dict[tuple, dict] = {}
     for item in batch:
         key = (item["municipality_id"], item["indicator_id"], item["year"])
-        if key not in deduped:
+        if key not in deduped or _sheet_rank(item["sheet_name"]) < _sheet_rank(deduped[key]["sheet_name"]):
             deduped[key] = item
     batch = list(deduped.values())
 

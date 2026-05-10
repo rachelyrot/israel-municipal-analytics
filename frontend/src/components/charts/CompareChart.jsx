@@ -3,7 +3,7 @@ import {
   Tooltip, Legend, ResponsiveContainer,
 } from 'recharts'
 
-const COLORS = ['#2563eb', '#16a34a', '#dc2626', '#d97706']
+const COLORS = ['#2563eb', '#16a34a', '#dc2626', '#d97706', '#7c3aed', '#0891b2', '#db2777', '#ea580c']
 
 /**
  * CompareChart — renders municipality comparison as overlaid line series.

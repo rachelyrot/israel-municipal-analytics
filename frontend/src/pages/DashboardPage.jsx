@@ -5,10 +5,22 @@ import { YearSelector } from '../components/selectors/YearSelector'
 import { DomainFilter } from '../components/DomainFilter'
 import { KPIGrid } from '../components/kpi/KPIGrid'
 import { TimeSeriesChart } from '../components/charts/TimeSeriesChart'
+import { api } from '../api/client'
 
 export function DashboardPage() {
   const { selectedMunicipality, selectedYear, kpis } = useDashboardStore()
   const [selectedIndicator, setSelectedIndicator] = useState(null)
+  const [exporting, setExporting] = useState(false)
+
+  const handleExportPDF = async () => {
+    if (!selectedMunicipality) return
+    setExporting(true)
+    try {
+      await api.downloadPDF(selectedMunicipality.id, selectedYear)
+    } finally {
+      setExporting(false)
+    }
+  }
 
   const selectedKPI = kpis.find(k => k.indicator_code === selectedIndicator)
 
@@ -21,6 +33,15 @@ export function DashboardPage() {
         </h1>
         <MunicipalitySelector />
         <YearSelector />
+        {selectedMunicipality && (
+          <button
+            onClick={handleExportPDF}
+            disabled={exporting}
+            className="flex items-center gap-1 px-3 py-1.5 text-sm border rounded-lg hover:bg-gray-50 disabled:opacity-40 whitespace-nowrap"
+          >
+            {exporting ? 'מייצא...' : '⬇ PDF'}
+          </button>
+        )}
       </header>
 
       <main className="p-6 max-w-7xl mx-auto flex flex-col gap-6">

@@ -1,85 +1,1373 @@
 [
-  {"code": "POP_TOTAL", "name_he": "אוכלוסייה סך הכל", "domain": "population", "unit": "נפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["סה\"כ  אוכלוסייה בסוף השנה", "סה\"כ אוכלוסייה בסוף השנה", "סה\"כ אוכלוסייה"]},
-  {"code": "POP_DENSITY", "name_he": "צפיפות אוכלוסין", "domain": "population", "unit": "נפש לקמ\"ר", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["דמוגרפיה | צפיפות אוכלוסייה לקמ", "צפיפות אוכלוסייה לקמ''ר"]},
-  {"code": "POP_GROWTH_RATE", "name_he": "שיעור גידול אוכלוסייה", "domain": "population", "unit": "%", "is_percentage": true, "higher_is_better": null, "cbs_column_variants": ["אחוז גידול האוכלוסייה לעומת השנה הקודמת"]},
-  {"code": "POP_NATURAL_INCREASE", "name_he": "גידול טבעי לאלף תושבים", "domain": "population", "unit": "לאלף נפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["ריבוי טבעי ל-1,000 תושבים", "ריבוי טבעי  ל-1,000 תושבים"]},
-  {"code": "POP_BIRTHS", "name_he": "לידות חי", "domain": "population", "unit": "נפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["לידות חי"]},
-  {"code": "POP_DEATHS", "name_he": "פטירות", "domain": "population", "unit": "נפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["פטירות"]},
-  {"code": "POP_MIGRATION_BALANCE", "name_he": "מאזן הגירה", "domain": "population", "unit": "נפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["מאזן הגירה ביישוב סה\"כ", "מאזן הגירה - סה\"כ"]},
-  {"code": "POP_DEPENDENCY_RATIO", "name_he": "יחס תלות (ל-1,000)", "domain": "population", "unit": "ל-1,000", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["יחס תלות (ל-1,000 תושבים בלתי תלויים)"]},
-  {"code": "POP_FERTILITY_RATE", "name_he": "שיעור פריון כולל", "domain": "population", "unit": "ילדים לאישה", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["שיעור פריון כולל"]},
-  {"code": "POP_IMMIGRANTS_PCT", "name_he": "אחוז עולים מ-1990+", "domain": "population", "unit": "%", "is_percentage": true, "higher_is_better": null, "cbs_column_variants": ["אחוז עולי 1990+ מסך האוכלוסייה"]},
-  {"code": "POP_AGE_65_PLUS", "name_he": "אחוז בני 65+", "domain": "population", "unit": "%", "is_percentage": true, "higher_is_better": null, "cbs_column_variants": ["בני 65 ומעלה", "65+", "65 ומעלה"]},
-
-  {"code": "EMP_UNEMP_RATE", "name_he": "שיעור מקבלי דמי אבטלה", "domain": "employment", "unit": "%", "is_percentage": true, "higher_is_better": false, "cbs_column_variants": ["אחוז מקבלי דמי אבטלה מבני 67-20 (שנתי)"]},
-  {"code": "EMP_UNEMP_COUNT", "name_he": "מקבלי דמי אבטלה (ממוצע חודשי)", "domain": "employment", "unit": "נפש", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["מקבלי דמי אבטלה \n(ממוצע חודשי)", "מקבלי דמי אבטלה (ממוצע חודשי)"]},
-  {"code": "WAGE_AVG", "name_he": "שכר חודשי ממוצע", "domain": "employment", "unit": "₪", "is_percentage": false, "higher_is_better": true, "cbs_column_variants": ["שכר ממוצע לחודש של שכירים (ש\"ח)", "שכר ממוצע לחודש של שכירים"]},
-  {"code": "EMP_WELFARE_RECIPIENTS", "name_he": "מקבלי קצבת הבטחת הכנסה", "domain": "employment", "unit": "נפש", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["מקבלי גמלת הבטחת הכנסה\n(נפשות, בסוף השנה)", "מקבלי גמלת הבטחת הכנסה (נפשות, בסוף השנה)", "מקבלי גמלת הבטחת הכנסה (נפשות, במשך השנה)"]},
-
-  {"code": "EDU_MATRIC_RATE", "name_he": "שיעור זכאות לבגרות", "domain": "education", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["אחוז זכאים לתעודת בגרות מבין תלמידי כיתות יב", "אחוז זכאים לתעודת בגרות מבין תלמידי"]},
-  {"code": "EDU_DROPOUT_RATE", "name_he": "שיעור נשירה", "domain": "education", "unit": "%", "is_percentage": true, "higher_is_better": false, "cbs_column_variants": ["אחוז תלמידים נושרים"]},
-  {"code": "EDU_STUDENTS_TOTAL", "name_he": "סך תלמידים", "domain": "education", "unit": "תלמידים", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["חינוך | תלמידים"]},
-  {"code": "EDU_TEACHERS", "name_he": "עובדי הוראה", "domain": "education", "unit": "נפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["עובדי הוראה"]},
-  {"code": "EDU_HIGHER_EDUCATION", "name_he": "אחוז בעלי תואר אקדמי ראשון", "domain": "education", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["תואר אקדמי ראשון"]},
-  {"code": "EDU_OVERWEIGHT_1", "name_he": "עודף משקל כיתה א", "domain": "education", "unit": "%", "is_percentage": true, "higher_is_better": false, "cbs_column_variants": ["עודף משקל והשמנה, כיתה א"]},
-  {"code": "EDU_OVERWEIGHT_7", "name_he": "עודף משקל כיתה ז", "domain": "education", "unit": "%", "is_percentage": true, "higher_is_better": false, "cbs_column_variants": ["עודף משקל והשמנה, כיתה ז"]},
-
-  {"code": "BUDGET_INCOME_TOTAL", "name_he": "סך הכנסות תקציב רגיל", "domain": "budget", "unit": "אלפי ₪", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["סה\"כ הכנסות בתקציב הרגיל"]},
-  {"code": "BUDGET_INCOME_PC", "name_he": "הכנסות לנפש", "domain": "budget", "unit": "₪", "is_percentage": false, "higher_is_better": true, "cbs_column_variants": ["הכנסות לנפש בתקציב הרגיל (ש\"ח)"]},
-  {"code": "BUDGET_EXPENSE_TOTAL", "name_he": "סך הוצאות תקציב רגיל", "domain": "budget", "unit": "אלפי ₪", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["סה\"כ הוצאות בתקציב הרגיל"]},
-  {"code": "BUDGET_EXPENSE_PC", "name_he": "הוצאות לנפש", "domain": "budget", "unit": "₪", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["הוצאה לנפש בתקציב הרגיל (ש\"ח)"]},
-  {"code": "BUDGET_DEFICIT", "name_he": "עודף/גירעון שנתי", "domain": "budget", "unit": "אלפי ₪", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["עודף/גירעון בתקציב הרגיל השנה"]},
-  {"code": "BUDGET_DEFICIT_CUMULATIVE", "name_he": "גירעון מצטבר", "domain": "budget", "unit": "אלפי ₪", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["עודף/גירעון מצטבר בתקציב הרגיל לסוף שנה"]},
-  {"code": "BUDGET_DEBT", "name_he": "עומס מלוות", "domain": "budget", "unit": "אלפי ₪", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["עומס מלוות לסוף השנה (כולל הפרשי הצמדה)"]},
-  {"code": "BUDGET_TAX_GRANTS", "name_he": "מיסים ומענקים", "domain": "budget", "unit": "אלפי ₪", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["מיסים ומענקים"]},
-
-  {"code": "ARNONA_RESIDENTIAL_CHARGE", "name_he": "חיוב ארנונה למגורים", "domain": "arnona", "unit": "אלפי ₪", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["ארנונה למגורים: חיוב בשנת החשבון"]},
-  {"code": "ARNONA_RESIDENTIAL_COLLECT", "name_he": "גביית ארנונה למגורים", "domain": "arnona", "unit": "אלפי ₪", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["ארנונה למגורים: גבייה השנה (קרן + ריבית)", "ארנונה למגורים: גבייה"]},
-  {"code": "ARNONA_RESIDENTIAL_RATE", "name_he": "יחס גביית ארנונה למגורים", "domain": "arnona", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["ארנונה למגורים: יחס גבייה ב-% לחיוב השנה"]},
-  {"code": "ARNONA_TOTAL_CHARGE", "name_he": "חיוב ארנונה כולל", "domain": "arnona", "unit": "אלפי ₪", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["סה\"כ חיוב ארנונה - חיוב באלפי ₪", "סה\"כ חיוב ארנונה (באלפי ₪)"]},
-  {"code": "ARNONA_INCOME", "name_he": "הכנסות מארנונה", "domain": "arnona", "unit": "אלפי ₪", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["הכנסות עצמיות: מארנונה"]},
-
-  {"code": "SOCIO_CLUSTER", "name_he": "אשכול חברתי-כלכלי", "domain": "cluster", "unit": "1-10", "is_percentage": false, "higher_is_better": true, "cbs_column_variants": ["אשכול מדד חברתי כלכלי (משנת 2021, מ-1 עד 10", "אשכול (מ-1 עד 10, 1 הנמוך ביותר)", "אשכול\nמדד חברתי כלכלי"]},
-  {"code": "SOCIO_PERIPHERY", "name_he": "אשכול פריפריאליות", "domain": "cluster", "unit": "1-10", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["מדד פריפריאליות | 2015 | אשכול (מ-1 עד 10, 1 הפריפריאלי ביותר)", "אשכול פריפריאליות 2004"]},
-
-  {"code": "WELFARE_ELDERLY", "name_he": "מקבלי קצבאות זקנה", "domain": "welfare", "unit": "נפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["מקבלי קצבאות זקנה ושאירים\nסה\"כ\n(סוף שנה)", "מקבלי קצבאות זקנה ושאירים סה\"כ (סוף שנה)"]},
-  {"code": "WELFARE_NURSING", "name_he": "מקבלי גמלאות סיעוד", "domain": "welfare", "unit": "נפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["מקבלי גמלאות סיעוד (סוף שנה)"]},
-  {"code": "WELFARE_DISABILITY", "name_he": "מקבלי קצבת נכות כללית", "domain": "welfare", "unit": "נפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["מקבלי גמלאות נכות כללית\n(סוף שנה)", "מקבלי גמלאות נכות כללית (סוף שנה)"]},
-  {"code": "WELFARE_CHILDREN_FAMILIES", "name_he": "משפחות מקבלי קצבת ילדים", "domain": "welfare", "unit": "משפחות", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["מספר משפחות של מקבלי קצבאות  בגין ילדים (סוף שנה)", "מספר משפחות של מקבלי קצבאות בגין ילדים (סוף שנה)"]},
-  {"code": "WELFARE_CHILDREN_COUNT", "name_he": "ילדים שעבורם שולמו קצבאות", "domain": "welfare", "unit": "ילדים", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["מספר ילדים שבגינם שולמו קצבאות"]},
-  {"code": "WELFARE_DISABILITY_PCT", "name_he": "אנשים עם מוגבלות", "domain": "welfare", "unit": "נפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["רווחה | אנשים עם מוגבלות", "אנשים עם מוגבלות"]},
-
-  {"code": "LAND_TOTAL_AREA", "name_he": "שטח כולל (קמ\"ר)", "domain": "land", "unit": "קמ\"ר", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["סך כל שטח השיפוט", "שטח (קמ\"ר)"]},
-  {"code": "LAND_RESIDENTIAL_PCT", "name_he": "שטח מגורים (%)", "domain": "land", "unit": "%", "is_percentage": true, "higher_is_better": null, "cbs_column_variants": ["מגורים"]},
-  {"code": "LAND_COMMERCIAL_PCT", "name_he": "שטח תעשייה (%)", "domain": "land", "unit": "%", "is_percentage": true, "higher_is_better": null, "cbs_column_variants": ["תעשייה"]},
-  {"code": "LAND_OPEN_PCT", "name_he": "שטח פתוח (%)", "domain": "land", "unit": "%", "is_percentage": true, "higher_is_better": null, "cbs_column_variants": ["שטח פתוח אחר"]},
-
-  {"code": "BUILD_STARTS", "name_he": "התחלות בנייה", "domain": "construction", "unit": "יחידות דיור", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["בנייה ודיור | התחלת בנייה", "התחלת בנייה"]},
-  {"code": "BUILD_COMPLETIONS", "name_he": "גמר בנייה", "domain": "construction", "unit": "יחידות דיור", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["גמר בנייה"]},
-  {"code": "BUILD_DWELLINGS_TOTAL", "name_he": "סך דירות למגורים", "domain": "construction", "unit": "יחידות", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["מספר דירות למגורים\nלפי מרשם מבנים ודירות", "מספר דירות למגורים"]},
-
-  {"code": "INFRA_WATER_PC", "name_he": "צריכת מים ביתית לנפש", "domain": "infrastructure", "unit": "מ\"ק לנפש", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["צריכת מים ביתית (מ\"ק לנפש)"]},
-  {"code": "INFRA_WATER_TOTAL", "name_he": "סך צריכת מים", "domain": "infrastructure", "unit": "אלפי מ\"ק", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["סה\"כ צריכת מים\n(אלפי מ\"ק)", "סה\"כ צריכת מים (אלפי מ\"ק)"]},
-  {"code": "INFRA_WATER_LOSS", "name_he": "פחת מים (%)", "domain": "infrastructure", "unit": "%", "is_percentage": true, "higher_is_better": false, "cbs_column_variants": ["אחוז פחת המים מסך כל תקבולי המים"]},
-  {"code": "INFRA_WASTE_PC", "name_he": "פסולת מוצקה לנפש ליום", "domain": "infrastructure", "unit": "ק\"ג ליום לנפש", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["פסולת מוצקה ביתית, מסחרית וגזם\n(ק\"ג ליום לנפש)", "פסולת מוצקה ביתית, מסחרית וגזם (ק\"ג ליום לנפש)"]},
-  {"code": "INFRA_RECYCLING", "name_he": "אחוז מחזור", "domain": "infrastructure", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["אחוז מחזור מתוך פסולת מוצקה ביתית, מסחרית וגזם"]},
-
-  {"code": "TRANSPORT_VEHICLES", "name_he": "כלי רכב מנועיים", "domain": "transport", "unit": "כלי רכב", "is_percentage": false, "higher_is_better": null, "cbs_column_variants": ["תחבורה | כלי רכב מנועיים סה\"כ", "כלי רכב מנועיים\nסה\"כ", "כלי רכב מנועיים סה\"כ"]},
-  {"code": "TRANSPORT_ACCIDENTS_RATE", "name_he": "תאונות דרכים ל-1,000 תושבים", "domain": "transport", "unit": "ל-1,000", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["תאונות דרכים עם נפגעים שיעור ל-1,000 תושבים"]},
-  {"code": "TRANSPORT_FATALITIES", "name_he": "הרוגים בתאונות דרכים", "domain": "transport", "unit": "נפש", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["הרוגים"]},
-
-  {"code": "HEALTH_LIFE_EXPECTANCY", "name_he": "תוחלת חיים בלידה", "domain": "health", "unit": "שנים", "is_percentage": false, "higher_is_better": true, "cbs_column_variants": ["בריאות | 2020 - 2024 | תוחלת חיים בלידה סך הכל", "תוחלת חיים\nבלידה סך הכל", "תוחלת חיים בלידה סך הכל"]},
-  {"code": "HEALTH_DIABETES", "name_he": "שיעור סוכרת ל-1,000", "domain": "health", "unit": "ל-1,000", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["שיעור מקרי סוכרת מתוקנן ל-1,000 תושבים"]},
-  {"code": "HEALTH_GOOD_STATUS_PCT", "name_he": "מדווחים על בריאות טובה", "domain": "health", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["מעריכים שמצב בריאותם טוב"]},
-
-  {"code": "SOCIAL_LIFE_SATISFACTION", "name_he": "שביעות רצון מהחיים", "domain": "social", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["מרוצים מהחיים"]},
-  {"code": "SOCIAL_NEIGHBORHOOD_SATISFACTION", "name_he": "שביעות רצון מאזור המגורים", "domain": "social", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["מרוצים מאזור המגורים"]},
-  {"code": "SOCIAL_HOUSING_SATISFACTION", "name_he": "שביעות רצון מהדירה", "domain": "social", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["מרוצים מהדירה"]},
-  {"code": "SOCIAL_INTERNET", "name_he": "משתמשים באינטרנט", "domain": "social", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["משתמשים באינטרנט"]},
-  {"code": "SOCIAL_TRUST_GOVT", "name_he": "אמון בממשלה", "domain": "social", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["נותנים אמון בממשלה"]},
-  {"code": "SOCIAL_TRUST_PEOPLE", "name_he": "אמון באנשים", "domain": "social", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["חושבים שניתן לבטוח במרבית האנשים"]},
-  {"code": "SOCIAL_LONELINESS", "name_he": "חשים בדידות", "domain": "social", "unit": "%", "is_percentage": true, "higher_is_better": false, "cbs_column_variants": ["חשים בדידות"]},
-  {"code": "SOCIAL_VOLUNTEERING", "name_he": "מתנדבים", "domain": "social", "unit": "%", "is_percentage": true, "higher_is_better": true, "cbs_column_variants": ["עסקו בפעילות התנדבותית"]},
-  {"code": "SOCIAL_DISCRIMINATION", "name_he": "חשו אפליה", "domain": "social", "unit": "%", "is_percentage": true, "higher_is_better": false, "cbs_column_variants": ["חשו אפליה כלשהי בשנה האחרונה"]},
-  {"code": "SOCIAL_COMMUTE_TIME", "name_he": "משך נסיעה לעבודה", "domain": "social", "unit": "דקות", "is_percentage": false, "higher_is_better": false, "cbs_column_variants": ["משך ההגעה לעבודה"]}
+  {
+    "code": "POP_TOTAL",
+    "name_he": "אוכלוסייה סך הכל",
+    "domain": "population",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "סה\"כ  אוכלוסייה בסוף השנה",
+      "סה\"כ אוכלוסייה בסוף השנה",
+      "סה\"כ אוכלוסייה",
+      "דמוגרפיה | סה\"כ  אוכלוסייה בסוף השנה",
+      "דמוגרפיה | סה\"כ אוכלוסייה"
+    ]
+  },
+  {
+    "code": "POP_DENSITY",
+    "name_he": "צפיפות אוכלוסין",
+    "domain": "population",
+    "unit": "נפש לקמ\"ר",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "דמוגרפיה | צפיפות אוכלוסייה לקמ",
+      "צפיפות אוכלוסייה לקמ''ר"
+    ]
+  },
+  {
+    "code": "POP_GROWTH_RATE",
+    "name_he": "שיעור גידול אוכלוסייה",
+    "domain": "population",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז גידול האוכלוסייה לעומת השנה הקודמת",
+      "דמוגרפיה | אחוז גידול האוכלוסייה לעומת השנה הקודמת"
+    ]
+  },
+  {
+    "code": "POP_NATURAL_INCREASE",
+    "name_he": "גידול טבעי לאלף תושבים",
+    "domain": "population",
+    "unit": "לאלף נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "ריבוי טבעי ל-1,000 תושבים",
+      "ריבוי טבעי  ל-1,000 תושבים",
+      "ריבוי טבעי סה\"כ",
+      "ריבוי טבעי - סה\"כ",
+      "דמוגרפיה | ריבוי טבעי - סה\"כ",
+      "דמוגרפיה | ריבוי טבעי סה\"כ",
+      "דמוגרפיה | ריבוי טבעי ל-1,000 תושבים",
+      "דמוגרפיה | ריבוי טבעי  ל-1,000 תושבים",
+      "גידול טבעי ועלייה | ריבוי טבעי ל-1,000 תושבים"
+    ]
+  },
+  {
+    "code": "POP_BIRTHS",
+    "name_he": "לידות חי",
+    "domain": "population",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "לידות חי",
+      "דמוגרפיה | לידות חי",
+      "גידול טבעי ועלייה | לידות חי"
+    ]
+  },
+  {
+    "code": "POP_DEATHS",
+    "name_he": "פטירות",
+    "domain": "population",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "פטירות",
+      "דמוגרפיה | פטירות",
+      "גידול טבעי ועלייה | פטירות"
+    ]
+  },
+  {
+    "code": "POP_MIGRATION_BALANCE",
+    "name_he": "מאזן הגירה",
+    "domain": "population",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מאזן הגירה ביישוב סה\"כ",
+      "מאזן הגירה - סה\"כ",
+      "נכנסים מיישובים אחרים",
+      "יוצאים ליישובים אחרים",
+      "דמוגרפיה | מאזן הגירה ביישוב סה\"כ",
+      "דמוגרפיה | מאזן הגירה - סה\"כ",
+      "גידול טבעי ועלייה | מאזן הגירה - סה\"כ"
+    ]
+  },
+  {
+    "code": "POP_DEPENDENCY_RATIO",
+    "name_he": "יחס תלות (ל-1,000)",
+    "domain": "population",
+    "unit": "ל-1,000",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "יחס תלות (ל-1,000 תושבים בלתי תלויים)"
+    ]
+  },
+  {
+    "code": "POP_FERTILITY_RATE",
+    "name_he": "שיעור פריון כולל",
+    "domain": "population",
+    "unit": "ילדים לאישה",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "שיעור פריון כולל"
+    ]
+  },
+  {
+    "code": "POP_IMMIGRANTS_PCT",
+    "name_he": "אחוז עולים מ-1990+",
+    "domain": "population",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז עולי 1990+ מסך האוכלוסייה"
+    ]
+  },
+  {
+    "code": "POP_AGE_65_PLUS",
+    "name_he": "אחוז בני 65+",
+    "domain": "population",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "בני 65 ומעלה",
+      "65+",
+      "65 ומעלה",
+      "דמוגרפיה | בני 65 ומעלה",
+      "דמוגרפיה | 65+"
+    ]
+  },
+  {
+    "code": "EMP_UNEMP_RATE",
+    "name_he": "שיעור מקבלי דמי אבטלה",
+    "domain": "employment",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "אחוז מקבלי דמי אבטלה מבני 67-20 (שנתי)",
+      "שכר ורווחה | אחוז מקבלי דמי אבטלה מבני 67-20 (שנתי)"
+    ]
+  },
+  {
+    "code": "EMP_UNEMP_COUNT",
+    "name_he": "מקבלי דמי אבטלה (ממוצע חודשי)",
+    "domain": "employment",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "מקבלי דמי אבטלה \n(ממוצע חודשי)",
+      "מקבלי דמי אבטלה (ממוצע חודשי)",
+      "מקבלי דמי אבטלה - גברים",
+      "שכר ורווחה | מקבלי דמי אבטלה - גברים",
+      "מקבלי דמי אבטלה - סה\"כ",
+      "שכר ורווחה | מקבלי דמי אבטלה \n(ממוצע חודשי)",
+      "שכר ורווחה | מקבלי דמי אבטלה (ממוצע חודשי)"
+    ]
+  },
+  {
+    "code": "WAGE_AVG",
+    "name_he": "שכר חודשי ממוצע",
+    "domain": "employment",
+    "unit": "₪",
+    "is_percentage": false,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "שכר ממוצע לחודש של שכירים (ש\"ח)",
+      "שכר ממוצע לחודש של שכירים",
+      "שכר ורווחה | שכר ממוצע לחודש",
+      "שכר ורווחה | שכר ממוצע לחודש של שכירים (ש\"ח)",
+      "שכר ורווחה | שכר ממוצע לחודש של שכירים"
+    ]
+  },
+  {
+    "code": "EMP_WELFARE_RECIPIENTS",
+    "name_he": "מקבלי קצבת הבטחת הכנסה",
+    "domain": "employment",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "מקבלי גמלת הבטחת הכנסה\n(נפשות, בסוף השנה)",
+      "מקבלי גמלת הבטחת הכנסה (נפשות, בסוף השנה)",
+      "מקבלי גמלת הבטחת הכנסה (נפשות, במשך השנה)",
+      "מקבלי הבטחת הכנסה (נפשות)",
+      "שכר ורווחה | מקבלי הבטחת הכנסה",
+      "שכר ורווחה | מקבלי גמלת הבטחת הכנסה (נפשות, בסוף השנה)",
+      "שכר ורווחה | מקבלי גמלת הבטחת הכנסה\n(נפשות, בסוף השנה)"
+    ]
+  },
+  {
+    "code": "EDU_MATRIC_RATE",
+    "name_he": "שיעור זכאות לבגרות",
+    "domain": "education",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "אחוז זכאים לתעודת בגרות מבין תלמידי כיתות יב",
+      "אחוז זכאים לתעודת בגרות מבין תלמידי",
+      "אחוז זכאים לתעודת בגרות שעמדו בדרישות הסף של האוניברסיטאות מבין תלמידי כיתות יב",
+      "חינוך | אחוז זכאים לתעודת בגרות",
+      "חינוך | אחוז זכאים לתעודת בגרות מבין תלמידי כיתות יב",
+      "חינוך | אחוז זכאים לתעודת בגרות מבין תלמידי"
+    ]
+  },
+  {
+    "code": "EDU_DROPOUT_RATE",
+    "name_he": "שיעור נשירה",
+    "domain": "education",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "אחוז תלמידים נושרים",
+      "חינוך | אחוז תלמידים נושרים"
+    ]
+  },
+  {
+    "code": "EDU_STUDENTS_TOTAL",
+    "name_he": "סך תלמידים",
+    "domain": "education",
+    "unit": "תלמידים",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "חינוך | תלמידים",
+      "תלמידים - סה\"כ",
+      "חינוך | תלמידים - סה\"כ",
+      "תלמידים בבתי ספר יסודיים (כולל חינוך מיוחד)",
+      "חינוך | תלמידים בבתי ספר יסודיים (כולל חינוך מיוחד)"
+    ]
+  },
+  {
+    "code": "EDU_TEACHERS",
+    "name_he": "עובדי הוראה",
+    "domain": "education",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "עובדי הוראה",
+      "חינוך | עובדי הוראה"
+    ]
+  },
+  {
+    "code": "EDU_HIGHER_EDUCATION",
+    "name_he": "אחוז בעלי תואר אקדמי ראשון",
+    "domain": "education",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "תואר אקדמי ראשון",
+      "חינוך | תואר אקדמי ראשון"
+    ]
+  },
+  {
+    "code": "EDU_OVERWEIGHT_1",
+    "name_he": "עודף משקל כיתה א",
+    "domain": "education",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "עודף משקל והשמנה, כיתה א"
+    ]
+  },
+  {
+    "code": "EDU_OVERWEIGHT_7",
+    "name_he": "עודף משקל כיתה ז",
+    "domain": "education",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "עודף משקל והשמנה, כיתה ז"
+    ]
+  },
+  {
+    "code": "BUDGET_INCOME_TOTAL",
+    "name_he": "סך הכנסות תקציב רגיל",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "סה\"כ הכנסות בתקציב הרגיל",
+      "סה\"כ הכנסות של הרשות מן התקציב הרגיל (אלפי ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | סה\"כ הכנסות של הרשות (אלפי ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | סה\"כ הכנסות של הרשות מן התקציב הרגיל (אלפי ש\"ח)",
+      "סה\"כ הכנסות של הרשות (אלפי ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | סה\"כ הכנסות בתקציב הרגיל"
+    ]
+  },
+  {
+    "code": "BUDGET_INCOME_PC",
+    "name_he": "הכנסות לנפש",
+    "domain": "budget",
+    "unit": "₪",
+    "is_percentage": false,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "הכנסות לנפש בתקציב הרגיל (ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | סה\"כ הכנסות של הרשות (ש\"ח לנפש)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | סה\"כ הכנסות של הרשות מן התקציב הרגיל (ש\"ח לנפש)",
+      "סה\"כ הכנסות של הרשות (ש\"ח לנפש)",
+      "סה\"כ הכנסות של הרשות מן התקציב הרגיל (ש\"ח לנפש)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | הכנסות לנפש בתקציב הרגיל (ש\"ח)"
+    ]
+  },
+  {
+    "code": "BUDGET_EXPENSE_TOTAL",
+    "name_he": "סך הוצאות תקציב רגיל",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "סה\"כ הוצאות בתקציב הרגיל",
+      "סה\"כ הוצאות של הרשות בתקציב רגיל (אלפי ש\"ח)",
+      "סה\"כ הוצאות של הרשות (אלפי ש\"ח)",
+      "הוצאות בתקציב הרגיל של הרשויות המקומיות | סה\"כ הוצאות של הרשות (אלפי ש\"ח)",
+      "הוצאות בתקציב הרגיל של הרשויות המקומיות | סה\"כ הוצאות של הרשות בתקציב רגיל (אלפי ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | סה\"כ הוצאות בתקציב הרגיל"
+    ]
+  },
+  {
+    "code": "BUDGET_EXPENSE_PC",
+    "name_he": "הוצאות לנפש",
+    "domain": "budget",
+    "unit": "₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "הוצאה לנפש בתקציב הרגיל (ש\"ח)",
+      "הוצאות בתקציב הרגיל של הרשויות המקומיות | סה\"כ הוצאות של הרשות (ש\"ח לנפש)",
+      "הוצאות בתקציב הרגיל של הרשויות המקומיות | סה\"כ הוצאות של הרשות בתקציב רגיל (ש\"ח לנפש)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | הוצאה לנפש בתקציב הרגיל (ש\"ח)"
+    ]
+  },
+  {
+    "code": "BUDGET_DEFICIT",
+    "name_he": "עודף/גירעון שנתי",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "עודף/גירעון בתקציב הרגיל השנה",
+      "עודף/גירעון | עודף / גירעון בתקציב הרגיל - שנתי",
+      "עודף/גירעון | עודף / גירעון בתקציב הרגיל - תקציבי",
+      "הוצאות בתקציב הרגיל של הרשויות המקומיות | עודף/גירעון בתקציב הרגיל השנה"
+    ]
+  },
+  {
+    "code": "BUDGET_DEFICIT_CUMULATIVE",
+    "name_he": "גירעון מצטבר",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "עודף/גירעון מצטבר בתקציב הרגיל לסוף שנה"
+    ]
+  },
+  {
+    "code": "BUDGET_DEBT",
+    "name_he": "עומס מלוות",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "עומס מלוות לסוף השנה (כולל הפרשי הצמדה)",
+      "הוצאות בתקציב הרגיל של הרשויות המקומיות | עומס מלוות לסוף השנה (כולל הפרשי הצמדה)"
+    ]
+  },
+  {
+    "code": "BUDGET_TAX_GRANTS",
+    "name_he": "מיסים ומענקים",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מיסים ומענקים"
+    ]
+  },
+  {
+    "code": "ARNONA_RESIDENTIAL_CHARGE",
+    "name_he": "חיוב ארנונה למגורים",
+    "domain": "arnona",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "ארנונה למגורים: חיוב בשנת החשבון",
+      "ארנונה: חיוב בשנת החשבון",
+      "ארנונה למגורים - חיוב"
+    ]
+  },
+  {
+    "code": "ARNONA_RESIDENTIAL_COLLECT",
+    "name_he": "גביית ארנונה למגורים",
+    "domain": "arnona",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "ארנונה למגורים: גבייה השנה (קרן + ריבית)",
+      "ארנונה למגורים: גבייה"
+    ]
+  },
+  {
+    "code": "ARNONA_RESIDENTIAL_RATE",
+    "name_he": "יחס גביית ארנונה למגורים",
+    "domain": "arnona",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "ארנונה למגורים: יחס גבייה ב-% לחיוב השנה"
+    ]
+  },
+  {
+    "code": "ARNONA_TOTAL_CHARGE",
+    "name_he": "חיוב ארנונה כולל",
+    "domain": "arnona",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "סה\"כ חיוב ארנונה - חיוב באלפי ₪",
+      "סה\"כ חיוב ארנונה (באלפי ₪)"
+    ]
+  },
+  {
+    "code": "ARNONA_INCOME",
+    "name_he": "הכנסות מארנונה",
+    "domain": "arnona",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "הכנסות עצמיות: מארנונה",
+      "הכנסות של הרשות מארנונה (אלפי ש\"ח)",
+      "הכנסות עצמיות של הרשות מארנונה",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | הכנסות עצמיות: מארנונה"
+    ]
+  },
+  {
+    "code": "SOCIO_CLUSTER",
+    "name_he": "אשכול חברתי-כלכלי",
+    "domain": "cluster",
+    "unit": "1-10",
+    "is_percentage": false,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "אשכול מדד חברתי כלכלי (משנת 2021, מ-1 עד 10",
+      "אשכול (מ-1 עד 10, 1 הנמוך ביותר)",
+      "אשכול\nמדד חברתי כלכלי",
+      "כללי | אשכול"
+    ]
+  },
+  {
+    "code": "SOCIO_PERIPHERY",
+    "name_he": "אשכול פריפריאליות",
+    "domain": "cluster",
+    "unit": "1-10",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "מדד פריפריאליות | 2015 | אשכול (מ-1 עד 10, 1 הפריפריאלי ביותר)",
+      "אשכול פריפריאליות 2004"
+    ]
+  },
+  {
+    "code": "WELFARE_ELDERLY",
+    "name_he": "מקבלי קצבאות זקנה",
+    "domain": "welfare",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מקבלי קצבאות זקנה ושאירים\nסה\"כ\n(סוף שנה)",
+      "מקבלי קצבאות זקנה ושאירים סה\"כ (סוף שנה)",
+      "מקבלי קצבאות זקנה ושאירים - סה\"כ",
+      "מקבלי קצבאות זיקנה ושארים - סה\"כ",
+      "שכר ורווחה | מקבלי קצבאות זקנה",
+      "שכר ורווחה | מקבלי קצבאות זקנה ושאירים סה\"כ (סוף שנה)"
+    ]
+  },
+  {
+    "code": "WELFARE_NURSING",
+    "name_he": "מקבלי גמלאות סיעוד",
+    "domain": "welfare",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מקבלי גמלאות סיעוד (סוף שנה)",
+      "מקבלי גמלאות סיעוד",
+      "שכר ורווחה | מקבלי גמלאות סיעוד"
+    ]
+  },
+  {
+    "code": "WELFARE_DISABILITY",
+    "name_he": "מקבלי קצבת נכות כללית",
+    "domain": "welfare",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מקבלי גמלאות נכות כללית\n(סוף שנה)",
+      "מקבלי גמלאות נכות כללית (סוף שנה)",
+      "מקבלי גמלאות נכות כללית",
+      "שכר ורווחה | מקבלי גמלאות נכות כללית",
+      "מקבלי קצבאות נכות כללית",
+      "שכר ורווחה | מקבלי גמלאות נכות כללית (סוף שנה)",
+      "שכר ורווחה | מקבלי גמלאות נכות כללית\n(סוף שנה)"
+    ]
+  },
+  {
+    "code": "WELFARE_CHILDREN_FAMILIES",
+    "name_he": "משפחות מקבלי קצבת ילדים",
+    "domain": "welfare",
+    "unit": "משפחות",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מספר משפחות של מקבלי קצבאות  בגין ילדים (סוף שנה)",
+      "מספר משפחות של מקבלי קצבאות בגין ילדים (סוף שנה)",
+      "סה\"כ משפחות של מקבלי קצבאות בגין ילדים",
+      "שכר ורווחה | סה\"כ משפחות של מקבלי קצבאות בגין ילדים",
+      "שכר ורווחה | מספר משפחות של מקבלי קצבאות  בגין ילדים (סוף שנה)",
+      "שכר ורווחה | מספר משפחות של מקבלי קצבאות בגין ילדים (סוף שנה)"
+    ]
+  },
+  {
+    "code": "WELFARE_CHILDREN_COUNT",
+    "name_he": "ילדים שעבורם שולמו קצבאות",
+    "domain": "welfare",
+    "unit": "ילדים",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מספר ילדים שבגינם שולמו קצבאות",
+      "סה\"כ ילדים הנהנים מקבלת קצבאות בגין ילדים",
+      "שכר ורווחה | סה\"כ ילדים הנהנים מקבלת קצבאות בגין ילדים",
+      "שכר ורווחה | מספר ילדים שבגינם שולמו קצבאות",
+      "שכר ורווחה | מספר הילדים הנהנים מקבלת קצבאות בגין ילדים במשפחות עם 2-1 ילדים"
+    ]
+  },
+  {
+    "code": "WELFARE_DISABILITY_PCT",
+    "name_he": "אנשים עם מוגבלות",
+    "domain": "welfare",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "רווחה | אנשים עם מוגבלות",
+      "אנשים עם מוגבלות"
+    ]
+  },
+  {
+    "code": "LAND_TOTAL_AREA",
+    "name_he": "שטח כולל (קמ\"ר)",
+    "domain": "land",
+    "unit": "קמ\"ר",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "סך כל שטח השיפוט",
+      "שטח (קמ\"ר)",
+      "שימושי קרקע | סך כל שטח השיפוט",
+      "שימושי קרקע | שטח (קמ\"ר)",
+      "סה\"כ שטח שיפוט בקמ\"ר",
+      "סהכ שטח שיפוט"
+    ]
+  },
+  {
+    "code": "LAND_RESIDENTIAL_PCT",
+    "name_he": "שטח מגורים (%)",
+    "domain": "land",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מגורים"
+    ]
+  },
+  {
+    "code": "LAND_COMMERCIAL_PCT",
+    "name_he": "שטח תעשייה (%)",
+    "domain": "land",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "תעשייה"
+    ]
+  },
+  {
+    "code": "LAND_OPEN_PCT",
+    "name_he": "שטח פתוח (%)",
+    "domain": "land",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "שטח פתוח אחר"
+    ]
+  },
+  {
+    "code": "BUILD_STARTS",
+    "name_he": "התחלות בנייה",
+    "domain": "construction",
+    "unit": "יחידות דיור",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "בנייה ודיור | התחלת בנייה",
+      "התחלת בנייה",
+      "בנייה | התחלת בנייה",
+      "בנייה ודיור | התחלת בנייה: מספר דירות",
+      "התחלת בנייה: מספר דירות",
+      "בנייה ודיור | התחלות בנייה"
+    ]
+  },
+  {
+    "code": "BUILD_COMPLETIONS",
+    "name_he": "גמר בנייה",
+    "domain": "construction",
+    "unit": "יחידות דיור",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "גמר בנייה"
+    ]
+  },
+  {
+    "code": "BUILD_DWELLINGS_TOTAL",
+    "name_he": "סך דירות למגורים",
+    "domain": "construction",
+    "unit": "יחידות",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מספר דירות למגורים\nלפי מרשם מבנים ודירות",
+      "מספר דירות למגורים",
+      "מספר דירות למגורים לפי חיובי ארנונה",
+      "מספר דירות למגורים לפי חיובי ארנונה (מאי 2000)"
+    ]
+  },
+  {
+    "code": "INFRA_WATER_PC",
+    "name_he": "צריכת מים ביתית לנפש",
+    "domain": "infrastructure",
+    "unit": "מ\"ק לנפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "צריכת מים ביתית (מ\"ק לנפש)",
+      "מים | צריכת מים ביתית (מ\"ק לנפש)"
+    ]
+  },
+  {
+    "code": "INFRA_WATER_TOTAL",
+    "name_he": "סך צריכת מים",
+    "domain": "infrastructure",
+    "unit": "אלפי מ\"ק",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "סה\"כ צריכת מים\n(אלפי מ\"ק)",
+      "סה\"כ צריכת מים (אלפי מ\"ק)",
+      "מים | תקבולי מים (אלפי מ\"ק)",
+      "צריכת מים ביתית וכל צריכה אחרת (אלפי מ\"ק)",
+      "צריכת מים ביתית (אלפי מ\"ק)",
+      "מים | סה\"כ צריכת מים (אלפי מ\"ק)",
+      "מים | סה\"כ צריכת מים\n(אלפי מ\"ק)"
+    ]
+  },
+  {
+    "code": "INFRA_WATER_LOSS",
+    "name_he": "פחת מים (%)",
+    "domain": "infrastructure",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "אחוז פחת המים מסך כל תקבולי המים",
+      "מים | אחוז פחת המים",
+      "פחת מים סה\"כ (אלפי מ\"ק)",
+      "מים | אחוז פחת המים מסך כל תקבולי המים"
+    ]
+  },
+  {
+    "code": "INFRA_WASTE_PC",
+    "name_he": "פסולת מוצקה לנפש ליום",
+    "domain": "infrastructure",
+    "unit": "ק\"ג ליום לנפש",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "פסולת מוצקה ביתית, מסחרית וגזם\n(ק\"ג ליום לנפש)",
+      "פסולת מוצקה ביתית, מסחרית וגזם (ק\"ג ליום לנפש)"
+    ]
+  },
+  {
+    "code": "INFRA_RECYCLING",
+    "name_he": "אחוז מחזור",
+    "domain": "infrastructure",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "אחוז מחזור מתוך פסולת מוצקה ביתית, מסחרית וגזם"
+    ]
+  },
+  {
+    "code": "TRANSPORT_VEHICLES",
+    "name_he": "כלי רכב מנועיים",
+    "domain": "transport",
+    "unit": "כלי רכב",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "תחבורה | כלי רכב מנועיים סה\"כ",
+      "כלי רכב מנועיים\nסה\"כ",
+      "כלי רכב מנועיים סה\"כ",
+      "כלי רכב פרטיים סה\"כ",
+      "מכוניות פרטיות - סה\"כ",
+      "תחבורה | כלי רכב פרטיים סה\"כ",
+      "כלי רכב מנועיים - סה\"כ"
+    ]
+  },
+  {
+    "code": "TRANSPORT_ACCIDENTS_RATE",
+    "name_he": "תאונות דרכים ל-1,000 תושבים",
+    "domain": "transport",
+    "unit": "ל-1,000",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "תאונות דרכים עם נפגעים שיעור ל-1,000 תושבים",
+      "תאונות דרכים עם נפגעים - שיעור ל-1,000 תושבים",
+      "תחבורה | תאונות דרכים עם נפגעים שיעור ל-1,000 תושבים"
+    ]
+  },
+  {
+    "code": "TRANSPORT_FATALITIES",
+    "name_he": "הרוגים בתאונות דרכים",
+    "domain": "transport",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "הרוגים",
+      "תחבורה | הרוגים",
+      "תאונות דרכים עם נפגעים סה\"כ",
+      "תאונות דרכים עם נפגעים - סה\"כ"
+    ]
+  },
+  {
+    "code": "HEALTH_LIFE_EXPECTANCY",
+    "name_he": "תוחלת חיים בלידה",
+    "domain": "health",
+    "unit": "שנים",
+    "is_percentage": false,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "בריאות | 2020 - 2024 | תוחלת חיים בלידה סך הכל",
+      "תוחלת חיים\nבלידה סך הכל",
+      "תוחלת חיים בלידה סך הכל",
+      "בריאות | תוחלת חיים בלידה סך הכל",
+      "בריאות | תוחלת חיים\nבלידה סך הכל"
+    ]
+  },
+  {
+    "code": "HEALTH_DIABETES",
+    "name_he": "שיעור סוכרת ל-1,000",
+    "domain": "health",
+    "unit": "ל-1,000",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "שיעור מקרי סוכרת מתוקנן ל-1,000 תושבים",
+      "בריאות | שיעור מקרי סוכרת מתוקנן ל-1,000 תושבים"
+    ]
+  },
+  {
+    "code": "HEALTH_GOOD_STATUS_PCT",
+    "name_he": "מדווחים על בריאות טובה",
+    "domain": "health",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "מעריכים שמצב בריאותם טוב",
+      "בריאות | מעריכים שמצב בריאותם טוב"
+    ]
+  },
+  {
+    "code": "SOCIAL_LIFE_SATISFACTION",
+    "name_he": "שביעות רצון מהחיים",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "מרוצים מהחיים",
+      "רווחה סובייקטיבית | מרוצים מהחיים"
+    ]
+  },
+  {
+    "code": "SOCIAL_NEIGHBORHOOD_SATISFACTION",
+    "name_he": "שביעות רצון מאזור המגורים",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "מרוצים מאזור המגורים",
+      "רווחה סובייקטיבית | מרוצים מאזור המגורים"
+    ]
+  },
+  {
+    "code": "SOCIAL_HOUSING_SATISFACTION",
+    "name_he": "שביעות רצון מהדירה",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "מרוצים מהדירה",
+      "רווחה סובייקטיבית | מרוצים מהדירה"
+    ]
+  },
+  {
+    "code": "SOCIAL_INTERNET",
+    "name_he": "משתמשים באינטרנט",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "משתמשים באינטרנט",
+      "רווחה סובייקטיבית | משתמשים באינטרנט"
+    ]
+  },
+  {
+    "code": "SOCIAL_TRUST_GOVT",
+    "name_he": "אמון בממשלה",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "נותנים אמון בממשלה",
+      "רווחה סובייקטיבית | נותנים אמון בממשלה"
+    ]
+  },
+  {
+    "code": "SOCIAL_TRUST_PEOPLE",
+    "name_he": "אמון באנשים",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "חושבים שניתן לבטוח במרבית האנשים",
+      "רווחה סובייקטיבית | חושבים שניתן לבטוח במרבית האנשים"
+    ]
+  },
+  {
+    "code": "SOCIAL_LONELINESS",
+    "name_he": "חשים בדידות",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "חשים בדידות",
+      "רווחה סובייקטיבית | חשים בדידות"
+    ]
+  },
+  {
+    "code": "SOCIAL_VOLUNTEERING",
+    "name_he": "מתנדבים",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "עסקו בפעילות התנדבותית",
+      "רווחה סובייקטיבית | עסקו בפעילות התנדבותית"
+    ]
+  },
+  {
+    "code": "SOCIAL_DISCRIMINATION",
+    "name_he": "חשו אפליה",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "חשו אפליה כלשהי בשנה האחרונה",
+      "רווחה סובייקטיבית | חשו אפליה כלשהי בשנה האחרונה"
+    ]
+  },
+  {
+    "code": "SOCIAL_COMMUTE_TIME",
+    "name_he": "משך נסיעה לעבודה",
+    "domain": "social",
+    "unit": "דקות",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "משך ההגעה לעבודה",
+      "יוממות",
+      "רווחה סובייקטיבית | משך ההגעה לעבודה"
+    ]
+  },
+  {
+    "code": "WELFARE_MOBILITY",
+    "name_he": "מקבלי גמלאות ניידות",
+    "domain": "welfare",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מקבלי גמלאות ניידות (סוף שנה)",
+      "מקבלי גמלאות ניידות",
+      "שכר ורווחה | מקבלי גמלאות ניידות"
+    ]
+  },
+  {
+    "code": "WELFARE_WORK_INJURY",
+    "name_he": "מקבלי גמלת נכות מעבודה",
+    "domain": "welfare",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מקבלי גמלאות נכות מעבודה ותלויים (סוף שנה)",
+      "מקבלי גמלאות נכות מעבודה ותלויים",
+      "שכר ורווחה | מקבלי גמלאות נכות מעבודה ותלויים"
+    ]
+  },
+  {
+    "code": "INFRA_WATER_AGRICULTURAL",
+    "name_he": "צריכת מים חקלאית",
+    "domain": "infrastructure",
+    "unit": "אלפי מ\"ק",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "צריכת מים חקלאית (אלפי מ\"ק)",
+      "מים | צריכת מים חקלאית (אלפי מ\"ק)"
+    ]
+  },
+  {
+    "code": "INFRA_WATER_AGRICULTURAL_PCT",
+    "name_he": "אחוז צריכת מים חקלאית",
+    "domain": "infrastructure",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז צריכת מים חקלאית מסה\"כ צריכת המים",
+      "מים | אחוז צריכת מים חקלאית"
+    ]
+  },
+  {
+    "code": "EDU_SCHOOLS_PRIMARY",
+    "name_he": "בתי ספר יסודיים",
+    "domain": "education",
+    "unit": "בתי ספר",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "בתי ספר יסודיים (כולל חינוך מיוחד)",
+      "חינוך | בתי ספר יסודיים (כולל חינוך מיוחד)"
+    ]
+  },
+  {
+    "code": "EDU_CLASSES_TOTAL",
+    "name_he": "סך כיתות",
+    "domain": "education",
+    "unit": "כיתות",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "כיתות - סה\"כ",
+      "חינוך | כיתות - סה\"כ"
+    ]
+  },
+  {
+    "code": "EDU_CLASS_SIZE",
+    "name_he": "ממוצע תלמידים לכיתה",
+    "domain": "education",
+    "unit": "תלמידים",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "ממוצע תלמידים לכיתה - סה\"כ",
+      "חינוך | ממוצע תלמידים לכיתה - סה\"כ",
+      "ממוצע תלמידים לכיתה בבתי ספר יסודיים (כולל חינוך מיוחד)",
+      "חינוך | ממוצע תלמידים לכיתה בבתי ספר יסודיים (כולל חינוך מיוחד)"
+    ]
+  },
+  {
+    "code": "BUDGET_GOVT_GRANTS",
+    "name_he": "מענק כללי מהממשלה",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מענק כללי (אלפי ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | מענק כללי (אלפי ש\"ח)",
+      "סה\"כ השתתפות הממשלה בהכנסות של הרשות (אלפי ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | סה\"כ השתתפות הממשלה בהכנסות של הרשות (אלפי ש\"ח)"
+    ]
+  },
+  {
+    "code": "BUDGET_OWN_INCOME",
+    "name_he": "הכנסות עצמיות",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "הכנסות עצמיות של הרשות (אלפי ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | הכנסות עצמיות של הרשות (אלפי ש\"ח)"
+    ]
+  },
+  {
+    "code": "POP_IMMIGRANTS_FIRST_ARRIVAL",
+    "name_he": "עולים בהשתקעות ראשונה",
+    "domain": "population",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "השתקעות ראשונה של עולים",
+      "דמוגרפיה | השתקעות ראשונה של עולים"
+    ]
+  },
+  {
+    "code": "POP_IMMIGRANTS_FIRST_PCT",
+    "name_he": "אחוז עולים בהשתקעות ראשונה",
+    "domain": "population",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז עולים בהשתקעות ראשונה",
+      "דמוגרפיה | אחוז עולים בהשתקעות ראשונה"
+    ]
+  },
+  {
+    "code": "SOCIAL_HOUSING_OWNERSHIP",
+    "name_he": "בעלות על דירה",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "בעלות על דירה (אחוז מתוך משקי הבית)",
+      "רווחה | בעלות על דירה"
+    ]
+  },
+  {
+    "code": "SOCIAL_HOUSEHOLDS",
+    "name_he": "מספר משקי בית",
+    "domain": "social",
+    "unit": "משקי בית",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "משקי בית",
+      "דמוגרפיה | משקי בית"
+    ]
+  },
+  {
+    "code": "TRANSPORT_ACCIDENTS_TOTAL",
+    "name_he": "תאונות דרכים עם נפגעים",
+    "domain": "transport",
+    "unit": "תאונות",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "תאונות דרכים עם נפגעים לפי חומרה",
+      "תחבורה | תאונות דרכים עם נפגעים לפי חומרה"
+    ]
+  },
+  {
+    "code": "EMP_UNEMP_AVG_AGE",
+    "name_he": "גיל ממוצע מקבלי דמי אבטלה",
+    "domain": "employment",
+    "unit": "שנים",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "גיל ממוצע של מקבלי דמי אבטלה (לא כולל חיילים)",
+      "שכר ורווחה | גיל ממוצע של מקבלי דמי אבטלה (לא כולל חיילים)",
+      "גיל ממוצע של מקבלי דמי אבטלה"
+    ]
+  },
+  {
+    "code": "EMP_UNEMP_DAILY_BENEFIT",
+    "name_he": "דמי אבטלה ממוצעים ליום",
+    "domain": "employment",
+    "unit": "₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "דמי אבטלה ממוצעים ליום (ש\"ח)",
+      "שכר ורווחה | דמי אבטלה ממוצעים ליום (ש\"ח)"
+    ]
+  },
+  {
+    "code": "EMP_VOCATIONAL_TRAINING",
+    "name_he": "מקבלי הכשרה מקצועית",
+    "domain": "employment",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "מקבלי הכשרה מקצועית - סה\"כ",
+      "שכר ורווחה | מקבלי הכשרה מקצועית - סה\"כ"
+    ]
+  },
+  {
+    "code": "HEALTH_HMO_CLALIT_PCT",
+    "name_he": "מבוטחי קופ\"ח כללית",
+    "domain": "health",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז המבוטחים בקופ\"ח כללית מתוך סך כל המבוטחים",
+      "שכר ורווחה | אחוז המבוטחים בקופ\"ח כללית מתוך סך כל המבוטחים"
+    ]
+  },
+  {
+    "code": "HEALTH_HMO_MACCABI_PCT",
+    "name_he": "מבוטחי קופ\"ח מכבי",
+    "domain": "health",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז המבוטחים בקופ\"ח מכבי מתוך סך כל המבוטחים",
+      "שכר ורווחה | אחוז המבוטחים בקופ\"ח מכבי מתוך סך כל המבוטחים"
+    ]
+  },
+  {
+    "code": "HEALTH_HMO_MEUHEDET_PCT",
+    "name_he": "מבוטחי קופ\"ח מאוחדת",
+    "domain": "health",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז המבוטחים בקופ\"ח מאוחדת מתוך סך כל המבוטחים",
+      "שכר ורווחה | אחוז המבוטחים בקופ\"ח מאוחדת מתוך סך כל המבוטחים"
+    ]
+  },
+  {
+    "code": "HEALTH_HMO_LEUMIT_PCT",
+    "name_he": "מבוטחי קופ\"ח לאומית",
+    "domain": "health",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז המבוטחים בקופ\"ח לאומית מתוך סך כל המבוטחים",
+      "שכר ורווחה | אחוז המבוטחים בקופ\"ח לאומית מתוך סך כל המבוטחים"
+    ]
+  },
+  {
+    "code": "BUDGET_INCOME_EDU",
+    "name_he": "הכנסות מחינוך",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "הכנסות של הרשות מחינוך (אלפי ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | הכנסות של הרשות מחינוך (אלפי ש\"ח)"
+    ]
+  },
+  {
+    "code": "BUDGET_INCOME_WELFARE",
+    "name_he": "הכנסות מרווחה",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "הכנסות של הרשות מרווחה (אלפי ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | הכנסות של הרשות מרווחה (אלפי ש\"ח)"
+    ]
+  },
+  {
+    "code": "BUDGET_INCOME_WATER_UTIL",
+    "name_he": "הכנסות ממפעל המים",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "הכנסות של הרשות ממפעל המים (אלפי ש\"ח)",
+      "הכנסות בתקציב הרגיל של הרשויות המקומיות | הכנסות של הרשות ממפעל המים (אלפי ש\"ח)"
+    ]
+  },
+  {
+    "code": "BUDGET_EXPENSE_OPS",
+    "name_he": "הוצאות לפעולות",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "הוצאות של הרשות לפעולות (אלפי ש\"ח)",
+      "הוצאות בתקציב הרגיל של הרשויות המקומיות | הוצאות של הרשות לפעולות (אלפי ש\"ח)"
+    ]
+  },
+  {
+    "code": "BUDGET_EXPENSE_FINANCE",
+    "name_he": "הוצאות מימון",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "הוצאות מימון של הרשות (אלפי ש\"ח)",
+      "הוצאות בתקציב הרגיל של הרשויות המקומיות | הוצאות מימון של הרשות (אלפי ש\"ח)"
+    ]
+  },
+  {
+    "code": "BUDGET_CAPITAL_EXPENSE",
+    "name_he": "הוצאות תקציב בלתי רגיל",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "סה\"כ הוצאות של הרשות בתקציב בלתי רגיל (אלפי ש\"ח)"
+    ]
+  },
+  {
+    "code": "BUDGET_CAPITAL_INCOME",
+    "name_he": "הכנסות תקציב בלתי רגיל",
+    "domain": "budget",
+    "unit": "אלפי ₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "סה\"כ הכנסות של הרשות מתקציב בלתי רגיל (אלפי ש\"ח)"
+    ]
+  },
+  {
+    "code": "SOCIAL_ECONOMIC_SATISFACTION",
+    "name_he": "שביעות רצון מהמצב הכלכלי",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "שביעות רצון מהמצב הכלכלי",
+      "רווחה סובייקטיבית | שביעות רצון מהמצב הכלכלי"
+    ]
+  },
+  {
+    "code": "SOCIAL_FUTURE_OPTIMISM",
+    "name_he": "הערכת החיים בעתיד",
+    "domain": "social",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
+    "cbs_column_variants": [
+      "הערכת החיים בעתיד",
+      "הערכת המצב הכלכלי בעתיד",
+      "רווחה סובייקטיבית | הערכת החיים בעתיד"
+    ]
+  },
+  {
+    "code": "EDU_HIGHSCHOOLS",
+    "name_he": "בתי ספר על יסודיים",
+    "domain": "education",
+    "unit": "בתי ספר",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "חינוך | בתי ספר על יסודיים - סה\"כ",
+      "בתי ספר על יסודיים - סה\"כ"
+    ]
+  },
+  {
+    "code": "EDU_MIDDLE_SCHOOLS",
+    "name_he": "בתי ספר חטיבות ביניים",
+    "domain": "education",
+    "unit": "בתי ספר",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "חינוך | בתי ספר בחטיבות ביניים",
+      "בתי ספר בחטיבות ביניים"
+    ]
+  },
+  {
+    "code": "EDU_HIGH_SCHOOLS",
+    "name_he": "בתי ספר תיכוניים",
+    "domain": "education",
+    "unit": "בתי ספר",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "חינוך | בתי ספר תיכוניים",
+      "בתי ספר תיכוניים"
+    ]
+  },
+  {
+    "code": "HEALTH_INFANT_MORTALITY",
+    "name_he": "תמותת תינוקות",
+    "domain": "health",
+    "unit": "ל-1,000 לידות",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": [
+      "פטירות תינוקות",
+      "פטירת תינוקות",
+      "שיעור פטירות תינוקות",
+      "שיעור פטירית תינוקות",
+      "שיעור פטירות תינוקות לאלף לידות",
+      "שיעור פטירית תינוקות לאלף לידות",
+      "גידול טבעי ועלייה | פטירות תינוקות",
+      "גידול טבעי ועלייה | פטירת תינוקות",
+      "דמוגרפיה | פטירות תינוקות",
+      "דמוגרפיה | פטירת תינוקות",
+      "פטירת תינוקות (ממוצע 1998-2002)",
+      "פטירת תינוקות (ממוצע 1999-2003)",
+      "פטירת תינוקות (ממוצע 2000-2004)"
+    ]
+  }
 ]

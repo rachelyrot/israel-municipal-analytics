@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routers import municipalities, indicators, data, admin, analytics
+from app.routers import municipalities, indicators, data, admin, analytics, ai, export
 
 app = FastAPI(title=settings.app_name, version="0.1.0")
 
@@ -18,6 +18,8 @@ app.include_router(indicators.router, prefix="/api/v1")
 app.include_router(data.router, prefix="/api/v1")
 app.include_router(admin.router, prefix="/api/v1")
 app.include_router(analytics.router, prefix="/api/v1")
+app.include_router(ai.router, prefix="/api/v1")
+app.include_router(export.router, prefix="/api/v1")
 
 
 @app.get("/api/v1/health")

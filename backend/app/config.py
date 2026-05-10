@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg2://postgres:postgres@localhost:5432/israel_municipal"
     app_name: str = "Israeli Municipal Analytics"
     debug: bool = False
+    anthropic_api_key: str = ""
 
     model_config = {"env_file": ".env"}
 
