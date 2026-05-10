@@ -1,6 +1,14 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 
+function fmt(value, isPercentage = false) {
+  if (value == null) return 'אין נתון'
+  if (isPercentage) {
+    return Number(value).toLocaleString('he-IL', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+  }
+  return Math.round(value).toLocaleString('he-IL')
+}
+
 const COLORS = ['#eff3ff', '#bdd7e7', '#6baed6', '#2171b5', '#084594']
 
 function quantileBreaks(values, n = 5) {
@@ -18,7 +26,7 @@ function pickColor(value, breaks) {
   return COLORS[COLORS.length - 1]
 }
 
-export function ChoroplethMap({ geojson, onMunicipalityClick }) {
+export function ChoroplethMap({ geojson, isPercentage = false, onMunicipalityClick }) {
   const containerRef = useRef(null)
   const mapRef = useRef(null)
   const layerRef = useRef(null)
@@ -67,8 +75,8 @@ export function ChoroplethMap({ geojson, onMunicipalityClick }) {
       },
       onEachFeature: (feature, layer) => {
         const { municipality_name, value, national_avg } = feature.properties || {}
-        const valStr = value != null ? Number(value).toLocaleString('he-IL') : 'אין נתון'
-        const avgStr = national_avg != null ? Number(national_avg).toLocaleString('he-IL') : '—'
+        const valStr = fmt(value, isPercentage)
+        const avgStr = national_avg != null ? fmt(national_avg, isPercentage) : '—'
         layer.bindTooltip(
           `<div dir="rtl" style="text-align:right">
             <strong>${municipality_name || ''}</strong><br/>

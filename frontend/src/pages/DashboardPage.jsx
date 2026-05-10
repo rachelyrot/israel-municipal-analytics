@@ -50,7 +50,7 @@ export function DashboardPage() {
           <div className="flex flex-col items-center justify-center mt-32 gap-3 text-center">
             <span className="text-5xl">🗺️</span>
             <p className="text-xl text-gray-500">בחר רשות מקומית להתחיל</p>
-            <p className="text-sm text-gray-400">נתוני הלמ"ס 1999–2023 · 256 רשויות · 40+ מדדים</p>
+            <p className="text-sm text-gray-400">נתוני הלמ"ס 1999–2024 · 256 רשויות · 60+ מדדים</p>
           </div>
         )}
 

@@ -41,6 +41,9 @@ def build_choropleth_geojson(db: Session, indicator_code: str, year: int) -> dic
         .all()
     )
 
+    ind_meta = db.query(Indicator).filter(Indicator.code == indicator_code).first()
+    is_percentage = bool(ind_meta.is_percentage) if ind_meta else False
+
     features = []
     for muni, dp, na in rows:
         features.append({
@@ -66,6 +69,7 @@ def build_choropleth_geojson(db: Session, indicator_code: str, year: int) -> dic
             "indicator_code": indicator_code,
             "year": year,
             "count": len(features),
+            "is_percentage": is_percentage,
         },
         "features": features,
     }

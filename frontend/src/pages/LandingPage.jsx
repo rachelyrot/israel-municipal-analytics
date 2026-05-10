@@ -14,7 +14,7 @@ export function LandingPage() {
         ניתוח רשויות מקומיות
       </h1>
       <p className="text-blue-200 text-xl mb-2 text-center">
-        ישראל 1999–2024
+        נתוני הלמ"ס 1999–2024
       </p>
 
       {/* Stats row */}

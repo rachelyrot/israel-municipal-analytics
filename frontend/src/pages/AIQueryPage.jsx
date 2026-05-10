@@ -6,7 +6,7 @@ const YEARS = Array.from({ length: 26 }, (_, i) => 2024 - i)
 
 export function AIQueryPage() {
   const [muni, setMuni] = useState(null)
-  const [year, setYear] = useState(2022)
+  const [year, setYear] = useState(2024)
   const [compMunis, setCompMunis] = useState([])   // רשויות להשוואה
   const [question, setQuestion] = useState('')
   const [loading, setLoading] = useState(false)

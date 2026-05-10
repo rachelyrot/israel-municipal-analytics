@@ -21,10 +21,10 @@ export const api = {
     return get(`/data/kpis/${municipalityId}?year=${year}${domainParam}`)
   },
 
-  getTimeSeries: (municipalityId, indicatorCode, yearFrom = 2005, yearTo = 2023) =>
+  getTimeSeries: (municipalityId, indicatorCode, yearFrom = 1999, yearTo = 2024) =>
     get(`/data/timeseries/${municipalityId}/single?indicator_code=${indicatorCode}&year_from=${yearFrom}&year_to=${yearTo}`),
 
-  compare: (municipalityIds, indicatorCode, yearFrom = 2010, yearTo = 2023) =>
+  compare: (municipalityIds, indicatorCode, yearFrom = 1999, yearTo = 2024) =>
     get(`/analytics/compare?municipality_ids=${municipalityIds.join(',')}&indicator_code=${indicatorCode}&year_from=${yearFrom}&year_to=${yearTo}`),
 
   getRankings: (indicatorCode, year, district = null, limit = 20, offset = 0) => {

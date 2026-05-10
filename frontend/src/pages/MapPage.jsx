@@ -2,13 +2,22 @@ import { useState, useEffect } from 'react'
 import { api } from '../api/client'
 import { ChoroplethMap } from '../components/maps/ChoroplethMap'
 
+function fmt(value, isPercentage = false) {
+  if (value == null) return 'אין נתון'
+  if (isPercentage) {
+    return Number(value).toLocaleString('he-IL', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+  }
+  return Math.round(value).toLocaleString('he-IL')
+}
+
 export function MapPage() {
   const [indicators, setIndicators] = useState({})
   const [indicatorCode, setIndicatorCode] = useState('POP_TOTAL')
-  const [year, setYear] = useState(2022)
+  const [year, setYear] = useState(2024)
   const [geojson, setGeojson] = useState(null)
   const [loading, setLoading] = useState(false)
   const [selected, setSelected] = useState(null)
+  const isPercentage = geojson?.metadata?.is_percentage ?? false
 
   useEffect(() => {
     api.getIndicators().then(setIndicators)
@@ -50,7 +59,7 @@ export function MapPage() {
           onChange={e => setYear(Number(e.target.value))}
           className="border rounded-lg px-3 py-1.5 text-sm bg-white"
         >
-          {Array.from({ length: 25 }, (_, i) => 2023 - i).map(y => (
+          {Array.from({ length: 26 }, (_, i) => 2024 - i).map(y => (
             <option key={y} value={y}>{y}</option>
           ))}
         </select>
@@ -68,7 +77,7 @@ export function MapPage() {
         {/* Map */}
         <div className="flex-1">
           {geojson ? (
-            <ChoroplethMap geojson={geojson} onMunicipalityClick={setSelected} />
+            <ChoroplethMap geojson={geojson} isPercentage={isPercentage} onMunicipalityClick={setSelected} />
           ) : (
             <div className="flex items-center justify-center h-full text-gray-400">
               {loading ? 'טוען מפה...' : 'אין נתונים — הריצו את סקריפט seed_coordinates.py תחילה'}
@@ -98,15 +107,13 @@ export function MapPage() {
               <div className="flex justify-between border-t pt-2 mt-2">
                 <span className="text-gray-500">{indicatorName}</span>
                 <span className="font-semibold text-blue-700">
-                  {selected.value != null
-                    ? Number(selected.value).toLocaleString('he-IL')
-                    : 'אין נתון'}
+                  {fmt(selected.value, isPercentage)}
                 </span>
               </div>
               {selected.national_avg != null && (
                 <div className="flex justify-between">
                   <span className="text-gray-500">ממוצע ארצי</span>
-                  <span>{Number(selected.national_avg).toLocaleString('he-IL')}</span>
+                  <span>{fmt(selected.national_avg, isPercentage)}</span>
                 </div>
               )}
             </div>

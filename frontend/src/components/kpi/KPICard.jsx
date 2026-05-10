@@ -1,8 +1,18 @@
+function fmt(value, isPercentage = false) {
+  if (value == null) return '—'
+  if (isPercentage) {
+    return Number(value).toLocaleString('he-IL', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+  }
+  return Math.round(value).toLocaleString('he-IL')
+}
+
 export function KPICard({ kpi, selected, onSelect }) {
   const name = kpi.name_he ?? kpi.indicator_name ?? kpi.indicator_code
   const trend = kpi.trend_pct ?? kpi.yoy_change_pct ?? null
   const trendUp = trend > 0
-  const trendColor = trend == null ? '' : trendUp ? 'text-green-600' : 'text-red-500'
+  const showTrend = trend != null && Math.abs(trend) >= 0.1
+  const isGood = kpi.higher_is_better === false ? !trendUp : trendUp
+  const trendColor = isGood ? 'text-green-600' : 'text-red-500'
 
   const vsNational = kpi.national_avg && kpi.national_avg !== 0
     ? ((kpi.value - kpi.national_avg) / Math.abs(kpi.national_avg) * 100).toFixed(1)
@@ -20,13 +30,13 @@ export function KPICard({ kpi, selected, onSelect }) {
       <span className="text-xs text-gray-500 leading-tight">{name}</span>
       <div className="flex items-baseline gap-1">
         <span className="text-xl font-bold text-gray-900">
-          {kpi.value.toLocaleString('he-IL')}
+          {fmt(kpi.value, kpi.is_percentage)}
         </span>
         <span className="text-xs text-gray-400">{kpi.unit}</span>
       </div>
-      {trend != null && (
+      {showTrend && (
         <span className={`text-xs font-medium ${trendColor}`}>
-          {trendUp ? '↑' : '↓'} {Math.abs(trend).toFixed(1)}% משנה קודמת
+          {trendUp ? '▲' : '▼'} {Math.abs(trend).toFixed(1)}% משנה קודמת
         </span>
       )}
       {vsNational && (

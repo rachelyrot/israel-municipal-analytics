@@ -126,6 +126,7 @@ def get_kpis(
             "trend_pct": safe(trend_pct),
             "rank_national": ranks.get(ind.id),
             "higher_is_better": ind.higher_is_better,
+            "is_percentage": ind.is_percentage,
         })
     return result
 
