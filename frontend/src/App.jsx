@@ -23,19 +23,19 @@ import { LandingPage } from './pages/LandingPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { ComparisonPage } from './pages/ComparisonPage'
 import { AIQueryPage } from './pages/AIQueryPage'
-import { MapPage } from './pages/MapPage'
+import { DiscoverPage } from './pages/DiscoverPage'
 
 function Navbar() {
-  const base = "px-4 py-2 text-sm font-medium rounded-lg transition"
+  const base = "px-3 py-1 text-xs font-medium rounded-md transition"
   const active = `${base} bg-blue-600 text-white`
   const inactive = `${base} text-gray-600 hover:bg-gray-100`
 
   return (
-    <nav className="bg-white border-b px-6 py-2 flex gap-2" dir="rtl">
+    <nav className="bg-white border-b px-4 py-1 flex gap-1.5" dir="rtl">
       <NavLink to="/app" className={({ isActive }) => isActive ? active : inactive} end>דשבורד</NavLink>
       <NavLink to="/app/compare" className={({ isActive }) => isActive ? active : inactive}>השוואה</NavLink>
-      <NavLink to="/app/map" className={({ isActive }) => isActive ? active : inactive}>מפה</NavLink>
       <NavLink to="/app/ai" className={({ isActive }) => isActive ? active : inactive}>שאל AI</NavLink>
+      <NavLink to="/app/discover" className={({ isActive }) => isActive ? active : inactive}>גילויים</NavLink>
     </nav>
   )
 }
@@ -48,8 +48,8 @@ function AppLayout() {
         <Routes>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/compare" element={<ComparisonPage />} />
-          <Route path="/map" element={<MapPage />} />
           <Route path="/ai" element={<AIQueryPage />} />
+          <Route path="/discover" element={<DiscoverPage />} />
         </Routes>
       </RouteErrorBoundary>
     </>

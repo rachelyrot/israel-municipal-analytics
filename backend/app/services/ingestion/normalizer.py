@@ -36,7 +36,16 @@ class MunicipalityNormalizer:
         if symbol_cbs:
             sym = str(symbol_cbs).replace(".0", "").lstrip("0") or symbol_cbs
             if sym in self._by_symbol:
-                return self._by_symbol[sym]
+                candidate = self._by_symbol[sym]
+                # Sanity-check: the CBS uses overlapping code ranges for cities vs.
+                # regional councils (e.g. city code 31=אופקים, regional council 31=נחל שורק).
+                # Only accept the symbol match when names are reasonably similar.
+                name_score = SequenceMatcher(
+                    None, _normalize_str(raw_name), _normalize_str(candidate.name)
+                ).ratio()
+                if name_score >= 0.6:
+                    return candidate
+                # Fall through to name matching
 
         # 2. התאמה מדויקת לפי שם
         key = _normalize_str(raw_name)

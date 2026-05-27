@@ -118,7 +118,7 @@
   {"name": "דרום השרון", "symbol_cbs": "2012", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "פתח תקווה", "name_aliases": []},
   {"name": "מודיעין מכבים רעות", "symbol_cbs": "1207", "municipality_type": "עיר", "district": "מרכז", "region": "רמלה", "name_aliases": ["מודיעין-מכבים-רעות", "מכבים-רעות", "מכבים רעות"]},
   {"name": "גזר", "symbol_cbs": "2020", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "רמלה", "name_aliases": []},
-  {"name": "נחל שורק", "symbol_cbs": "3574", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "רחובות", "name_aliases": []},
+  {"name": "נחל שורק", "symbol_cbs": null, "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "שורקות", "name_aliases": []},
   {"name": "גן רווה", "symbol_cbs": "1310", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "רחובות", "name_aliases": []},
   {"name": "ברנר", "symbol_cbs": "950", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "רחובות", "name_aliases": []},
   {"name": "שדות דן", "symbol_cbs": "2056", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "צפת", "name_aliases": []},
@@ -141,5 +141,5 @@
   {"name": "צור הדסה", "symbol_cbs": "1113", "municipality_type": "מועצה מקומית", "district": "ירושלים", "region": "ירושלים", "name_aliases": ["Zur Hadassa"]},
   {"name": "אל-בטוף", "symbol_cbs": "5565", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "יזרעאל", "name_aliases": ["אלבטוף", "Al-Butouf"]},
   {"name": "חבל יבנה", "symbol_cbs": "5529", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "רחובות", "name_aliases": ["Hevel Yavne"]},
-  {"name": "נחל שורק", "symbol_cbs": "5531", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "רחובות", "name_aliases": []}
+  {"name": "עמק לוד", "symbol_cbs": null, "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "עמק לוד", "name_aliases": []}
 ]

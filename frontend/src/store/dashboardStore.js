@@ -5,6 +5,9 @@ export const useDashboardStore = create((set, get) => ({
   selectedMunicipality: null,
   selectedYear: 2020,
   selectedDomain: null,
+  filterDistrict: null,
+  filterType: null,
+  hideRegional: false,
   kpis: [],
   isLoadingKPIs: false,
   error: null,
@@ -24,12 +27,16 @@ export const useDashboardStore = create((set, get) => ({
     if (get().selectedMunicipality) get().fetchKPIs()
   },
 
+  setFilterDistrict: (district) => set({ filterDistrict: district }),
+  setFilterType: (type) => set({ filterType: type }),
+  setHideRegional: (hide) => set({ hideRegional: hide }),
+
   fetchKPIs: async () => {
-    const { selectedMunicipality, selectedYear, selectedDomain } = get()
+    const { selectedMunicipality, selectedYear } = get()
     if (!selectedMunicipality) return
     set({ isLoadingKPIs: true, error: null })
     try {
-      const kpis = await api.getKPIs(selectedMunicipality.id, selectedYear, selectedDomain)
+      const kpis = await api.getKPIs(selectedMunicipality.id, selectedYear)
       set({ kpis, isLoadingKPIs: false })
     } catch (e) {
       set({ error: e.message, isLoadingKPIs: false })

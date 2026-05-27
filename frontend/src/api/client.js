@@ -13,8 +13,8 @@ export const api = {
   getMunicipality: (id) =>
     get(`/municipalities/${id}`),
 
-  getIndicators: () =>
-    get('/indicators'),
+  getIndicators: (year = null) =>
+    get(year ? `/indicators?year=${year}` : '/indicators'),
 
   getKPIs: (municipalityId, year, domain = null) => {
     const domainParam = domain ? `&domain=${domain}` : ''
@@ -30,6 +30,13 @@ export const api = {
   getRankings: (indicatorCode, year, district = null, limit = 20, offset = 0) => {
     const p = new URLSearchParams({ indicator_code: indicatorCode, year, limit, offset })
     if (district) p.append('district', district)
+    return get(`/analytics/rankings?${p}`)
+  },
+
+  getAllRankings: (indicatorCode, year, district = null, type = null) => {
+    const p = new URLSearchParams({ indicator_code: indicatorCode, year, limit: 300 })
+    if (district) p.append('district', district)
+    if (type) p.append('municipality_type', type)
     return get(`/analytics/rankings?${p}`)
   },
 
@@ -80,4 +87,7 @@ export const api = {
 
   getForecast: (municipalityId, indicatorCode, deltaPct = 0, yearsAhead = 5) =>
     get(`/analytics/forecast/${municipalityId}?indicator_code=${indicatorCode}&delta_pct=${deltaPct}&years_ahead=${yearsAhead}`),
+
+  getStories: (year = 2020, count = 18) =>
+    get(`/analytics/stories?year=${year}&count=${count}`),
 }

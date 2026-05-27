@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { api } from '../../api/client'
 import { useDashboardStore } from '../../store/dashboardStore'
 
@@ -8,8 +8,18 @@ export function MunicipalitySelector() {
   const [open, setOpen] = useState(false)
   const { selectedMunicipality, setMunicipality } = useDashboardStore()
   const containerRef = useRef(null)
+  const skipSearch = useRef(false)
+
+  // Sync input text when municipality is set externally (e.g. map click)
+  useEffect(() => {
+    skipSearch.current = true
+    setQuery(selectedMunicipality ? selectedMunicipality.name : '')
+    setOpen(false)
+    setResults([])
+  }, [selectedMunicipality?.id])
 
   useEffect(() => {
+    if (skipSearch.current) { skipSearch.current = false; return }
     if (query.length < 2) { setResults([]); setOpen(false); return }
     const t = setTimeout(() =>
       api.searchMunicipalities(query)

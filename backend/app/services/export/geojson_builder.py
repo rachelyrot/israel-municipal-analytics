@@ -53,6 +53,7 @@ def build_choropleth_geojson(db: Session, indicator_code: str, year: int) -> dic
                 "coordinates": [muni.lon, muni.lat],
             },
             "properties": {
+                "municipality_id": muni.id,
                 "muni_code": muni.symbol_cbs,
                 "municipality_name": muni.name,
                 "district": muni.district,

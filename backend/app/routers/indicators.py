@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
@@ -8,10 +10,26 @@ router = APIRouter(tags=["indicators"])
 
 
 @router.get("/indicators")
-def list_indicators(db: Session = Depends(get_db)):
-    indicators = db.query(Indicator).order_by(Indicator.domain, Indicator.name_he).all()
+def list_indicators(year: Optional[int] = None, db: Session = Depends(get_db)):
+    from app.models.data_point import DataPoint
+    from sqlalchemy import exists
+
+    query = db.query(Indicator).order_by(Indicator.domain, Indicator.name_he)
+
+    if year is not None:
+        from app.models.municipality import Municipality
+        query = query.filter(
+            exists().where(
+                (DataPoint.indicator_id == Indicator.id)
+                & (DataPoint.year == year)
+                & (DataPoint.value.isnot(None))
+                & (DataPoint.municipality_id == Municipality.id)
+                & (Municipality.lat.isnot(None))
+            )
+        )
+
     by_domain: dict = {}
-    for ind in indicators:
+    for ind in query.all():
         by_domain.setdefault(ind.domain, []).append({
             "id": ind.id,
             "code": ind.code,
