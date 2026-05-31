@@ -16,9 +16,15 @@ function clusterColor(cluster) {
   return VIRIDIS[Math.min(9, Math.max(0, cluster - 1))]
 }
 
-function fmtValue(value, isPercentage, unit) {
+const GENDER_GAP_CODES = new Set(['WAGE_GENDER_GAP_PCT', 'POP_GENDER_GAP_PCT', 'HEALTH_CANCER_GENDER_GAP_PCT'])
+
+function fmtValue(value, isPercentage, unit, code) {
   if (value == null) return '—'
   const n = Number(value)
+  if (GENDER_GAP_CODES.has(code)) {
+    const abs = Math.abs(n).toLocaleString('he-IL', { maximumFractionDigits: 1 })
+    return `${abs}% ${n >= 0 ? 'לטובת גברים' : 'לטובת נשים'}`
+  }
   if (isPercentage) return n.toLocaleString('he-IL', { maximumFractionDigits: 1 }) + '%'
   if (unit && (unit.includes('₪') || unit.includes('שקל')))
     return '₪' + Math.round(n).toLocaleString('he-IL')
@@ -309,7 +315,7 @@ export function MunicipalityProfile() {
                       {kpi.name_he}
                     </div>
                     <div className="text-lg font-bold text-slate-900 leading-tight tabular-nums">
-                      {fmtValue(kpi.value, kpi.is_percentage, kpi.unit)}
+                      {fmtValue(kpi.value, kpi.is_percentage, kpi.unit, kpi.indicator_code)}
                     </div>
                     {kpi.rank_national && (
                       <div className="text-[9px] text-slate-400 mt-1 font-medium">
@@ -365,7 +371,7 @@ export function MunicipalityProfile() {
                     >
                       <span className="text-slate-500 truncate flex-1">{kpi.name_he}</span>
                       <span className="font-semibold text-slate-700 flex-shrink-0 tabular-nums">
-                        {kpi.value != null ? fmtValue(kpi.value, kpi.is_percentage, kpi.unit) : '—'}
+                        {kpi.value != null ? fmtValue(kpi.value, kpi.is_percentage, kpi.unit, kpi.indicator_code) : '—'}
                       </span>
                       {kpi.rank_national && (
                         <span className="text-slate-300 flex-shrink-0 text-[10px] font-medium">

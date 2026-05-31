@@ -1,9 +1,18 @@
+const GENDER_GAP_CODES = new Set(['WAGE_GENDER_GAP_PCT', 'POP_GENDER_GAP_PCT', 'HEALTH_CANCER_GENDER_GAP_PCT'])
+
 function fmt(value, isPercentage = false) {
   if (value == null) return '—'
   if (isPercentage) {
     return Number(value).toLocaleString('he-IL', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
   }
   return Math.round(value).toLocaleString('he-IL')
+}
+
+function fmtGenderGap(value) {
+  if (value == null) return '—'
+  const abs = Math.abs(value).toLocaleString('he-IL', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+  const favor = value >= 0 ? 'לטובת גברים' : 'לטובת נשים'
+  return `${abs}% ${favor}`
 }
 
 export function KPICard({ kpi, selected, onSelect }) {
@@ -13,6 +22,7 @@ export function KPICard({ kpi, selected, onSelect }) {
   const showTrend = trend != null && Math.abs(trend) >= 0.1
   const isGood = kpi.higher_is_better === false ? !trendUp : trendUp
   const trendColor = isGood ? 'text-green-600' : 'text-red-500'
+  const isGenderGap = GENDER_GAP_CODES.has(kpi.indicator_code)
 
   const vsNational = kpi.national_avg && kpi.national_avg !== 0
     ? ((kpi.value - kpi.national_avg) / Math.abs(kpi.national_avg) * 100).toFixed(1)
@@ -29,10 +39,13 @@ export function KPICard({ kpi, selected, onSelect }) {
     >
       <span className="text-xs text-gray-500 leading-tight">{name}</span>
       <div className="flex items-baseline gap-1">
-        <span className="text-xl font-bold text-gray-900">
-          {fmt(kpi.value, kpi.is_percentage)}
-        </span>
-        <span className="text-xs text-gray-400">{kpi.unit}</span>
+        {isGenderGap
+          ? <span className="text-xl font-bold text-gray-900">{fmtGenderGap(kpi.value)}</span>
+          : <>
+              <span className="text-xl font-bold text-gray-900">{fmt(kpi.value, kpi.is_percentage)}</span>
+              <span className="text-xs text-gray-400">{kpi.unit}</span>
+            </>
+        }
       </div>
       {showTrend && (
         <span className={`text-xs font-medium ${trendColor}`}>
