@@ -60,31 +60,31 @@ def get_kpis(
         except (TypeError, ValueError):
             return None
 
-    # כל המדדים בסדר קבוע לפי id (סדר ה-seed)
-    q = (
-        db.query(Indicator, DataPoint, NationalAverage)
-        .outerjoin(
-            DataPoint,
-            and_(
-                DataPoint.indicator_id == Indicator.id,
-                DataPoint.municipality_id == municipality_id,
-                DataPoint.year == year,
-            )
-        )
-        .outerjoin(
-            NationalAverage,
-            and_(
-                NationalAverage.indicator_id == Indicator.id,
-                NationalAverage.year == year,
-            )
-        )
-        .order_by(Indicator.id)
-    )
+    # שאילתה 1: כל המדדים בסדר קבוע לפי id
+    ind_q = db.query(Indicator).order_by(Indicator.id)
     if domain:
-        q = q.filter(Indicator.domain == domain)
+        ind_q = ind_q.filter(Indicator.domain == domain)
+    indicators = ind_q.all()
+
+    # שאילתה 2: נקודות נתונים לרשות ולשנה
+    dp_map = {
+        dp.indicator_id: dp
+        for dp in db.query(DataPoint).filter(
+            DataPoint.municipality_id == municipality_id,
+            DataPoint.year == year,
+        ).all()
+    }
+
+    # שאילתה 3: ממוצעים ארציים
+    na_map = {
+        na.indicator_id: na
+        for na in db.query(NationalAverage).filter(
+            NationalAverage.year == year,
+        ).all()
+    }
 
     # YoY
-    prev_values = {
+    prev_map = {
         dp.indicator_id: dp.value
         for dp in db.query(DataPoint).filter(
             DataPoint.municipality_id == municipality_id,
@@ -113,9 +113,11 @@ def get_kpis(
     }
 
     result = []
-    for ind, dp, nat_avg in q.all():
+    for ind in indicators:
+        dp = dp_map.get(ind.id)
         value = safe(dp.value) if dp else None
-        prev_val = prev_values.get(ind.id)
+        na = na_map.get(ind.id)
+        prev_val = prev_map.get(ind.id)
         trend_pct = None
         if value is not None and prev_val and prev_val != 0:
             try:
@@ -129,7 +131,7 @@ def get_kpis(
             "domain": ind.domain,
             "unit": ind.unit,
             "value": value,
-            "national_avg": safe(nat_avg.avg_value) if nat_avg else None,
+            "national_avg": safe(na.avg_value) if na else None,
             "trend_pct": safe(trend_pct),
             "rank_national": ranks.get(ind.id),
             "higher_is_better": ind.higher_is_better,
