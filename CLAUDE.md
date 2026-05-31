@@ -40,6 +40,11 @@ python scripts/audit_unmapped.py
 python scripts/audit_unmatched.py
 python scripts/analyze_mappings.py  # detailed column-to-indicator mapping analysis
 
+# Maintenance / one-off fixes
+python scripts/fix_muni_names.py   # fix misspelled municipality names already in DB
+python scripts/fix_land_area.py    # patch LAND_TOTAL_AREA indicator if column mis-mapped
+python scripts/update_seed.py      # edit indicators_seed.json then run to propagate cbs_column_variants to DB
+
 # Run tests (no tests are implemented yet — only __init__.py exists)
 pytest
 pytest tests/test_specific.py::test_name
@@ -117,6 +122,8 @@ ANTHROPIC_API_KEY=sk-ant-...
 ```
 
 `.env` file goes in `backend/`. Single Alembic migration (`initial_schema`) covers all 4 tables. Swagger docs at `http://localhost:8000/docs`.
+
+**Seed data** lives in `backend/data/seed/`: `municipalities_seed.json` (267 entries with aliases) and `indicators_seed.json` (~60 indicators with `cbs_column_variants`). Changes to these files take effect via `python scripts/seed_db.py` (re-seeds) or `python scripts/update_seed.py` (variants only). CBS Excel files land in `backend/data/uploads/` named `cbs_<year>.xlsx` or `cbs_<year>.xls`.
 
 ### Frontend (`frontend/src/`)
 

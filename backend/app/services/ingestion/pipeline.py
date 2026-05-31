@@ -43,6 +43,56 @@ def _find_indicator_id(header: str, ind_map: dict[str, int]) -> int | None:
     return best_id
 
 
+def _compute_derived_indicators(db: Session, year: int):
+    """Compute BUDGET_DEFICIT_PC = BUDGET_DEFICIT (אלפי ₪) * 1000 / POP_TOTAL."""
+    from sqlalchemy import and_
+
+    deficit_ind = db.query(Indicator).filter(Indicator.code == "BUDGET_DEFICIT").first()
+    pop_ind = db.query(Indicator).filter(Indicator.code == "POP_TOTAL").first()
+    pc_ind = db.query(Indicator).filter(Indicator.code == "BUDGET_DEFICIT_PC").first()
+    if not (deficit_ind and pop_ind and pc_ind):
+        return
+
+    deficit_rows = {
+        dp.municipality_id: dp.value
+        for dp in db.query(DataPoint).filter(
+            and_(DataPoint.indicator_id == deficit_ind.id, DataPoint.year == year),
+        ).all()
+        if dp.value is not None
+    }
+    pop_rows = {
+        dp.municipality_id: dp.value
+        for dp in db.query(DataPoint).filter(
+            and_(DataPoint.indicator_id == pop_ind.id, DataPoint.year == year),
+        ).all()
+        if dp.value is not None and dp.value > 0
+    }
+
+    batch = []
+    for muni_id, deficit in deficit_rows.items():
+        pop = pop_rows.get(muni_id)
+        if pop:
+            batch.append({
+                "municipality_id": muni_id,
+                "indicator_id": pc_ind.id,
+                "year": year,
+                "value": round((deficit * 1000) / pop, 2),
+                "source_file": "derived",
+                "sheet_name": "derived",
+            })
+
+    if batch:
+        stmt = pg_insert(DataPoint).values(batch).on_conflict_do_update(
+            index_elements=["municipality_id", "indicator_id", "year"],
+            set_={"value": pg_insert(DataPoint).excluded.value,
+                  "source_file": pg_insert(DataPoint).excluded.source_file},
+        )
+        db.execute(stmt)
+        db.commit()
+        _recompute_national_averages(db, pc_ind.id, year)
+        db.commit()
+
+
 def _recompute_national_averages(db: Session, indicator_id: int, year: int):
     from sqlalchemy import func
     rows = db.query(DataPoint.value).filter(
@@ -137,6 +187,8 @@ def run(file_path: Path, year: int, db: Session) -> IngestionResult:
     for ind_id, yr in affected:
         _recompute_national_averages(db, ind_id, yr)
     db.commit()
+
+    _compute_derived_indicators(db, year)
 
     result.unmatched_municipalities = normalizer.get_unmatched()
     result.unmapped_columns = list(unmapped)[:20]

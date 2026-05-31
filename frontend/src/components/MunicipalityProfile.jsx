@@ -213,7 +213,7 @@ function SimilarMunis({ municipalityId, year }) {
 // ── Priority codes for top 2-col grid ─────────────────────────────────────
 const TOP_CODES = [
   'POP_TOTAL', 'SOCIO_CLUSTER', 'EDU_MATRIC_RATE', 'WAGE_AVG',
-  'EMP_UNEMP_RATE', 'BUDGET_INCOME_PC', 'POP_FERTILITY_RATE', 'POP_AGE_65_PLUS',
+  'EMP_UNEMP_RATE', 'BUDGET_INCOME_PC', 'BUDGET_DEFICIT_PC', 'POP_FERTILITY_RATE', 'POP_AGE_65_PLUS',
 ]
 
 const BAR_CODES = [

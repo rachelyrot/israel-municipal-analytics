@@ -386,6 +386,15 @@
     ]
   },
   {
+    "code": "BUDGET_DEFICIT_PC",
+    "name_he": "עודף/גירעון לנפש",
+    "domain": "budget",
+    "unit": "₪",
+    "is_percentage": false,
+    "higher_is_better": false,
+    "cbs_column_variants": []
+  },
+  {
     "code": "BUDGET_DEBT",
     "name_he": "עומס מלוות",
     "domain": "budget",
