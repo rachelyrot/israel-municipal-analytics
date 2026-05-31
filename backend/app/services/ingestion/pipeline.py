@@ -26,7 +26,6 @@ def _build_indicator_map(db: Session) -> dict[str, int]:
     for ind in db.query(Indicator).all():
         for variant in (ind.cbs_column_variants or []):
             mapping[variant.strip()] = ind.id
-        mapping[ind.name_he.strip()] = ind.id
     return mapping
 
 

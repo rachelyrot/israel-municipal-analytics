@@ -216,6 +216,16 @@ def _parse_transposed_sheet(all_rows: list[list], year: int) -> pd.DataFrame:
 
 # --- פענוח גיליון יחיד ---
 
+def _find_data_start_row(all_rows: list[list], header_row_idx: int, sym_col: int) -> int:
+    """מוצא את השורה הראשונה אחרי header_row_idx שמכילה סמל רשות תקני.
+    משמש לזיהוי שורות כותרת-משנה (כמו 2019 שבה שורה 4 היא כותרת-משנה)."""
+    for i in range(header_row_idx + 1, min(header_row_idx + 10, len(all_rows))):
+        row = all_rows[i]
+        if sym_col < len(row) and _is_valid_symbol(row[sym_col]):
+            return i
+    return header_row_idx + 1
+
+
 def _parse_sheet_rows(all_rows: list[list], year: int) -> pd.DataFrame:
     """מפענח רשימת שורות גולמיות לDataFrame מנורמל."""
     if len(all_rows) < 4:
@@ -225,8 +235,14 @@ def _parse_sheet_rows(all_rows: list[list], year: int) -> pd.DataFrame:
     headers = _build_headers(all_rows, header_row_idx)
     name_col, sym_col = _find_name_symbol_cols(headers)
 
+    # בחלק מהקבצים (למשל 2019) יש שורת כותרת-משנה אחרי שורת שם הרשות.
+    # נזהה את תחילת הנתונים האמיתית ונכלול את כל השורות שלפניה ככותרות.
+    data_start = _find_data_start_row(all_rows, header_row_idx, sym_col)
+    if data_start > header_row_idx + 1:
+        headers = _build_headers(all_rows, data_start - 1)
+
     records = []
-    for row in all_rows[header_row_idx + 1:]:
+    for row in all_rows[data_start:]:
         if len(row) <= max(name_col, sym_col):
             continue
 
