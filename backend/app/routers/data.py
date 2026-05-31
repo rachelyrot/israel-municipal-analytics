@@ -60,6 +60,7 @@ def get_kpis(
             (NationalAverage.year == DataPoint.year),
         )
         .filter(DataPoint.municipality_id == municipality_id, DataPoint.year == year)
+        .order_by(Indicator.domain, Indicator.id)
     )
     if domain:
         q = q.filter(Indicator.domain == domain)
