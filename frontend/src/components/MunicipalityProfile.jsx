@@ -229,12 +229,8 @@ export function MunicipalityProfile() {
   const cluster = selectedMunicipality.socioeconomic_cluster
   const dotColor = clusterColor(cluster)
 
-  const sorted = [
-    ...TOP_CODES.map(code => kpis.find(k => k.indicator_code === code)).filter(Boolean),
-    ...kpis.filter(k => !TOP_CODES.includes(k.indicator_code)),
-  ]
-  const topKPIs  = sorted.slice(0, 8)
-  const restKPIs = sorted.slice(8)
+  const topKPIs  = TOP_CODES.map(code => kpis.find(k => k.indicator_code === code)).filter(Boolean)
+  const restKPIs = kpis.filter(k => !TOP_CODES.includes(k.indicator_code))
 
   const barKPIs = BAR_CODES
     .map(code => kpis.find(k => k.indicator_code === code))
