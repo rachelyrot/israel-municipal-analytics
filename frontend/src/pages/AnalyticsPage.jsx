@@ -97,6 +97,11 @@ export function AnalyticsPage() {
             />
           </div>
         ))}
+        {hasMuni && selectedIds.length > 1 && (
+          <span className="text-xs text-slate-400 self-end pb-2">
+            משווה {selectedIds.length} רשויות · כולל ממוצע ארצי
+          </span>
+        )}
       </div>
 
       {!hasMuni ? (
