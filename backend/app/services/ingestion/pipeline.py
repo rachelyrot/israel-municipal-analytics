@@ -44,6 +44,13 @@ def _find_indicator_id(header: str, ind_map: dict[str, int]) -> int | None:
 
 
 def _compute_derived_indicators(db: Session, year: int):
+    """Compute derived indicators: BUDGET_DEFICIT_PC and WAGE_GENDER_GAP_PCT."""
+    from sqlalchemy import and_
+    _compute_wage_gender_gap(db, year)
+    _compute_budget_deficit_pc(db, year)
+
+
+def _compute_budget_deficit_pc(db: Session, year: int):
     """Compute BUDGET_DEFICIT_PC = BUDGET_DEFICIT (אלפי ₪) * 1000 / POP_TOTAL."""
     from sqlalchemy import and_
 
@@ -90,6 +97,57 @@ def _compute_derived_indicators(db: Session, year: int):
         db.execute(stmt)
         db.commit()
         _recompute_national_averages(db, pc_ind.id, year)
+        db.commit()
+
+
+def _compute_wage_gender_gap(db: Session, year: int):
+    """Compute WAGE_GENDER_GAP_PCT = (WAGE_MEN - WAGE_WOMEN) / WAGE_MEN * 100."""
+    from sqlalchemy import and_
+
+    men_ind = db.query(Indicator).filter(Indicator.code == "WAGE_MEN").first()
+    women_ind = db.query(Indicator).filter(Indicator.code == "WAGE_WOMEN").first()
+    gap_ind = db.query(Indicator).filter(Indicator.code == "WAGE_GENDER_GAP_PCT").first()
+    if not (men_ind and women_ind and gap_ind):
+        return
+
+    men_rows = {
+        dp.municipality_id: dp.value
+        for dp in db.query(DataPoint).filter(
+            and_(DataPoint.indicator_id == men_ind.id, DataPoint.year == year),
+        ).all()
+        if dp.value is not None and dp.value > 0
+    }
+    women_rows = {
+        dp.municipality_id: dp.value
+        for dp in db.query(DataPoint).filter(
+            and_(DataPoint.indicator_id == women_ind.id, DataPoint.year == year),
+        ).all()
+        if dp.value is not None
+    }
+
+    batch = []
+    for muni_id, wage_men in men_rows.items():
+        wage_women = women_rows.get(muni_id)
+        if wage_women is not None:
+            gap = round((wage_men - wage_women) / wage_men * 100, 2)
+            batch.append({
+                "municipality_id": muni_id,
+                "indicator_id": gap_ind.id,
+                "year": year,
+                "value": gap,
+                "source_file": "derived",
+                "sheet_name": "derived",
+            })
+
+    if batch:
+        stmt = pg_insert(DataPoint).values(batch).on_conflict_do_update(
+            index_elements=["municipality_id", "indicator_id", "year"],
+            set_={"value": pg_insert(DataPoint).excluded.value,
+                  "source_file": pg_insert(DataPoint).excluded.source_file},
+        )
+        db.execute(stmt)
+        db.commit()
+        _recompute_national_averages(db, gap_ind.id, year)
         db.commit()
 
 

@@ -193,6 +193,37 @@
     ]
   },
   {
+    "code": "WAGE_MEN",
+    "name_he": "שכר ממוצע — גברים",
+    "domain": "employment",
+    "unit": "₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "גברים | שכר ממוצע"
+    ]
+  },
+  {
+    "code": "WAGE_WOMEN",
+    "name_he": "שכר ממוצע — נשים",
+    "domain": "employment",
+    "unit": "₪",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "נשים | שכר ממוצע"
+    ]
+  },
+  {
+    "code": "WAGE_GENDER_GAP_PCT",
+    "name_he": "פער שכר מגדרי",
+    "domain": "employment",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": false,
+    "cbs_column_variants": []
+  },
+  {
     "code": "EMP_WELFARE_RECIPIENTS",
     "name_he": "מקבלי קצבת הבטחת הכנסה",
     "domain": "employment",

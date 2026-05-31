@@ -70,11 +70,25 @@ def _is_summary_row(name: str) -> bool:
 def _build_headers(all_rows: list[list], header_row_idx: int) -> list[str]:
     """בונה כותרות מורכבות על ידי חיבור שורות 1..header_row_idx."""
     n_cols = max((len(r) for r in all_rows[:header_row_idx + 1]), default=0)
-    headers = []
 
+    # Forward-fill each row so merged-cell labels propagate to adjacent columns.
+    # This lets sub-columns (e.g. "שכר ממוצע" under "גברים") inherit the parent label.
+    filled_rows: list[list] = []
+    for row in all_rows[:header_row_idx + 1]:
+        filled = [row[c] if c < len(row) else None for c in range(n_cols)]
+        last = None
+        for ci in range(n_cols):
+            text = _clean_text(filled[ci])
+            if text and len(text) > 1:
+                last = filled[ci]
+            elif last is not None:
+                filled[ci] = last
+        filled_rows.append(filled)
+
+    headers = []
     for col in range(n_cols):
         parts = []
-        for row in all_rows[:header_row_idx + 1]:
+        for row in filled_rows:
             val = row[col] if col < len(row) else None
             text = _clean_text(val)
             if text and text not in parts and len(text) > 1:
