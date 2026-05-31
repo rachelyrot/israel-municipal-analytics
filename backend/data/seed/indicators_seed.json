@@ -37,13 +37,14 @@
     ]
   },
   {
-    "code": "POP_WOMEN_PCT",
-    "name_he": "% נשים מהאוכלוסייה",
+    "code": "POP_GENDER_GAP_PCT",
+    "name_he": "פער אוכלוסייה מגדרי",
     "domain": "population",
     "unit": "%",
     "is_percentage": true,
     "higher_is_better": null,
-    "cbs_column_variants": []
+    "cbs_column_variants": [],
+    "description_he": "(גברים − נשים) / גברים × 100"
   },
   {
     "code": "POP_DENSITY",

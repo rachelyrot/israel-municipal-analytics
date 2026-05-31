@@ -47,7 +47,7 @@ def _compute_derived_indicators(db: Session, year: int):
     """Compute all derived indicators for a given year."""
     _compute_budget_deficit_pc(db, year)
     _compute_wage_gender_gap(db, year)
-    _compute_pop_women_pct(db, year)
+    _compute_pop_gender_gap(db, year)
     _compute_cancer_gender_gap(db, year)
 
 
@@ -152,14 +152,14 @@ def _compute_wage_gender_gap(db: Session, year: int):
         db.commit()
 
 
-def _compute_pop_women_pct(db: Session, year: int):
-    """Compute POP_WOMEN_PCT = POP_WOMEN / (POP_MEN + POP_WOMEN) * 100."""
+def _compute_pop_gender_gap(db: Session, year: int):
+    """Compute POP_GENDER_GAP_PCT = (POP_MEN - POP_WOMEN) / POP_MEN * 100."""
     from sqlalchemy import and_
 
     men_ind = db.query(Indicator).filter(Indicator.code == "POP_MEN").first()
     women_ind = db.query(Indicator).filter(Indicator.code == "POP_WOMEN").first()
-    pct_ind = db.query(Indicator).filter(Indicator.code == "POP_WOMEN_PCT").first()
-    if not (men_ind and women_ind and pct_ind):
+    gap_ind = db.query(Indicator).filter(Indicator.code == "POP_GENDER_GAP_PCT").first()
+    if not (men_ind and women_ind and gap_ind):
         return
 
     men_rows = {
@@ -174,18 +174,18 @@ def _compute_pop_women_pct(db: Session, year: int):
         for dp in db.query(DataPoint).filter(
             and_(DataPoint.indicator_id == women_ind.id, DataPoint.year == year),
         ).all()
-        if dp.value is not None and dp.value > 0
+        if dp.value is not None
     }
 
     batch = []
     for muni_id, men in men_rows.items():
         women = women_rows.get(muni_id)
-        if women:
+        if women is not None:
             batch.append({
                 "municipality_id": muni_id,
-                "indicator_id": pct_ind.id,
+                "indicator_id": gap_ind.id,
                 "year": year,
-                "value": round(women / (men + women) * 100, 2),
+                "value": round((men - women) / men * 100, 2),
                 "source_file": "derived",
                 "sheet_name": "derived",
             })
@@ -198,7 +198,7 @@ def _compute_pop_women_pct(db: Session, year: int):
         )
         db.execute(stmt)
         db.commit()
-        _recompute_national_averages(db, pct_ind.id, year)
+        _recompute_national_averages(db, gap_ind.id, year)
         db.commit()
 
 
