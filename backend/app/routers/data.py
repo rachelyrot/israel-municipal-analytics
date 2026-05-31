@@ -60,8 +60,8 @@ def get_kpis(
         except (TypeError, ValueError):
             return None
 
-    # שאילתה 1: כל המדדים בסדר קבוע לפי id
-    ind_q = db.query(Indicator).order_by(Indicator.id)
+    # שאילתה 1: כל המדדים בסדר קבוע לפי domain ו-code
+    ind_q = db.query(Indicator).order_by(Indicator.domain, Indicator.code)
     if domain:
         ind_q = ind_q.filter(Indicator.domain == domain)
     indicators = ind_q.all()

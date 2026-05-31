@@ -230,7 +230,11 @@ export function MunicipalityProfile() {
   const dotColor = clusterColor(cluster)
 
   const topKPIs  = TOP_CODES.map(code => kpis.find(k => k.indicator_code === code)).filter(k => k && k.value != null)
-  const restKPIs = kpis.filter(k => !TOP_CODES.includes(k.indicator_code))
+  const restKPIs = [...kpis.filter(k => !TOP_CODES.includes(k.indicator_code))]
+    .sort((a, b) => {
+      if (a.domain !== b.domain) return a.domain.localeCompare(b.domain)
+      return a.name_he.localeCompare(b.name_he, 'he')
+    })
 
   const barKPIs = BAR_CODES
     .map(code => kpis.find(k => k.indicator_code === code))
