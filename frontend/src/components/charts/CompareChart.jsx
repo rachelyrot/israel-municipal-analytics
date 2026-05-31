@@ -15,7 +15,7 @@ const COLORS = ['#2563eb', '#16a34a', '#dc2626', '#d97706', '#7c3aed', '#0891b2'
  *     national_avg: [{ year, avg_value }]
  *   }
  */
-export function CompareChart({ data }) {
+export function CompareChart({ data, height = 320 }) {
   if (!data) return null
 
   const { indicator, municipalities, national_avg } = data
@@ -50,7 +50,7 @@ export function CompareChart({ data }) {
         {indicator?.name_he}
         {unit && <span className="text-sm text-gray-400 mr-2">({unit})</span>}
       </h2>
-      <ResponsiveContainer width="100%" height={320}>
+      <ResponsiveContainer width="100%" height={height}>
         <LineChart data={chartData} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
           <XAxis dataKey="year" tick={{ fontSize: 12 }} />

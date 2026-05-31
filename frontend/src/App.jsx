@@ -21,7 +21,7 @@ class RouteErrorBoundary extends Component {
 }
 import { LandingPage } from './pages/LandingPage'
 import { DashboardPage } from './pages/DashboardPage'
-import { ComparisonPage } from './pages/ComparisonPage'
+import { AnalyticsPage } from './pages/AnalyticsPage'
 import { AIQueryPage } from './pages/AIQueryPage'
 import { DiscoverPage } from './pages/DiscoverPage'
 
@@ -33,7 +33,7 @@ function Navbar() {
   return (
     <nav className="bg-white border-b px-4 py-1 flex gap-1.5" dir="rtl">
       <NavLink to="/app" className={({ isActive }) => isActive ? active : inactive} end>דשבורד</NavLink>
-      <NavLink to="/app/compare" className={({ isActive }) => isActive ? active : inactive}>השוואה</NavLink>
+      <NavLink to="/app/analytics" className={({ isActive }) => isActive ? active : inactive}>גרפים</NavLink>
       <NavLink to="/app/ai" className={({ isActive }) => isActive ? active : inactive}>שאל AI</NavLink>
       <NavLink to="/app/discover" className={({ isActive }) => isActive ? active : inactive}>גילויים</NavLink>
     </nav>
@@ -47,7 +47,7 @@ function AppLayout() {
       <RouteErrorBoundary>
         <Routes>
           <Route path="/" element={<DashboardPage />} />
-          <Route path="/compare" element={<ComparisonPage />} />
+          <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="/ai" element={<AIQueryPage />} />
           <Route path="/discover" element={<DiscoverPage />} />
         </Routes>

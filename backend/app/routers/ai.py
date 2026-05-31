@@ -1,4 +1,5 @@
 import anthropic
+from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
@@ -11,18 +12,19 @@ router = APIRouter(prefix="/ai", tags=["ai"])
 
 class QueryRequest(BaseModel):
     question: str
-    municipality_id: int
-    year: int = 2022
-    session_id: str | None = None
-    comparison_municipality_ids: list[int] | None = None
+    municipality_id: Optional[int] = None
+    year: Optional[int] = None
+    session_id: Optional[str] = None
+    comparison_municipality_ids: Optional[list[int]] = None
 
 
 @router.post("/query")
 def query(req: QueryRequest, db: Session = Depends(get_db)):
     """
-    שאלה חופשית בעברית על רשות מקומית.
+    שאלה חופשית בעברית, עם רשות ושנה אופציונליים.
     POST /api/v1/ai/query
     Body: { "question": "מה שיעור הבגרות?", "municipality_id": 504, "year": 2022 }
+    Body (general): { "question": "מהי הרשות עם הכי הרבה תושבים?" }
     """
     if not req.question.strip():
         raise HTTPException(status_code=400, detail="question cannot be empty")

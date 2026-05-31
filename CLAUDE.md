@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Israeli Municipal Analytics platform — ingests CBS (Central Bureau of Statistics) Excel files (1999–2023) into PostgreSQL and exposes a REST API. Frontend is React + Vite + Tailwind. UI is Hebrew/RTL.
+Israeli Municipal Analytics platform — ingests CBS (Central Bureau of Statistics) Excel files (1999–2024) into PostgreSQL and exposes a REST API. Frontend is React + Vite + Tailwind. UI is Hebrew/RTL.
 
 ## Backend Commands
 
@@ -38,6 +38,7 @@ python scripts/download_cbs.py --years 2015,2016,2017
 # Diagnose ingestion issues (unmapped columns, unmatched municipality names)
 python scripts/audit_unmapped.py
 python scripts/audit_unmatched.py
+python scripts/analyze_mappings.py  # detailed column-to-indicator mapping analysis
 
 # Run tests (no tests are implemented yet — only __init__.py exists)
 pytest
@@ -78,7 +79,7 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 
 **Analytics service (`services/analytics/`):**
 - `comparison.py` — multi-municipality comparison: same indicator, range of years, includes national avg series
-- `similarity.py` — Euclidean distance on 5 base indicators (POP_TOTAL, EMP_RATE, BUDGET_PER_CAPITA, EDU_BAGRUT_RATE + socioeconomic_cluster), min-max normalized; returns similarity score 0–1. **Note:** no active router endpoint currently exposes this; the service is used internally via `MunicipalityProfile`'s `SimilarMunis` sub-component which calls `api.getSimilar()`.
+- `similarity.py` — Euclidean distance on 5 base indicators (POP_TOTAL, EMP_RATE, BUDGET_PER_CAPITA, EDU_BAGRUT_RATE + socioeconomic_cluster), min-max normalized; returns similarity score 0–1. **Note:** the `GET /analytics/similar/{id}` endpoint is **missing** from the analytics router — `api.getSimilar()` calls in `MunicipalityProfile` and `SimilarMunicipalities.jsx` will return 404. The service module is ready; it just needs a router endpoint wired up.
 - `trends.py` — linear regression on time-series → slope, direction (`up`/`down`/`stable`), R², Hebrew label
 - `rankings.py` — rank municipalities by indicator/year with optional district/type filter; ranking computed in Python after DB query (not SQL RANK())
 - `whatif.py` — `forecast(db, muni_id, indicator_code, delta_pct, years_ahead)` → linear trend + optional per-year delta → `GET /analytics/forecast/{id}`
@@ -89,12 +90,16 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 - `pdf_builder.py` — Hebrew PDF via ReportLab + `arabic-reshaper` + `python-bidi`; font at `services/export/fonts/DavidLibre-Regular.ttf`
 
 **AI service (`services/ai/`):**
-- `claude_client.py` — singleton Anthropic client; `chat(question, context)` uses `claude-haiku-4-5-20251001` with `cache_control: ephemeral` on the system prompt. Uses `httpx.Client(verify=False)` to bypass SSL inspection (NetFree workaround — do not remove).
-- `context_builder.py` — `build_municipality_context(db, muni_id, year)` fetches all DataPoints + NationalAverages and formats as a Hebrew table (מדד | ערך | יחידה | ממוצע ארצי) grouped by domain; `build_comparison_context()` adds a column per municipality
+- `claude_client.py` — singleton Anthropic client; `chat(question, context, model)` uses `claude-haiku-4-5-20251001` with `cache_control: ephemeral` on the system prompt. Uses `httpx.Client(verify=False)` to bypass SSL inspection (NetFree workaround — do not remove).
+- `context_builder.py` — four builder functions:
+  - `build_municipality_context(db, muni_id, year)` — single municipality + year: Hebrew table (תחום | מדד | ערך | יחידה | ממוצע ארצי)
+  - `build_comparison_context(db, muni_ids, year)` — multi-municipality comparison table with national avg column
+  - `build_municipality_timeseries_context(db, muni_id)` — all indicators across all available years for a municipality (used when no year is specified)
+  - `build_general_context(db, years)` — national rankings and averages per indicator for one or more years (used when no municipality is specified)
 - `insight_generator.py` — Python finds indicators where |deviation from national avg| ≥ 30%, then Claude formulates each as a single Hebrew sentence
-- `query_engine.py` — `answer_question(...)` orchestrates: pick context builder → call Claude → return `{answer, sources, session_id, municipality_id, year}`
+- `query_engine.py` — `answer_question(...)` dispatches to one of four modes: general (no municipality → `build_general_context`), municipality+year, municipality+comparison, municipality alone (no year → `build_municipality_timeseries_context`)
 
-**Routers (all mounted under `/api/v1/`):**
+**Routers (all mounted under `/api/v1/`; health check at `GET /api/v1/health`):**
 - `municipalities.py` — GET `/municipalities`, `/municipalities/search?q=`, `/municipalities/{id}`
 - `indicators.py` — GET `/indicators?year=` (optional year filter: only returns indicators that have data points for that year and where municipalities have lat/lon), `/indicators/{code}` (includes `available_years` list)
 - `data.py` — GET `/data/points`, `/data/kpis/{id}`, `/data/timeseries/{id}`, `/data/timeseries/{id}/single`, `/data/compare`
@@ -118,31 +123,34 @@ ANTHROPIC_API_KEY=sk-ant-...
 
 Routing: `/` → LandingPage; all app pages live under `/app/*`.
 
-Active pages in `App.jsx` (navbar: דשבורד · השוואה · שאל AI · גילויים):
-- **DashboardPage** (`/app/`) — split-pane layout: right half is a non-scrolling choropleth map with indicator/year toolbar; left half shows `RankingsList` when no municipality is selected, or `MunicipalityProfile` when one is. Clicking a map point or a ranking row sets the selected municipality.
-- **ComparisonPage** (`/app/compare`) — select 2 municipalities + indicator → line chart overlay with national avg
-- **AIQueryPage** (`/app/ai`) — free-form Hebrew question for a municipality + year; auto-loads anomaly insights; supports optional comparison municipalities
+Active pages in `App.jsx` (navbar: דשבורד · גרפים · שאל AI · גילויים):
+- **DashboardPage** (`/app/`) — split-pane layout: left panel is `RankingsList`; right panel is `MunicipalityProfile` when a municipality is selected, empty state otherwise. Toolbar at top has year dropdown + `IndicatorSearch` (portal-based dropdown with search). No map on this page.
+- **AnalyticsPage** (`/app/analytics`) — up to 3 municipalities selected via `LocalMunicipalitySelector`; domain tabs show all indicators for the selected domain; `CompareChart` grid shows multi-year time-series for each indicator with national avg overlay
+- **AIQueryPage** (`/app/ai`) — single free-form Hebrew text input for general national-level questions; no municipality/year selector; calls `api.aiQuery(question, null, null, sessionId, null)` → `build_general_context` on the backend
 - **DiscoverPage** (`/app/discover`) — auto-discovered anomalies feed: calls `GET /analytics/stories`, renders `StoryCard` grid with year/domain filters; "עבור לפרופיל" button sets the municipality in Zustand and navigates to DashboardPage
 
-`MapPage.jsx`, `RankingsPage.jsx`, and `ForecastPage.jsx` exist as files but are not wired into the router or navbar.
+`ComparisonPage.jsx`, `MapPage.jsx`, `RankingsPage.jsx`, and `ForecastPage.jsx` exist as files but are not wired into the router or navbar.
 
 Key components:
-- `api/client.js` — fetch wrapper for all API calls; base path `/api/v1`; includes `aiQuery()`, `getInsights()`, `getChoroplethGeoJSON()`, `downloadPDF()`, `getForecast()`, `getStories(year, count)`, `getIndicators(year?)` (year filter passes through to the backend's lat/lon-aware filter)
+- `api/client.js` — fetch wrapper for all API calls; base path `/api/v1`; includes `aiQuery()`, `getInsights()`, `getChoroplethGeoJSON()`, `downloadPDF()`, `getForecast()`, `getStories(year, count)`, `getIndicators(year?)`, `getAllRankings()`, `getSimilar()` (year filter passes through to the backend's lat/lon-aware filter)
 - `store/dashboardStore.js` — Zustand: `selectedMunicipality`, `selectedYear`, `selectedDomain`, `filterDistrict`, `filterType`, `hideRegional`, `kpis`, `isLoadingKPIs`, `error`; `fetchKPIs()` auto-triggered on municipality/year/domain change; filter fields used by `RankingsList` and `FilterBar`
-- `components/MunicipalityProfile.jsx` — rich left-panel profile: 2-col KPI grid (priority codes first), percentage bars (`PctBar`) with national-avg tick, land-use donut (Recharts PieChart for `LAND_*_PCT` codes), `KPIRadar` (Recharts RadarChart showing value/national_avg ratio for 8 key indicators), `SimilarMunis` inline sub-component, full indicator list; replaces the old KPIGrid in DashboardPage
-- `components/RankingsList.jsx` — ranked list of all municipalities for the current map indicator/year; includes search bar and viridis color dots; respects `filterDistrict`/`filterType`/`hideRegional` from the store; shown in DashboardPage left panel when no municipality is selected
+- `components/MunicipalityProfile.jsx` — rich right-panel profile: 2-col KPI grid (priority codes first), percentage bars (`PctBar`) with national-avg tick, land-use donut (Recharts PieChart for `LAND_*_PCT` codes), `KPIRadar` (Recharts RadarChart showing value/national_avg ratio for 8 key indicators), `SimilarMunis` inline sub-component, full indicator list
+- `components/RankingsList.jsx` — ranked list of all municipalities for the selected indicator/year; includes search bar and viridis color dots; respects `filterDistrict`/`filterType`/`hideRegional` from the store; shown in DashboardPage left panel always
 - `components/FilterBar.jsx` — shared filter bar for type (עירייה/מועצה מקומית/מועצה אזורית), district, hide-regional checkbox, and year; writes to dashboardStore; **not yet wired into any page**
 - `components/kpi/KPICard.jsx` — shows value, YoY trend (▲/▼ %), deviation from national avg (%), and national rank if available; click toggles time-series chart
 - `components/kpi/KPIGrid.jsx` — responsive grid of KPICards filtered by domain from the store
-- `components/kpi/KPIList.jsx` — compact list alternative to KPIGrid: KPIs grouped by domain with inline `ValueBar` (mini progress bar for percentage KPIs showing value vs national avg); **not yet wired into any page**
-- `components/charts/SemiGauge.jsx` — SVG semi-circular arc gauge for percentage KPIs; arc colored green/red relative to national avg; **not yet wired into any page**
-- `components/charts/SummaryDonut.jsx` — Recharts donut counting KPIs above/around/below national avg (8% threshold); shows overall performance score in center; **not yet wired into any page**
+- `components/kpi/KPIList.jsx` — compact list alternative to KPIGrid: KPIs grouped by domain with inline `ValueBar`; **not yet wired into any page**
+- `components/charts/SemiGauge.jsx` — SVG semi-circular arc gauge for percentage KPIs; **not yet wired into any page**
+- `components/charts/SummaryDonut.jsx` — Recharts donut counting KPIs above/around/below national avg; **not yet wired into any page**
 - `components/DomainFilter.jsx` — tab-bar to filter KPIs by domain; writes `selectedDomain` to the Zustand store
-- `components/charts/CompareChart.jsx` — merges multi-municipality series by year for Recharts LineChart
-- `components/maps/ChoroplethMap.jsx` — react-leaflet circle markers, 5 quantile color bins; `onMunicipalityClick` prop receives feature properties including `municipality_id`
-- `components/selectors/MunicipalitySelector.jsx` — Zustand-bound typeahead (300ms debounce); `skipSearch` ref suppresses fetch when municipality is set externally (map click)
-- `components/selectors/LocalMunicipalitySelector.jsx` — controlled (prop-based) variant; takes `value`/`onChange` props and does NOT touch Zustand; use this when multiple selectors appear on the same page (e.g., ComparisonPage)
+- `components/charts/CompareChart.jsx` — merges multi-municipality series by year into a single array for Recharts LineChart; used by AnalyticsPage
+- `components/maps/ChoroplethMap.jsx` — react-leaflet circle markers, 5 quantile color bins; `onMunicipalityClick` prop receives feature properties including `municipality_id`; **not currently mounted in any active page**
+- `components/selectors/MunicipalitySelector.jsx` — Zustand-bound typeahead (300ms debounce); `skipSearch` ref suppresses fetch when municipality is set externally (e.g. ranking row click)
+- `components/selectors/LocalMunicipalitySelector.jsx` — controlled (prop-based) variant; takes `value`/`onChange` props and does NOT touch Zustand; use this when multiple selectors appear on the same page (e.g., AnalyticsPage)
 - `components/SimilarMunicipalities.jsx` — standalone version; similar functionality also inlined in `MunicipalityProfile` as `SimilarMunis`
+- `components/selectors/YearSelector.jsx` — year dropdown (not yet wired into any active page)
+- `components/charts/TimeSeriesChart.jsx` — single-municipality time-series chart (used by KPICard on click)
+- `components/charts/ForecastChart.jsx` — What-If forecast visualization (used by ForecastPage, which is not yet in the router)
 
 ## Implementation Status
 
@@ -150,7 +158,7 @@ Key components:
 - Stage 2 (dashboard) ✅
 - Stage 3 (comparison, similarity, trends, rankings) ✅
 - Stage 4 (AI Hebrew queries — claude_client, context_builder, query_engine, insight_generator, /ai/query + /ai/insights endpoints, AIQueryPage) ✅
-- Stage 5 (Choropleth map, PDF export, What-If forecasts) ✅ — map is embedded in DashboardPage; requires `python scripts/seed_coordinates.py` to populate lat/lon
+- Stage 5 (Choropleth map, PDF export, What-If forecasts) ✅ — map is built but not mounted in any active page; requires `python scripts/seed_coordinates.py` to populate lat/lon
 - Stage 6 (Discover / auto-stories) ✅ — DiscoverPage + `story_finder.py` + `GET /analytics/stories`; results are in-memory cached per `(year, count)` — restart the server to clear
 
 Detailed plans in `.claude/plan/`: `plan.md` (full roadmap), `plan1.md`–`plan4.md`.

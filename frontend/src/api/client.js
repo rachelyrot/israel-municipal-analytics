@@ -43,26 +43,30 @@ export const api = {
   getSimilar: (municipalityId, year) =>
     get(`/analytics/similar/${municipalityId}?year=${year}`),
 
-  aiQuery: (question, municipalityId, year, sessionId = null, comparisonIds = null) =>
-    fetch('/api/v1/ai/query', {
+  aiQuery: (question, municipalityId, year, sessionId = null, comparisonIds = null) => {
+    const body = { question }
+    if (municipalityId != null) body.municipality_id = municipalityId
+    if (year != null) body.year = year
+    if (sessionId != null) body.session_id = sessionId
+    if (comparisonIds != null) body.comparison_municipality_ids = comparisonIds
+    return fetch('/api/v1/ai/query', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        question,
-        municipality_id: municipalityId,
-        year,
-        session_id: sessionId,
-        comparison_municipality_ids: comparisonIds,
-      }),
+      body: JSON.stringify(body),
     }).then(async r => {
       if (!r.ok) {
-        const body = await r.json().catch(() => ({}))
-        const err = new Error(body.detail || `שגיאת שרת ${r.status}`)
-        err.detail = body.detail
+        const resp = await r.json().catch(() => ({}))
+        const detail = resp.detail
+        const detailStr = Array.isArray(detail)
+          ? detail.map(e => e.msg || JSON.stringify(e)).join('; ')
+          : (typeof detail === 'string' ? detail : null)
+        const err = new Error(detailStr || `שגיאת שרת ${r.status}`)
+        err.detail = detailStr
         throw err
       }
       return r.json()
-    }),
+    })
+  },
 
   getInsights: (municipalityId, year) =>
     get(`/ai/insights/${municipalityId}?year=${year}`),
