@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.services.analytics import comparison, trends, rankings, whatif, story_finder
+from app.services.analytics import comparison, trends, rankings, whatif
 
 router = APIRouter(prefix="/analytics", tags=["analytics"])
 
@@ -62,23 +62,6 @@ def rank(
         return rankings.get_rankings(db, indicator_code, year, district, municipality_type, limit, offset)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
-
-
-@router.get("/stories")
-def get_stories(
-    year: int = Query(2020),
-    count: int = Query(15),
-    domain: str | None = None,
-    db: Session = Depends(get_db),
-):
-    """
-    גילויים אוטומטיים — רשויות עם חריגות מעניינות, עם נרטיב מ-Claude.
-    GET /api/v1/analytics/stories?year=2020&count=15&domain=education
-    """
-    stories = story_finder.find_stories(db, year, count)
-    if domain:
-        stories = [s for s in stories if s["domain"] == domain]
-    return {"stories": stories, "year": year}
 
 
 @router.get("/forecast/{municipality_id}")

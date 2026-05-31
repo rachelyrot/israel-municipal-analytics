@@ -91,7 +91,4 @@ export const api = {
 
   getForecast: (municipalityId, indicatorCode, deltaPct = 0, yearsAhead = 5) =>
     get(`/analytics/forecast/${municipalityId}?indicator_code=${indicatorCode}&delta_pct=${deltaPct}&years_ahead=${yearsAhead}`),
-
-  getStories: (year = 2020, count = 18) =>
-    get(`/analytics/stories?year=${year}&count=${count}`),
 }

@@ -83,7 +83,6 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 - `trends.py` — linear regression on time-series → slope, direction (`up`/`down`/`stable`), R², Hebrew label
 - `rankings.py` — rank municipalities by indicator/year with optional district/type filter; ranking computed in Python after DB query (not SQL RANK())
 - `whatif.py` — `forecast(db, muni_id, indicator_code, delta_pct, years_ahead)` → linear trend + optional per-year delta → `GET /analytics/forecast/{id}`
-- `story_finder.py` — auto-discovery of interesting anomalies: finds all (municipality, indicator, year) triples with |deviation from national avg| ≥ 60%, scores them by interest (deviation magnitude × surprise bonus for cluster/metric mismatch), caps 2 stories per municipality, then calls Claude in a single batch to generate a Hebrew headline per story; results are cached in-memory by `(year, count)` key
 
 **Export service (`services/export/`):**
 - `geojson_builder.py` — builds Point GeoJSON from municipalities with lat/lon; feature properties include `municipality_id`, `municipality_name`, `district`, `municipality_type`, `value`, `national_avg`, `has_data`; metadata includes `indicator_code`, `year`, `count`, `is_percentage`
@@ -104,7 +103,7 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 - `indicators.py` — GET `/indicators?year=` (optional year filter: only returns indicators that have data points for that year and where municipalities have lat/lon), `/indicators/{code}` (includes `available_years` list)
 - `data.py` — GET `/data/points`, `/data/kpis/{id}`, `/data/timeseries/{id}`, `/data/timeseries/{id}/single`, `/data/compare`
 - `admin.py` — POST `/admin/ingest` (multipart: file + year)
-- `analytics.py` — GET `/analytics/compare`, `/analytics/trends/{id}`, `/analytics/rankings`, `/analytics/forecast/{id}`, `/analytics/stories?year=&count=&domain=` (auto-discovered anomalies with Claude narratives)
+- `analytics.py` — GET `/analytics/compare`, `/analytics/trends/{id}`, `/analytics/rankings`, `/analytics/forecast/{id}`
 - `ai.py` — POST `/ai/query` (free-form Hebrew question), GET `/ai/insights/{id}` (auto-generated anomaly insights)
 - `export.py` — GET `/export/geojson` (choropleth GeoJSON from DB lat/lon), GET `/export/pdf/{id}` (Hebrew PDF with ReportLab)
 
@@ -123,16 +122,15 @@ ANTHROPIC_API_KEY=sk-ant-...
 
 Routing: `/` → LandingPage; all app pages live under `/app/*`.
 
-Active pages in `App.jsx` (navbar: דשבורד · גרפים · שאל AI · גילויים):
+Active pages in `App.jsx` (navbar: דשבורד · גרפים · שאל AI):
 - **DashboardPage** (`/app/`) — split-pane layout: left panel is `RankingsList`; right panel is `MunicipalityProfile` when a municipality is selected, empty state otherwise. Toolbar at top has year dropdown + `IndicatorSearch` (portal-based dropdown with search). No map on this page.
 - **AnalyticsPage** (`/app/analytics`) — up to 3 municipalities selected via `LocalMunicipalitySelector`; domain tabs show all indicators for the selected domain; `CompareChart` grid shows multi-year time-series for each indicator with national avg overlay
 - **AIQueryPage** (`/app/ai`) — single free-form Hebrew text input for general national-level questions; no municipality/year selector; calls `api.aiQuery(question, null, null, sessionId, null)` → `build_general_context` on the backend
-- **DiscoverPage** (`/app/discover`) — auto-discovered anomalies feed: calls `GET /analytics/stories`, renders `StoryCard` grid with year/domain filters; "עבור לפרופיל" button sets the municipality in Zustand and navigates to DashboardPage
 
 `ComparisonPage.jsx`, `MapPage.jsx`, `RankingsPage.jsx`, and `ForecastPage.jsx` exist as files but are not wired into the router or navbar.
 
 Key components:
-- `api/client.js` — fetch wrapper for all API calls; base path `/api/v1`; includes `aiQuery()`, `getInsights()`, `getChoroplethGeoJSON()`, `downloadPDF()`, `getForecast()`, `getStories(year, count)`, `getIndicators(year?)`, `getAllRankings()`, `getSimilar()` (year filter passes through to the backend's lat/lon-aware filter)
+- `api/client.js` — fetch wrapper for all API calls; base path `/api/v1`; includes `aiQuery()`, `getInsights()`, `getChoroplethGeoJSON()`, `downloadPDF()`, `getForecast()`, `getIndicators(year?)`, `getAllRankings()`, `getSimilar()` (year filter passes through to the backend's lat/lon-aware filter)
 - `store/dashboardStore.js` — Zustand: `selectedMunicipality`, `selectedYear`, `selectedDomain`, `filterDistrict`, `filterType`, `hideRegional`, `kpis`, `isLoadingKPIs`, `error`; `fetchKPIs()` auto-triggered on municipality/year/domain change; filter fields used by `RankingsList` and `FilterBar`
 - `components/MunicipalityProfile.jsx` — rich right-panel profile: 2-col KPI grid (priority codes first), percentage bars (`PctBar`) with national-avg tick, land-use donut (Recharts PieChart for `LAND_*_PCT` codes), `KPIRadar` (Recharts RadarChart showing value/national_avg ratio for 8 key indicators), `SimilarMunis` inline sub-component, full indicator list
 - `components/RankingsList.jsx` — ranked list of all municipalities for the selected indicator/year; includes search bar and viridis color dots; respects `filterDistrict`/`filterType`/`hideRegional` from the store; shown in DashboardPage left panel always
@@ -159,6 +157,6 @@ Key components:
 - Stage 3 (comparison, similarity, trends, rankings) ✅
 - Stage 4 (AI Hebrew queries — claude_client, context_builder, query_engine, insight_generator, /ai/query + /ai/insights endpoints, AIQueryPage) ✅
 - Stage 5 (Choropleth map, PDF export, What-If forecasts) ✅ — map is built but not mounted in any active page; requires `python scripts/seed_coordinates.py` to populate lat/lon
-- Stage 6 (Discover / auto-stories) ✅ — DiscoverPage + `story_finder.py` + `GET /analytics/stories`; results are in-memory cached per `(year, count)` — restart the server to clear
+- Stage 6 (Discover / auto-stories) — removed
 
 Detailed plans in `.claude/plan/`: `plan.md` (full roadmap), `plan1.md`–`plan4.md`.

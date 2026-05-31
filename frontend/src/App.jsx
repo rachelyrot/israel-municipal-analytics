@@ -23,7 +23,6 @@ import { LandingPage } from './pages/LandingPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { AnalyticsPage } from './pages/AnalyticsPage'
 import { AIQueryPage } from './pages/AIQueryPage'
-import { DiscoverPage } from './pages/DiscoverPage'
 
 function Navbar() {
   const base = "px-3 py-1 text-xs font-medium rounded-md transition"
@@ -35,7 +34,6 @@ function Navbar() {
       <NavLink to="/app" className={({ isActive }) => isActive ? active : inactive} end>דשבורד</NavLink>
       <NavLink to="/app/analytics" className={({ isActive }) => isActive ? active : inactive}>גרפים</NavLink>
       <NavLink to="/app/ai" className={({ isActive }) => isActive ? active : inactive}>שאל AI</NavLink>
-      <NavLink to="/app/discover" className={({ isActive }) => isActive ? active : inactive}>גילויים</NavLink>
     </nav>
   )
 }
@@ -49,7 +47,6 @@ function AppLayout() {
           <Route path="/" element={<DashboardPage />} />
           <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="/ai" element={<AIQueryPage />} />
-          <Route path="/discover" element={<DiscoverPage />} />
         </Routes>
       </RouteErrorBoundary>
     </>
