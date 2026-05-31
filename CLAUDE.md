@@ -66,7 +66,7 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 - `database.py` — SQLAlchemy engine + `get_db()` dependency
 - `config.py` — pydantic-settings, reads `backend/.env`; fields: `database_url`, `app_name`, `debug`, `anthropic_api_key`
 
-**4 core tables:**
+**4 core tables** (SQLAlchemy models in `app/models/`):
 - `municipalities` — 267 Israeli local authorities (255 active in 2016, plus 12 historical/newer); fields include `symbol_cbs` (CBS code), `district`, `region`, `lat`/`lon`, `socioeconomic_cluster` (1–10), `name_aliases` (JSON for fuzzy match)
 - `indicators` — ~60 indicators by domain (population/employment/education/welfare/budget/infrastructure/taxes); `code` is the stable key (e.g. `POP_TOTAL`); `cbs_column_variants` (JSON) drives column matching
 - `data_points` — time-series (municipality × indicator × year); `ON CONFLICT DO UPDATE` enforces last-write-wins upsert
@@ -81,7 +81,7 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 - `comparison.py` — multi-municipality comparison: same indicator, range of years, includes national avg series
 - `similarity.py` — Euclidean distance on 5 base indicators (POP_TOTAL, EMP_RATE, BUDGET_PER_CAPITA, EDU_BAGRUT_RATE + socioeconomic_cluster), min-max normalized; returns similarity score 0–1. **Note:** the `GET /analytics/similar/{id}` endpoint is **missing** from the analytics router — `api.getSimilar()` calls in `MunicipalityProfile` and `SimilarMunicipalities.jsx` will return 404. The service module is ready; it just needs a router endpoint wired up.
 - `trends.py` — linear regression on time-series → slope, direction (`up`/`down`/`stable`), R², Hebrew label
-- `rankings.py` — rank municipalities by indicator/year with optional district/type filter; ranking computed in Python after DB query (not SQL RANK())
+- `rankings.py` — rank municipalities by indicator/year with optional district/type filter; ranking computed in Python after DB query (not a SQL window function)
 - `whatif.py` — `forecast(db, muni_id, indicator_code, delta_pct, years_ahead)` → linear trend + optional per-year delta → `GET /analytics/forecast/{id}`
 
 **Export service (`services/export/`):**
@@ -101,7 +101,7 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 **Routers (all mounted under `/api/v1/`; health check at `GET /api/v1/health`):**
 - `municipalities.py` — GET `/municipalities`, `/municipalities/search?q=`, `/municipalities/{id}`
 - `indicators.py` — GET `/indicators?year=` (optional year filter: only returns indicators that have data points for that year and where municipalities have lat/lon), `/indicators/{code}` (includes `available_years` list)
-- `data.py` — GET `/data/points`, `/data/kpis/{id}`, `/data/timeseries/{id}`, `/data/timeseries/{id}/single`, `/data/compare`
+- `data.py` — GET `/data/points`, `/data/kpis/{id}?year=&domain=` (domain is optional server-side filter; uses SQL `RANK()` window function for national ranking), `/data/timeseries/{id}`, `/data/timeseries/{id}/single`, `/data/compare`
 - `admin.py` — POST `/admin/ingest` (multipart: file + year)
 - `analytics.py` — GET `/analytics/compare`, `/analytics/trends/{id}`, `/analytics/rankings`, `/analytics/forecast/{id}`
 - `ai.py` — POST `/ai/query` (free-form Hebrew question), GET `/ai/insights/{id}` (auto-generated anomaly insights)
@@ -123,7 +123,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 Routing: `/` → LandingPage; all app pages live under `/app/*`.
 
 Active pages in `App.jsx` (navbar: דשבורד · גרפים · שאל AI):
-- **DashboardPage** (`/app/`) — split-pane layout: left panel is `RankingsList`; right panel is `MunicipalityProfile` when a municipality is selected, empty state otherwise. Toolbar at top has year dropdown + `IndicatorSearch` (portal-based dropdown with search). No map on this page.
+- **DashboardPage** (`/app/`) — split-pane layout: left panel is `RankingsList`; right panel is `MunicipalityProfile` when a municipality is selected, empty state otherwise. Toolbar at top has year dropdown + `IndicatorSearch` (portal-based dropdown with search, defined inline in `DashboardPage.jsx` — not a separate component file). No map on this page.
 - **AnalyticsPage** (`/app/analytics`) — up to 3 municipalities selected via `LocalMunicipalitySelector`; domain tabs show all indicators for the selected domain; `CompareChart` grid shows multi-year time-series for each indicator with national avg overlay
 - **AIQueryPage** (`/app/ai`) — single free-form Hebrew text input for general national-level questions; no municipality/year selector; calls `api.aiQuery(question, null, null, sessionId, null)` → `build_general_context` on the backend
 
@@ -131,12 +131,12 @@ Active pages in `App.jsx` (navbar: דשבורד · גרפים · שאל AI):
 
 Key components:
 - `api/client.js` — fetch wrapper for all API calls; base path `/api/v1`; includes `aiQuery()`, `getInsights()`, `getChoroplethGeoJSON()`, `downloadPDF()`, `getForecast()`, `getIndicators(year?)`, `getAllRankings()`, `getSimilar()` (year filter passes through to the backend's lat/lon-aware filter)
-- `store/dashboardStore.js` — Zustand: `selectedMunicipality`, `selectedYear`, `selectedDomain`, `filterDistrict`, `filterType`, `hideRegional`, `kpis`, `isLoadingKPIs`, `error`; `fetchKPIs()` auto-triggered on municipality/year/domain change; filter fields used by `RankingsList` and `FilterBar`
+- `store/dashboardStore.js` — Zustand: `selectedMunicipality`, `selectedYear` (default 2020), `selectedDomain`, `filterDistrict`, `filterType`, `hideRegional`, `kpis`, `isLoadingKPIs`, `error`; `fetchKPIs()` auto-triggered on municipality/year change (does NOT pass domain to the API — domain filtering is client-side in `KPIGrid`); filter fields used by `RankingsList` and `FilterBar`
 - `components/MunicipalityProfile.jsx` — rich right-panel profile: 2-col KPI grid (priority codes first), percentage bars (`PctBar`) with national-avg tick, land-use donut (Recharts PieChart for `LAND_*_PCT` codes), `KPIRadar` (Recharts RadarChart showing value/national_avg ratio for 8 key indicators), `SimilarMunis` inline sub-component, full indicator list
 - `components/RankingsList.jsx` — ranked list of all municipalities for the selected indicator/year; includes search bar and viridis color dots; respects `filterDistrict`/`filterType`/`hideRegional` from the store; shown in DashboardPage left panel always
 - `components/FilterBar.jsx` — shared filter bar for type (עירייה/מועצה מקומית/מועצה אזורית), district, hide-regional checkbox, and year; writes to dashboardStore; **not yet wired into any page**
 - `components/kpi/KPICard.jsx` — shows value, YoY trend (▲/▼ %), deviation from national avg (%), and national rank if available; click toggles time-series chart
-- `components/kpi/KPIGrid.jsx` — responsive grid of KPICards filtered by domain from the store
+- `components/kpi/KPIGrid.jsx` — responsive grid of KPICards; filters the `kpis` array from the store by `selectedDomain` client-side
 - `components/kpi/KPIList.jsx` — compact list alternative to KPIGrid: KPIs grouped by domain with inline `ValueBar`; **not yet wired into any page**
 - `components/charts/SemiGauge.jsx` — SVG semi-circular arc gauge for percentage KPIs; **not yet wired into any page**
 - `components/charts/SummaryDonut.jsx` — Recharts donut counting KPIs above/around/below national avg; **not yet wired into any page**

@@ -2291,7 +2291,7 @@
   },
   {
     "code": "BUDGET_GOV_EDU",
-    "name_he": "הכנסות מממשרד החינוך",
+    "name_he": "הכנסות ממשרד החינוך",
     "domain": "budget",
     "unit": "אלפי ש\"ח",
     "is_percentage": false,
