@@ -44,6 +44,7 @@ python scripts/analyze_mappings.py  # detailed column-to-indicator mapping analy
 python scripts/fix_muni_names.py   # fix misspelled municipality names already in DB
 python scripts/fix_land_area.py    # patch LAND_TOTAL_AREA indicator if column mis-mapped
 python scripts/update_seed.py      # edit indicators_seed.json then run to propagate cbs_column_variants to DB
+python scripts/update_seeds.py     # variant — re-seeds all indicator fields (not just variants)
 
 # Run tests (no tests are implemented yet — only __init__.py exists)
 pytest
@@ -80,7 +81,7 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 **Ingestion service (`services/ingestion/`):**
 - `excel_parser.py` — handles `.xls` (xlrd, Windows-1255) and `.xlsx` (openpyxl), skips merged/footnote header rows; cleans values (`-`, `--`, `N/A`, `*` → None)
 - `normalizer.py` — resolves raw municipality names: CBS symbol match → exact name → aliases → prefix stripping (`עיריית`, `מועצה מקומית`, etc.) → fuzzy (≥85%)
-- `pipeline.py` — `run(file_path, year, db)` returns `IngestionResult`; deduplicates rows from multiple sheets (general/physical sheets preferred over budget/survey); calls `_recompute_national_averages()` after upsert; uploaded files land in `data/uploads/`
+- `pipeline.py` — `run(file_path, year, db)` returns `IngestionResult`; deduplicates rows from multiple sheets (general/physical sheets preferred over budget/survey); calls `_recompute_national_averages()` after upsert; uploaded files land in `data/uploads/`. After ingestion, `_compute_derived_indicators()` computes 4 derived indicators (stored with `source_file='derived'`): `BUDGET_DEFICIT_PC` (deficit × 1000 / population), `WAGE_GENDER_GAP_PCT` ((men − women) / men × 100), `POP_GENDER_GAP_PCT`, and `HEALTH_CANCER_GENDER_GAP_PCT`. Adding a new derived indicator requires: entry in `indicators_seed.json`, a `_compute_*` function in `pipeline.py`, and a call from `_compute_derived_indicators()`.
 
 **Analytics service (`services/analytics/`):**
 - `comparison.py` — multi-municipality comparison: same indicator, range of years, includes national avg series
@@ -139,7 +140,7 @@ Active pages in `App.jsx` (navbar: דשבורד · גרפים · שאל AI):
 Key components:
 - `api/client.js` — fetch wrapper for all API calls; base path `/api/v1`; includes `aiQuery()`, `getInsights()`, `getChoroplethGeoJSON()`, `downloadPDF()`, `getForecast()`, `getIndicators(year?)`, `getAllRankings()`, `getSimilar()` (year filter passes through to the backend's lat/lon-aware filter)
 - `store/dashboardStore.js` — Zustand: `selectedMunicipality`, `selectedYear` (default 2020), `selectedDomain`, `filterDistrict`, `filterType`, `hideRegional`, `kpis`, `isLoadingKPIs`, `error`; `fetchKPIs()` auto-triggered on municipality/year change (does NOT pass domain to the API — domain filtering is client-side in `KPIGrid`); filter fields used by `RankingsList` and `FilterBar`
-- `components/MunicipalityProfile.jsx` — rich right-panel profile: 2-col KPI grid (priority codes first), percentage bars (`PctBar`) with national-avg tick, land-use donut (Recharts PieChart for `LAND_*_PCT` codes), `KPIRadar` (Recharts RadarChart showing value/national_avg ratio for 8 key indicators), `SimilarMunis` inline sub-component, full indicator list
+- `components/MunicipalityProfile.jsx` — rich right-panel profile: 2-col KPI grid (priority codes first), percentage bars (`PctBar`) with national-avg tick, land-use donut (Recharts PieChart for `LAND_*_PCT` codes), `KPIRadar` (Recharts RadarChart showing value/national_avg ratio for 8 key indicators), `SimilarMunis` inline sub-component, full indicator list. Gender gap indicators (`WAGE_GENDER_GAP_PCT`, `POP_GENDER_GAP_PCT`, `HEALTH_CANCER_GENDER_GAP_PCT`) are in the `GENDER_GAP_CODES` set and rendered as "X% לטובת גברים/נשים" instead of plain percentages.
 - `components/RankingsList.jsx` — ranked list of all municipalities for the selected indicator/year; includes search bar and viridis color dots; respects `filterDistrict`/`filterType`/`hideRegional` from the store; shown in DashboardPage left panel always
 - `components/FilterBar.jsx` — shared filter bar for type (עירייה/מועצה מקומית/מועצה אזורית), district, hide-regional checkbox, and year; writes to dashboardStore; **not yet wired into any page**
 - `components/kpi/KPICard.jsx` — shows value, YoY trend (▲/▼ %), deviation from national avg (%), and national rank if available; click toggles time-series chart

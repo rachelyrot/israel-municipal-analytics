@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid,
   Tooltip, Legend, ResponsiveContainer,
@@ -16,6 +17,8 @@ const COLORS = ['#2563eb', '#16a34a', '#dc2626', '#d97706', '#7c3aed', '#0891b2'
  *   }
  */
 export function CompareChart({ data, height = 320 }) {
+  const [showNationalAvg, setShowNationalAvg] = useState(true)
+
   if (!data) return null
 
   const { indicator, municipalities, national_avg } = data
@@ -31,7 +34,7 @@ export function CompareChart({ data, height = 320 }) {
     })
   })
 
-  if (national_avg) {
+  if (showNationalAvg && national_avg) {
     national_avg.forEach(({ year, avg_value }) => {
       if (avg_value == null) return
       if (!byYear[year]) byYear[year] = { year }
@@ -46,10 +49,29 @@ export function CompareChart({ data, height = 320 }) {
 
   return (
     <div className="bg-white rounded-xl shadow p-6">
-      <h2 className="text-lg font-semibold mb-4" dir="rtl">
-        {indicator?.name_he}
-        {unit && <span className="text-sm text-gray-400 mr-2">({unit})</span>}
-      </h2>
+      <div className="flex items-start justify-between mb-4" dir="rtl">
+        <h2 className="text-lg font-semibold">
+          {indicator?.name_he}
+          {unit && <span className="text-sm text-gray-400 mr-2">({unit})</span>}
+        </h2>
+        {national_avg && national_avg.length > 0 && (
+          <button
+            onClick={() => setShowNationalAvg(v => !v)}
+            className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border transition-all duration-150 ${
+              showNationalAvg
+                ? 'bg-slate-100 border-slate-300 text-slate-600 hover:bg-slate-200'
+                : 'bg-white border-slate-200 text-slate-300 hover:border-slate-300 hover:text-slate-400'
+            }`}
+          >
+            <svg width="16" height="8" viewBox="0 0 16 8" className="flex-shrink-0">
+              <line x1="0" y1="4" x2="16" y2="4"
+                stroke={showNationalAvg ? '#9ca3af' : '#e2e8f0'}
+                strokeWidth="2" strokeDasharray="4 3" />
+            </svg>
+            ממוצע ארצי
+          </button>
+        )}
+      </div>
       <ResponsiveContainer width="100%" height={height}>
         <LineChart data={chartData} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -71,14 +93,13 @@ export function CompareChart({ data, height = 320 }) {
 
             />
           ))}
-          {national_avg && national_avg.length > 0 && (
+          {showNationalAvg && national_avg && national_avg.length > 0 && (
             <Line
               dataKey="ממוצע ארצי"
               stroke="#9ca3af"
               strokeDasharray="5 5"
               strokeWidth={1.5}
               dot={false}
-
             />
           )}
         </LineChart>
