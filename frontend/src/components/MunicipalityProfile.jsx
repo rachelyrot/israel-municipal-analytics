@@ -229,7 +229,7 @@ export function MunicipalityProfile() {
   const cluster = selectedMunicipality.socioeconomic_cluster
   const dotColor = clusterColor(cluster)
 
-  const topKPIs  = TOP_CODES.map(code => kpis.find(k => k.indicator_code === code)).filter(Boolean)
+  const topKPIs  = TOP_CODES.map(code => kpis.find(k => k.indicator_code === code)).filter(k => k && k.value != null)
   const restKPIs = kpis.filter(k => !TOP_CODES.includes(k.indicator_code))
 
   const barKPIs = BAR_CODES
@@ -357,11 +357,11 @@ export function MunicipalityProfile() {
                   {restKPIs.map(kpi => (
                     <div
                       key={kpi.indicator_code}
-                      className="flex justify-between items-baseline px-4 py-2 border-b border-slate-50 text-xs gap-2 last:border-0"
+                      className={`flex justify-between items-baseline px-4 py-2 border-b border-slate-50 text-xs gap-2 last:border-0 ${kpi.value == null ? 'opacity-30' : ''}`}
                     >
                       <span className="text-slate-500 truncate flex-1">{kpi.name_he}</span>
                       <span className="font-semibold text-slate-700 flex-shrink-0 tabular-nums">
-                        {fmtValue(kpi.value, kpi.is_percentage, kpi.unit)}
+                        {kpi.value != null ? fmtValue(kpi.value, kpi.is_percentage, kpi.unit) : '—'}
                       </span>
                       {kpi.rank_national && (
                         <span className="text-slate-300 flex-shrink-0 text-[10px] font-medium">

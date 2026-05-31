@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-from sqlalchemy import func, text
+from sqlalchemy import func, text, and_
 from typing import Optional
 
 from app.database import get_db
@@ -51,31 +51,48 @@ def get_kpis(
     domain: Optional[str] = None,
     db: Session = Depends(get_db),
 ):
+    import math
+
+    def safe(v):
+        if v is None: return None
+        try:
+            return None if math.isnan(v) or math.isinf(v) else v
+        except (TypeError, ValueError):
+            return None
+
+    # כל המדדים בסדר קבוע לפי id (סדר ה-seed)
     q = (
-        db.query(DataPoint, Indicator, NationalAverage)
-        .join(Indicator, DataPoint.indicator_id == Indicator.id)
+        db.query(Indicator, DataPoint, NationalAverage)
+        .outerjoin(
+            DataPoint,
+            and_(
+                DataPoint.indicator_id == Indicator.id,
+                DataPoint.municipality_id == municipality_id,
+                DataPoint.year == year,
+            )
+        )
         .outerjoin(
             NationalAverage,
-            (NationalAverage.indicator_id == DataPoint.indicator_id) &
-            (NationalAverage.year == DataPoint.year),
+            and_(
+                NationalAverage.indicator_id == Indicator.id,
+                NationalAverage.year == year,
+            )
         )
-        .filter(DataPoint.municipality_id == municipality_id, DataPoint.year == year)
-        .order_by(Indicator.domain, Indicator.id)
+        .order_by(Indicator.id)
     )
     if domain:
         q = q.filter(Indicator.domain == domain)
 
-    # חישוב שינוי YoY
-    prev_year = year - 1
+    # YoY
     prev_values = {
         dp.indicator_id: dp.value
         for dp in db.query(DataPoint).filter(
             DataPoint.municipality_id == municipality_id,
-            DataPoint.year == prev_year,
+            DataPoint.year == year - 1,
         ).all()
     }
 
-    # חישוב דירוג ארצי לכל מדד
+    # דירוג ארצי
     rank_subq = (
         db.query(
             DataPoint.indicator_id,
@@ -95,23 +112,12 @@ def get_kpis(
         ).all()
     }
 
-    import math
-
-    def safe(v):
-        if v is None: return None
-        try:
-            return None if math.isnan(v) or math.isinf(v) else v
-        except (TypeError, ValueError):
-            return None
-
     result = []
-    for dp, ind, nat_avg in q.all():
-        value = safe(dp.value)
-        if value is None:
-            continue
+    for ind, dp, nat_avg in q.all():
+        value = safe(dp.value) if dp else None
         prev_val = prev_values.get(ind.id)
         trend_pct = None
-        if prev_val and prev_val != 0:
+        if value is not None and prev_val and prev_val != 0:
             try:
                 trend_pct = round((value - prev_val) / abs(prev_val) * 100, 1)
             except Exception:
