@@ -15,6 +15,37 @@
     ]
   },
   {
+    "code": "POP_MEN",
+    "name_he": "אוכלוסייה — גברים",
+    "domain": "population",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "סה\"כ גברים בסוף השנה"
+    ]
+  },
+  {
+    "code": "POP_WOMEN",
+    "name_he": "אוכלוסייה — נשים",
+    "domain": "population",
+    "unit": "נפש",
+    "is_percentage": false,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "סה\"כ נשים בסוף השנה"
+    ]
+  },
+  {
+    "code": "POP_WOMEN_PCT",
+    "name_he": "% נשים מהאוכלוסייה",
+    "domain": "population",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": []
+  },
+  {
     "code": "POP_DENSITY",
     "name_he": "צפיפות אוכלוסין",
     "domain": "population",
@@ -200,7 +231,9 @@
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
-      "גברים | שכר ממוצע"
+      "גברים | שכר ממוצע",
+      "שכר ממוצע לחודש של שכירים (ש\"ח) | גברים",
+      "שכר ורווחה | שכר ממוצע לחודש של שכירים (ש\"ח) | גברים"
     ]
   },
   {
@@ -211,7 +244,9 @@
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
-      "נשים | שכר ממוצע"
+      "נשים | שכר ממוצע",
+      "שכר ממוצע לחודש של שכירים (ש\"ח) | נשים",
+      "שכר ורווחה | שכר ממוצע לחודש של שכירים (ש\"ח) | נשים"
     ]
   },
   {
@@ -1457,6 +1492,15 @@
       "2018-2014 | שיעור סרטן מכל הסוגים מתוקנן ל-100,000 תושבים, נשים",
       "שיעור סרטן מכל הסוגים מתוקנן ל-100,000 תושבים, נשים"
     ]
+  },
+  {
+    "code": "HEALTH_CANCER_GENDER_GAP_PCT",
+    "name_he": "פער שיעור סרטן מגדרי",
+    "domain": "health",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": false,
+    "cbs_column_variants": []
   },
   {
     "code": "HEALTH_CHRONIC_PROBLEM",
