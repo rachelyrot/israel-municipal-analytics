@@ -357,7 +357,7 @@
     "code": "BUDGET_INCOME_TOTAL",
     "name_he": "סך הכנסות תקציב רגיל",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -389,7 +389,7 @@
     "code": "BUDGET_EXPENSE_TOTAL",
     "name_he": "סך הוצאות תקציב רגיל",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -419,7 +419,7 @@
     "code": "BUDGET_DEFICIT",
     "name_he": "עודף/גירעון שנתי",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": false,
     "cbs_column_variants": [
@@ -433,7 +433,7 @@
     "code": "BUDGET_DEFICIT_CUMULATIVE",
     "name_he": "גירעון מצטבר",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": false,
     "cbs_column_variants": [
@@ -453,7 +453,7 @@
     "code": "BUDGET_DEBT",
     "name_he": "עומס מלוות",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": false,
     "cbs_column_variants": [
@@ -465,7 +465,7 @@
     "code": "BUDGET_TAX_GRANTS",
     "name_he": "מיסים ומענקים",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -476,7 +476,7 @@
     "code": "ARNONA_RESIDENTIAL_CHARGE",
     "name_he": "חיוב ארנונה למגורים",
     "domain": "arnona",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -489,7 +489,7 @@
     "code": "ARNONA_RESIDENTIAL_COLLECT",
     "name_he": "גביית ארנונה למגורים",
     "domain": "arnona",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -512,7 +512,7 @@
     "code": "ARNONA_TOTAL_CHARGE",
     "name_he": "חיוב ארנונה כולל",
     "domain": "arnona",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -524,7 +524,7 @@
     "code": "ARNONA_INCOME",
     "name_he": "הכנסות מארנונה",
     "domain": "arnona",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -1099,7 +1099,7 @@
     "code": "BUDGET_GOVT_GRANTS",
     "name_he": "מענק כללי מהממשלה",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -1113,7 +1113,7 @@
     "code": "BUDGET_OWN_INCOME",
     "name_he": "הכנסות עצמיות",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -1275,7 +1275,7 @@
     "code": "BUDGET_INCOME_EDU",
     "name_he": "הכנסות מחינוך",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -1287,7 +1287,7 @@
     "code": "BUDGET_INCOME_WELFARE",
     "name_he": "הכנסות מרווחה",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -1299,7 +1299,7 @@
     "code": "BUDGET_INCOME_WATER_UTIL",
     "name_he": "הכנסות ממפעל המים",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -1311,7 +1311,7 @@
     "code": "BUDGET_EXPENSE_OPS",
     "name_he": "הוצאות לפעולות",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -1323,7 +1323,7 @@
     "code": "BUDGET_EXPENSE_FINANCE",
     "name_he": "הוצאות מימון",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -1335,7 +1335,7 @@
     "code": "BUDGET_CAPITAL_EXPENSE",
     "name_he": "הוצאות תקציב בלתי רגיל",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -1346,7 +1346,7 @@
     "code": "BUDGET_CAPITAL_INCOME",
     "name_he": "הכנסות תקציב בלתי רגיל",
     "domain": "budget",
-    "unit": "אלפי ₪",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2345,7 +2345,7 @@
     "code": "BUDGET_GOV_TOTAL",
     "name_he": "הכנסות מהממשלה (סה\"כ)",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2357,7 +2357,7 @@
     "code": "BUDGET_GOV_EDU",
     "name_he": "הכנסות ממשרד החינוך",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2368,7 +2368,7 @@
     "code": "BUDGET_GOV_WELFARE",
     "name_he": "הכנסות ממשרד הרווחה",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2379,7 +2379,7 @@
     "code": "BUDGET_GOV_GENERAL_GRANT",
     "name_he": "מענק כללי מהממשלה",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2390,7 +2390,7 @@
     "code": "BUDGET_GOV_SPECIAL_GRANTS",
     "name_he": "מענקים מיוחדים מהממשלה",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2401,7 +2401,7 @@
     "code": "BUDGET_LABOR_TOTAL",
     "name_he": "עלות עבודה (סה\"כ)",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2413,7 +2413,7 @@
     "code": "BUDGET_LABOR_EDU",
     "name_he": "עלות עבודה – חינוך",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2424,7 +2424,7 @@
     "code": "BUDGET_LABOR_WELFARE",
     "name_he": "עלות עבודה – רווחה",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2435,7 +2435,7 @@
     "code": "BUDGET_STATE_TOTAL",
     "name_he": "שירותים ממלכתיים (סה\"כ)",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2447,7 +2447,7 @@
     "code": "BUDGET_STATE_EDU",
     "name_he": "שירותים ממלכתיים – חינוך",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2460,7 +2460,7 @@
     "code": "BUDGET_STATE_WELFARE",
     "name_he": "שירותים ממלכתיים – רווחה",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2472,7 +2472,7 @@
     "code": "BUDGET_STATE_CULTURE",
     "name_he": "שירותים ממלכתיים – תרבות",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2484,7 +2484,7 @@
     "code": "BUDGET_LOANS",
     "name_he": "מלוות",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2495,7 +2495,7 @@
     "code": "BUDGET_LOANS_REFINANCE",
     "name_he": "מלוות למחזור ולאיזון",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2506,7 +2506,7 @@
     "code": "BUDGET_LOANS_REPAYMENT",
     "name_he": "פירעון מלוות",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2517,7 +2517,7 @@
     "code": "BUDGET_TOTAL_RECEIPTS",
     "name_he": "סה\"כ תקבולים (רגיל + בלתי רגיל)",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2528,7 +2528,7 @@
     "code": "BUDGET_TOTAL_PAYMENTS",
     "name_he": "סה\"כ תשלומים (רגיל + בלתי רגיל)",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2539,7 +2539,7 @@
     "code": "BUDGET_EXTRA_EXPENSES_TOTAL",
     "name_he": "הוצאות בלתי רגילות (סה\"כ)",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2550,7 +2550,7 @@
     "code": "BUDGET_EXTRA_INCOME_TOTAL",
     "name_he": "הכנסות בלתי רגילות (סה\"כ)",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2561,7 +2561,7 @@
     "code": "BUDGET_ADMIN",
     "name_he": "הנהלה וכלליות",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2572,7 +2572,7 @@
     "code": "BUDGET_OPERATIONAL_EXPENSES",
     "name_he": "הוצאות תפעול (תקציב רגיל)",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2583,7 +2583,7 @@
     "code": "TAX_COMMERCE",
     "name_he": "ארנונה – משרדים ומסחר",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2594,7 +2594,7 @@
     "code": "TAX_HOTELS",
     "name_he": "ארנונה – בתי מלון",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2605,7 +2605,7 @@
     "code": "TAX_AGRI_LAND",
     "name_he": "ארנונה – קרקע חקלאית",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -2616,7 +2616,7 @@
     "code": "TAX_SOLAR",
     "name_he": "ארנונה – מערכות סולריות",
     "domain": "budget",
-    "unit": "אלפי ש\"ח",
+    "unit": "₪",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
