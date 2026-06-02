@@ -996,15 +996,14 @@
   },
   {
     "code": "SOCIAL_COMMUTE_TIME",
-    "name_he": "משך נסיעה לעבודה",
+    "name_he": "נסיעה קצרה לעבודה (מתחת ל-30 דקות)",
     "domain": "social",
-    "unit": "דקות",
-    "is_percentage": false,
-    "higher_is_better": false,
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": true,
     "cbs_column_variants": [
-      "משך ההגעה לעבודה",
-      "יוממות",
-      "רווחה סובייקטיבית | משך ההגעה לעבודה"
+      "פחות מחצי שעה (עד 29 דקות) | אחוז מהמועסקים",
+      "משך ההגעה לעבודה | פחות מחצי שעה"
     ]
   },
   {
