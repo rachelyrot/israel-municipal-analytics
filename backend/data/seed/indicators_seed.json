@@ -1537,7 +1537,7 @@
   },
   {
     "code": "HEALTH_INTELLECTUAL_DISABILITY",
-    "name_he": "מוגבלות שכלית-התפתחותית",
+    "name_he": "מוגבלות שכלית-התפתחותית (מתוך בעלי מוגבלות)",
     "domain": "health",
     "unit": "%",
     "is_percentage": true,
