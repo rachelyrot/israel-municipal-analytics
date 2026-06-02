@@ -2083,8 +2083,8 @@
     "code": "EMP_BELOW_MEDIAN_WAGE",
     "name_he": "שכירים מתחת לשכר החציוני",
     "domain": "employment",
-    "unit": "%",
-    "is_percentage": true,
+    "unit": "שכירים",
+    "is_percentage": false,
     "higher_is_better": false,
     "cbs_column_variants": [
       "2023 | שכירים המשתכרים מתחת לשכר החציוני",
@@ -2095,8 +2095,8 @@
     "code": "EMP_BELOW_MIN_WAGE",
     "name_he": "שכירים מתחת לשכר מינימום",
     "domain": "employment",
-    "unit": "%",
-    "is_percentage": true,
+    "unit": "שכירים",
+    "is_percentage": false,
     "higher_is_better": false,
     "cbs_column_variants": [
       "2023 | שכירים המשתכרים מתחת לשכר המינימום",
