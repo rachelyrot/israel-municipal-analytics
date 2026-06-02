@@ -1,5 +1,7 @@
+from collections import defaultdict
+
 from sqlalchemy.orm import Session
-from sqlalchemy import and_
+from sqlalchemy import and_, func
 
 from app.models.data_point import DataPoint
 from app.models.municipality import Municipality
@@ -91,6 +93,72 @@ def compare_municipalities(
         if na.avg_value is not None
     ]
 
+    # Compute district averages for all distinct districts of the selected municipalities
+    districts = list({m.district for m in municipalities if m.district})
+    district_avgs_result = []
+    if districts:
+        district_rows = (
+            db.query(
+                Municipality.district,
+                DataPoint.year,
+                func.avg(DataPoint.value).label("avg_value"),
+            )
+            .join(Municipality, DataPoint.municipality_id == Municipality.id)
+            .filter(
+                and_(
+                    DataPoint.indicator_id == indicator.id,
+                    DataPoint.year >= year_from,
+                    DataPoint.year <= year_to,
+                    Municipality.district.in_(districts),
+                    DataPoint.value.isnot(None),
+                )
+            )
+            .group_by(Municipality.district, DataPoint.year)
+            .order_by(Municipality.district, DataPoint.year)
+            .all()
+        )
+        by_district: dict[str, list] = defaultdict(list)
+        for row in district_rows:
+            by_district[row.district].append({"year": row.year, "avg_value": float(row.avg_value)})
+        district_avgs_result = [
+            {"district": d, "series": by_district[d]}
+            for d in districts
+            if by_district[d]
+        ]
+
+    # Compute type averages for all distinct municipality types of the selected municipalities
+    types = list({m.municipality_type for m in municipalities if m.municipality_type})
+    type_avgs_result = []
+    if types:
+        type_rows = (
+            db.query(
+                Municipality.municipality_type,
+                DataPoint.year,
+                func.avg(DataPoint.value).label("avg_value"),
+            )
+            .join(Municipality, DataPoint.municipality_id == Municipality.id)
+            .filter(
+                and_(
+                    DataPoint.indicator_id == indicator.id,
+                    DataPoint.year >= year_from,
+                    DataPoint.year <= year_to,
+                    Municipality.municipality_type.in_(types),
+                    DataPoint.value.isnot(None),
+                )
+            )
+            .group_by(Municipality.municipality_type, DataPoint.year)
+            .order_by(Municipality.municipality_type, DataPoint.year)
+            .all()
+        )
+        by_type: dict[str, list] = defaultdict(list)
+        for row in type_rows:
+            by_type[row.municipality_type].append({"year": row.year, "avg_value": float(row.avg_value)})
+        type_avgs_result = [
+            {"municipality_type": t, "series": by_type[t]}
+            for t in types
+            if by_type[t]
+        ]
+
     return {
         "indicator": {
             "code": indicator.code,
@@ -99,4 +167,6 @@ def compare_municipalities(
         },
         "municipalities": municipalities_result,
         "national_avg": national_avg_result,
+        "district_avgs": district_avgs_result,
+        "type_avgs": type_avgs_result,
     }
