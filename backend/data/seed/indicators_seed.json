@@ -181,18 +181,6 @@
     ]
   },
   {
-    "code": "EMP_UNEMP_RATE",
-    "name_he": "שיעור מקבלי דמי אבטלה",
-    "domain": "employment",
-    "unit": "%",
-    "is_percentage": true,
-    "higher_is_better": false,
-    "cbs_column_variants": [
-      "אחוז מקבלי דמי אבטלה מבני 67-20 (שנתי)",
-      "שכר ורווחה | אחוז מקבלי דמי אבטלה מבני 67-20 (שנתי)"
-    ]
-  },
-  {
     "code": "EMP_UNEMP_COUNT",
     "name_he": "מקבלי דמי אבטלה (ממוצע חודשי)",
     "domain": "employment",
