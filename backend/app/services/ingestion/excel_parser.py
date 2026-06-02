@@ -18,12 +18,15 @@ import openpyxl
 
 def _scale_value(header: str, value: float | None) -> float | None:
     """כופל ×1000 כשהכותרת אומרת '(אלפים)' — למניעת חוסר עקביות בין שנים.
-    לא נוגע ב'אלפי ₪' או 'אלפי מ"ק' כי המדדים האלה מוגדרים ביחידות אלפים."""
+    לא נוגע ב'אלפי ₪' או 'אלפי מ"ק' כי המדדים האלה מוגדרים ביחידות אלפים.
+    לא נוגע בנתוני אוכלוסייה — CBS 2018 תיוג שגוי '(אלפים)' על עמודות נפשות."""
     if value is None or not header:
         return value
     h = header.replace('"', '"')
+    _POP_TERMS = ('גברים', 'נשים', 'אוכלוסייה', 'נפש', 'תושבים', 'ילדים', 'קשישים')
     if 'אלפים' in h and 'אלפי ₪' not in h and 'אלפי מ' not in h:
-        return value * 1000
+        if not any(t in h for t in _POP_TERMS):
+            return value * 1000
     return value
 
 
