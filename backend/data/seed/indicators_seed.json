@@ -746,7 +746,7 @@
     "code": "INFRA_WATER_PC",
     "name_he": "צריכת מים ביתית לנפש",
     "domain": "infrastructure",
-    "unit": "מ\"ק לנפש",
+    "unit": "קוב לנפש",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -758,7 +758,7 @@
     "code": "INFRA_WATER_TOTAL",
     "name_he": "סך צריכת מים",
     "domain": "infrastructure",
-    "unit": "אלפי מ\"ק",
+    "unit": "אלפי קוב",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
@@ -1039,7 +1039,7 @@
     "code": "INFRA_WATER_AGRICULTURAL",
     "name_he": "צריכת מים חקלאית",
     "domain": "infrastructure",
-    "unit": "אלפי מ\"ק",
+    "unit": "אלפי קוב",
     "is_percentage": false,
     "higher_is_better": null,
     "cbs_column_variants": [
