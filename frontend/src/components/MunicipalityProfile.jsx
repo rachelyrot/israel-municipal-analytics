@@ -279,7 +279,7 @@ export function MunicipalityProfile() {
             className="px-2.5 py-0.5 text-[11px] font-semibold text-white rounded-full"
             style={{ background: dotColor }}
           >
-            אשכול חב&quot;כ {cluster}
+            אשכול חב&quot;כ {cluster} (2021)
           </span>
         )}
       </div>
