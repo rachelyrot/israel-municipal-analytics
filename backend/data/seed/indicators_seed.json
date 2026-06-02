@@ -1515,7 +1515,7 @@
   },
   {
     "code": "HEALTH_MENTAL_DISABILITY",
-    "name_he": "מוגבלות נפשית",
+    "name_he": "מוגבלות נפשית (מתוך בעלי מוגבלות)",
     "domain": "health",
     "unit": "%",
     "is_percentage": true,
@@ -1526,7 +1526,7 @@
   },
   {
     "code": "HEALTH_PHYSICAL_DISABILITY",
-    "name_he": "מוגבלות פיזית",
+    "name_he": "מוגבלות פיזית (מתוך בעלי מוגבלות)",
     "domain": "health",
     "unit": "%",
     "is_percentage": true,
@@ -1581,7 +1581,7 @@
   },
   {
     "code": "HEALTH_CHRONIC_DISEASES",
-    "name_he": "מחלות כרוניות",
+    "name_he": "מחלות כרוניות (מתוך בעלי מוגבלות)",
     "domain": "health",
     "unit": "%",
     "is_percentage": true,
