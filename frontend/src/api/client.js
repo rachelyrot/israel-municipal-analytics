@@ -1,4 +1,4 @@
-const BASE = '/api/v1'
+const BASE = (import.meta.env.VITE_API_URL ?? '') + '/api/v1'
 
 async function get(path) {
   const res = await fetch(BASE + path)
@@ -49,7 +49,7 @@ export const api = {
     if (year != null) body.year = year
     if (sessionId != null) body.session_id = sessionId
     if (comparisonIds != null) body.comparison_municipality_ids = comparisonIds
-    return fetch('/api/v1/ai/query', {
+    return fetch(BASE + '/ai/query', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
@@ -68,6 +68,9 @@ export const api = {
     })
   },
 
+  clearSession: (sessionId) =>
+    fetch(`${BASE}/ai/session/${sessionId}`, { method: 'DELETE' }).catch(() => {}),
+
   getInsights: (municipalityId, year) =>
     get(`/ai/insights/${municipalityId}?year=${year}`),
 
@@ -75,7 +78,7 @@ export const api = {
     get(`/export/geojson?indicator_code=${indicatorCode}&year=${year}`),
 
   downloadPDF: (municipalityId, year) =>
-    fetch(`/api/v1/export/pdf/${municipalityId}?year=${year}`)
+    fetch(`${BASE}/export/pdf/${municipalityId}?year=${year}`)
       .then(r => {
         if (!r.ok) throw new Error(`PDF error ${r.status}`)
         return r.blob()

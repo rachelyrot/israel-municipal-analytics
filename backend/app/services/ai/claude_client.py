@@ -1,9 +1,11 @@
+import json
+import re
+import pathlib
 import httpx
 import anthropic
 from app.config import settings
 
 SYSTEM_PROMPT = """אתה אנליסט בכיר של רשויות מקומיות בישראל. ענה בעברית בלבד.
-
 
 אתה אנליסט נתונים בכיר המתמחה בניתוח נתוני רשויות. תפקידך לקרוא את הנתונים ב-context, להסיק מסקנות חדות, ולענות ישירות על שאלת המשתמש.
 
@@ -33,7 +35,24 @@ SYSTEM_PROMPT = """אתה אנליסט בכיר של רשויות מקומיות
 - פתח במשפט מסקנה ראשי שעונה ישירות על השאלה.
 - נמק בקצרה עם 1–3 נתונים תומכים מרכזיים.
 - סיים במסקנה תכליתית אחת: מה הנתונים אומרים בפועל.
+
+ניתוח גורמים ועילות:
+- כשמתבקש "מה הגורם" / "למה" / "מה יכול להסביר" — הפרד בין עובדות לפרשנות:
+  • "הנתונים מראים ש..." — רק מה שמופיע ב-context.
+  • "ייתכן שהסיבה..." — קורלציות בין מדדים שנמצאים ב-context.
+  • "שיעור X עלה בשנים שבהן Y ירד מרמז על..." — קשר בין נתונים קיימים.
+- אל תציע גורמים שאינם נסמכים על מדד שמופיע בנתונים.
+
+שיחה מתמשכת:
+- הנתונים ניתנים מחדש בכל פנייה. אם זהים לפנייה קודמת — התמקד בשאלה ואל תחזור על סריקת הנתונים.
+- שאלות המשך ("ולמה?", "מה ב-2020?", "השווה ל-X", "פרט על...") — ענה בהמשכיות ישירה ללא חזרה על הקדמות.
+- זכור את ההקשר המלא של השיחה.
 """
+
+_SESSIONS_DIR = pathlib.Path(__file__).parent.parent.parent.parent / "data" / "sessions"
+_SESSIONS_DIR.mkdir(parents=True, exist_ok=True)
+
+MAX_HISTORY_MESSAGES = 12  # 6 turns
 
 _client: anthropic.Anthropic | None = None
 
@@ -41,12 +60,69 @@ _client: anthropic.Anthropic | None = None
 def get_client() -> anthropic.Anthropic:
     global _client
     if _client is None:
-        # NetFree SSL inspection workaround — their CA cert lacks Key Usage extension
-        _client = anthropic.Anthropic(
-            api_key=settings.anthropic_api_key,
-            http_client=httpx.Client(verify=False),
-        )
+        kwargs = {}
+        if settings.disable_ssl_verify:
+            # NetFree SSL inspection workaround — their CA cert lacks Key Usage extension
+            kwargs["http_client"] = httpx.Client(verify=False)
+        _client = anthropic.Anthropic(api_key=settings.anthropic_api_key, **kwargs)
     return _client
+
+
+def _session_path(session_id: str) -> pathlib.Path:
+    safe_id = re.sub(r'[^a-zA-Z0-9\-]', '', session_id)
+    return _SESSIONS_DIR / f"{safe_id}.json"
+
+
+def _load_history(session_id: str) -> list[dict]:
+    try:
+        return json.loads(_session_path(session_id).read_text(encoding='utf-8'))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+
+def _save_history(session_id: str, messages: list[dict]) -> None:
+    _session_path(session_id).write_text(
+        json.dumps(messages, ensure_ascii=False), encoding='utf-8'
+    )
+
+
+def chat_with_history(session_id: str, question: str, context: str, model: str = "claude-haiku-4-5-20251001") -> str:
+    """שולח שאלה + context ל-Claude עם היסטוריית השיחה, מחזיר תשובה בעברית."""
+    history = _load_history(session_id)
+
+    new_user_message = {
+        "role": "user",
+        "content": f"נתונים:\n{context}\n\nשאלה: {question}",
+    }
+    messages = history + [new_user_message]
+
+    if len(messages) > MAX_HISTORY_MESSAGES:
+        messages = messages[-MAX_HISTORY_MESSAGES:]
+
+    response = get_client().messages.create(
+        model=model,
+        max_tokens=1024,
+        system=[
+            {
+                "type": "text",
+                "text": SYSTEM_PROMPT,
+                "cache_control": {"type": "ephemeral"},
+            }
+        ],
+        messages=messages,
+    )
+    answer = response.content[0].text
+
+    updated = history + [new_user_message, {"role": "assistant", "content": answer}]
+    if len(updated) > MAX_HISTORY_MESSAGES:
+        updated = updated[-MAX_HISTORY_MESSAGES:]
+    _save_history(session_id, updated)
+
+    return answer
+
+
+def clear_session(session_id: str) -> None:
+    _session_path(session_id).unlink(missing_ok=True)
 
 
 def chat(question: str, context: str, model: str = "claude-haiku-4-5-20251001") -> str:

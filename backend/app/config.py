@@ -6,6 +6,8 @@ class Settings(BaseSettings):
     app_name: str = "Israeli Municipal Analytics"
     debug: bool = False
     anthropic_api_key: str = ""
+    allowed_origins: str = "http://localhost:5173,http://localhost:3000"
+    disable_ssl_verify: bool = False
 
     model_config = {"env_file": ".env"}
 

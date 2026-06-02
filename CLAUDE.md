@@ -84,7 +84,7 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 - `pipeline.py` — `run(file_path, year, db)` returns `IngestionResult`; deduplicates rows from multiple sheets (general/physical sheets preferred over budget/survey); calls `_recompute_national_averages()` after upsert; uploaded files land in `data/uploads/`
 
 **Analytics service (`services/analytics/`):**
-- `comparison.py` — multi-municipality comparison: same indicator, range of years, includes national avg series
+- `comparison.py` — multi-municipality comparison: same indicator, range of years; response includes `national_avg`, `district_avgs` (one series per distinct district of selected municipalities), and `type_avgs` (one series per distinct `municipality_type`)
 - `similarity.py` — Euclidean distance on 5 base indicators (POP_TOTAL, EMP_RATE, BUDGET_PER_CAPITA, EDU_BAGRUT_RATE + socioeconomic_cluster), min-max normalized; returns similarity score 0–1. **Note:** the `GET /analytics/similar/{id}` endpoint is **missing** from the analytics router — `api.getSimilar()` calls in `MunicipalityProfile` and `SimilarMunicipalities.jsx` will return 404. The service module is ready; it just needs a router endpoint wired up.
 - `trends.py` — linear regression on time-series → slope, direction (`up`/`down`/`stable`), R², Hebrew label
 - `rankings.py` — rank municipalities by indicator/year with optional district/type filter; ranking computed in Python after DB query (not a SQL window function)
@@ -95,14 +95,14 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 - `pdf_builder.py` — Hebrew PDF via ReportLab + `arabic-reshaper` + `python-bidi`; font at `services/export/fonts/DavidLibre-Regular.ttf`
 
 **AI service (`services/ai/`):**
-- `claude_client.py` — singleton Anthropic client; `chat(question, context, model)` uses `claude-haiku-4-5-20251001` with `cache_control: ephemeral` on the system prompt. Uses `httpx.Client(verify=False)` to bypass SSL inspection (NetFree workaround — do not remove).
+- `claude_client.py` — singleton Anthropic client; `chat_with_history(session_id, question, context, model)` persists per-session conversation history as JSON files in `backend/data/sessions/` (max 12 messages / 6 turns), sends full history to Claude on each call. `clear_session(session_id)` deletes the session file. Uses `claude-haiku-4-5-20251001` with `cache_control: ephemeral` on the system prompt. Uses `httpx.Client(verify=False)` to bypass SSL inspection (NetFree workaround — do not remove). `chat()` (stateless) kept for `insight_generator.py`.
 - `context_builder.py` — four builder functions:
   - `build_municipality_context(db, muni_id, year)` — single municipality + year: Hebrew table (תחום | מדד | ערך | יחידה | ממוצע ארצי)
   - `build_comparison_context(db, muni_ids, year)` — multi-municipality comparison table with national avg column
   - `build_municipality_timeseries_context(db, muni_id)` — all indicators across all available years for a municipality (used when no year is specified)
   - `build_general_context(db, years)` — national rankings and averages per indicator for one or more years (used when no municipality is specified)
 - `insight_generator.py` — Python finds indicators where |deviation from national avg| ≥ 30%, then Claude formulates each as a single Hebrew sentence
-- `query_engine.py` — `answer_question(...)` dispatches to one of four modes: general (no municipality → `build_general_context`), municipality+year, municipality+comparison, municipality alone (no year → `build_municipality_timeseries_context`)
+- `query_engine.py` — `answer_question(...)` dispatches to one of four modes: general (no municipality → `build_general_context`), municipality+year, municipality+comparison, municipality alone (no year → `build_municipality_timeseries_context`). For general questions, `_extract_years` pulls explicit years from the question text; `_is_trend_question` (regex on Hebrew trend-keywords) triggers multi-year context (`TREND_YEARS_BACK = 6` years back from latest).
 
 **Routers (all mounted under `/api/v1/`; health check at `GET /api/v1/health`):**
 - `municipalities.py` — GET `/municipalities`, `/municipalities/search?q=`, `/municipalities/{id}`
@@ -110,7 +110,7 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 - `data.py` — GET `/data/points`, `/data/kpis/{id}?year=&domain=` (domain is optional server-side filter; uses SQL `RANK()` window function for national ranking), `/data/timeseries/{id}`, `/data/timeseries/{id}/single`, `/data/compare`
 - `admin.py` — POST `/admin/ingest` (multipart: file + year)
 - `analytics.py` — GET `/analytics/compare`, `/analytics/trends/{id}`, `/analytics/rankings`, `/analytics/forecast/{id}`
-- `ai.py` — POST `/ai/query` (free-form Hebrew question), GET `/ai/insights/{id}` (auto-generated anomaly insights)
+- `ai.py` — POST `/ai/query` (free-form Hebrew question), GET `/ai/insights/{id}` (auto-generated anomaly insights), DELETE `/ai/session/{session_id}` (clear conversation history)
 - `export.py` — GET `/export/geojson` (choropleth GeoJSON from DB lat/lon), GET `/export/pdf/{id}` (Hebrew PDF with ReportLab)
 
 **Note:** `backend/app/schemas/` and `backend/app/crud/` are empty stubs — routers return raw dicts, not Pydantic response models.
@@ -133,7 +133,7 @@ Routing: `/` → LandingPage; all app pages live under `/app/*`.
 Active pages in `App.jsx` (navbar: דשבורד · גרפים · שאל AI):
 - **DashboardPage** (`/app/`) — split-pane layout: left panel is `RankingsList`; right panel is `MunicipalityProfile` when a municipality is selected, empty state otherwise. Toolbar at top has year dropdown + `IndicatorSearch` (portal-based dropdown with search, defined inline in `DashboardPage.jsx` — not a separate component file). No map on this page.
 - **AnalyticsPage** (`/app/analytics`) — up to 3 municipalities selected via `LocalMunicipalitySelector`; domain tabs show all indicators for the selected domain; `CompareChart` grid shows multi-year time-series for each indicator with national avg overlay
-- **AIQueryPage** (`/app/ai`) — single free-form Hebrew text input for general national-level questions; no municipality/year selector; calls `api.aiQuery(question, null, null, sessionId, null)` → `build_general_context` on the backend
+- **AIQueryPage** (`/app/ai`) — multi-turn chat UI; `sessionId` persists in a `useRef` for the browser session; each submit appends a user bubble and awaits an assistant bubble; "שיחה חדשה" button calls `DELETE /ai/session/{id}` and resets to a fresh `sessionId`; calls `api.aiQuery(question, null, null, sessionId, null)` → `build_general_context` + `chat_with_history` on the backend; example prompts shown on empty state
 
 `ComparisonPage.jsx`, `MapPage.jsx`, `RankingsPage.jsx`, and `ForecastPage.jsx` exist as files but are not wired into the router or navbar.
 
@@ -149,7 +149,7 @@ Key components:
 - `components/charts/SemiGauge.jsx` — SVG semi-circular arc gauge for percentage KPIs; **not yet wired into any page**
 - `components/charts/SummaryDonut.jsx` — Recharts donut counting KPIs above/around/below national avg; **not yet wired into any page**
 - `components/DomainFilter.jsx` — tab-bar to filter KPIs by domain; writes `selectedDomain` to the Zustand store
-- `components/charts/CompareChart.jsx` — merges multi-municipality series by year into a single array for Recharts LineChart; used by AnalyticsPage
+- `components/charts/CompareChart.jsx` — merges multi-municipality series by year into a single Recharts LineChart; renders `district_avgs` and `type_avgs` as dashed lines with per-series toggle buttons (solid for municipalities, dashed for averages); used by AnalyticsPage
 - `components/maps/ChoroplethMap.jsx` — react-leaflet circle markers, 5 quantile color bins; `onMunicipalityClick` prop receives feature properties including `municipality_id`; **not currently mounted in any active page**
 - `components/selectors/MunicipalitySelector.jsx` — Zustand-bound typeahead (300ms debounce); `skipSearch` ref suppresses fetch when municipality is set externally (e.g. ranking row click)
 - `components/selectors/LocalMunicipalitySelector.jsx` — controlled (prop-based) variant; takes `value`/`onChange` props and does NOT touch Zustand; use this when multiple selectors appear on the same page (e.g., AnalyticsPage)
