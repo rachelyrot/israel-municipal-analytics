@@ -685,7 +685,8 @@
     "is_percentage": true,
     "higher_is_better": null,
     "cbs_column_variants": [
-      "תעשייה"
+      "תעשייה | אחוז מסך כל שטח שיפוט",
+      "שימושי קרקע | תעשייה | אחוז"
     ]
   },
   {
@@ -696,7 +697,8 @@
     "is_percentage": true,
     "higher_is_better": null,
     "cbs_column_variants": [
-      "שטח פתוח אחר"
+      "שטח פתוח אחר | אחוז מסך כל שטח שיפוט",
+      "שימושי קרקע | שטח פתוח אחר | אחוז"
     ]
   },
   {
