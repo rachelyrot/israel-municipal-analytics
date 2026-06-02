@@ -1592,13 +1592,46 @@
   },
   {
     "code": "HEALTH_INSURED_PCT",
-    "name_he": "מבוטחים בקופת חולים",
+    "name_he": "מבוטחים בכללית",
     "domain": "health",
     "unit": "%",
     "is_percentage": true,
-    "higher_is_better": true,
+    "higher_is_better": null,
     "cbs_column_variants": [
-      "אחוז המבוטחים בקופ\"ח מתוך סך כל המבוטחים"
+      "אחוז המבוטחים בקופ\"ח מתוך סך כל המבוטחים | כללית"
+    ]
+  },
+  {
+    "code": "HEALTH_INSURED_MACCABI",
+    "name_he": "מבוטחים במכבי",
+    "domain": "health",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז המבוטחים בקופ\"ח מתוך סך כל המבוטחים | מכבי"
+    ]
+  },
+  {
+    "code": "HEALTH_INSURED_MEUHEDET",
+    "name_he": "מבוטחים במאוחדת",
+    "domain": "health",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז המבוטחים בקופ\"ח מתוך סך כל המבוטחים | מאוחדת"
+    ]
+  },
+  {
+    "code": "HEALTH_INSURED_LEUMIT",
+    "name_he": "מבוטחים בלאומית",
+    "domain": "health",
+    "unit": "%",
+    "is_percentage": true,
+    "higher_is_better": null,
+    "cbs_column_variants": [
+      "אחוז המבוטחים בקופ\"ח מתוך סך כל המבוטחים | לאומית"
     ]
   },
   {
