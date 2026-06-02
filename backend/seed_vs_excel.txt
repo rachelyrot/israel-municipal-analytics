@@ -1,0 +1,14 @@
+=== נחל* בDB ===
+
+=== עמק* בDB ===
+  id=467, name=מגדל העמק, symbol_cbs=874, type=עיר, data_points=1618
+  id=666, name=עמק הירדן, symbol_cbs=6, type=מועצה אזורית, data_points=1484
+  id=667, name=עמק המעיינות, symbol_cbs=7, type=מועצה אזורית, data_points=1441
+  id=668, name=עמק חפר, symbol_cbs=16, type=מועצה אזורית, data_points=1481
+  id=669, name=עמק יזרעאל, symbol_cbs=9, type=מועצה אזורית, data_points=1478
+
+=== לפי symbol_cbs 31, 40 ===
+  symbol=31: אופקים
+  symbol=40: שדות דן
+  symbol=0031: לא קיים
+  symbol=0040: לא קיים

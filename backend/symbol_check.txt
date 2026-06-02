@@ -1,0 +1,167 @@
+=== סמלים קצרים באקסל (1-3 ספרות) ===
+  Excel: sym='69', name=אל קסום
+    DB exact match: אל קסום
+    DB padded(0069): —
+  Excel: sym='65', name=אל-בטוף
+    DB exact match: מגדל
+    DB padded(0065): —
+  Excel: sym='45', name=אלונה
+    DB exact match: אלונה
+    DB padded(0045): —
+  Excel: sym='38', name=אשכול
+    DB exact match: אשכול
+    DB padded(0038): —
+  Excel: sym='33', name=באר טוביה
+    DB exact match: באר טוביה
+    DB padded(0033): —
+  Excel: sym='66', name=בוסתן אל-מרג'
+    DB exact match: בוסתן אל-מרג'
+    DB padded(0066): —
+  Excel: sym='41', name=בני שמעון
+    DB exact match: אליכין
+    DB padded(0041): —
+  Excel: sym='28', name=ברנר
+    DB exact match: מזכרת בתיה
+    DB padded(0028): —
+  Excel: sym='32', name=גדרות
+    DB exact match: גדרות
+    DB padded(0032): —
+  Excel: sym='71', name=גולן
+    DB exact match: גולן
+    DB padded(0071): —
+  Excel: sym='76', name=גוש עציון
+    DB exact match: גוש עציון
+    DB padded(0076): —
+  Excel: sym='30', name=גזר
+    DB exact match: גזר
+    DB padded(0030): —
+  Excel: sym='27', name=גן רווה
+    DB exact match: גן רווה
+    DB padded(0027): —
+  Excel: sym='20', name=דרום השרון
+    DB exact match: דרום השרון
+    DB padded(0020): —
+  Excel: sym='08', name=הגלבוע
+    DB exact match: —
+    DB padded(0008): —
+  Excel: sym='01', name=הגליל העליון
+    DB exact match: —
+    DB padded(0001): —
+  Excel: sym='03', name=הגליל התחתון
+    DB exact match: —
+    DB padded(0003): —
+  Excel: sym='54', name=הערבה התיכונה
+    DB exact match: הערבה התיכונה
+    DB padded(0054): —
+  Excel: sym='78', name=הר חברון
+    DB exact match: הר חברון
+    DB padded(0078): —
+  Excel: sym='12', name=זבולון
+    DB exact match: זבולון
+    DB padded(0012): —
+  Excel: sym='53', name=חבל אילות
+    DB exact match: חבל אילות
+    DB padded(0053): —
+  Excel: sym='29', name=חבל יבנה
+    DB exact match: יסוד המעלה
+    DB padded(0029): —
+  Excel: sym='25', name=חבל מודיעין
+    DB exact match: חבל מודיעין
+    DB padded(0025): —
+  Excel: sym='36', name=חוף אשקלון
+    DB exact match: חוף אשקלון
+    DB padded(0036): —
+  Excel: sym='15', name=חוף הכרמל
+    DB exact match: חוף הכרמל
+    DB padded(0015): —
+  Excel: sym='19', name=חוף השרון
+    DB exact match: חוף השרון
+    DB padded(0019): —
+  Excel: sym='35', name=יואב
+    DB exact match: יואב
+    DB padded(0035): —
+  Excel: sym='18', name=לב השרון
+    DB exact match: לב השרון
+    DB padded(0018): —
+  Excel: sym='50', name=לכיש
+    DB exact match: לכיש
+    DB padded(0050): —
+  Excel: sym='55', name=מבואות החרמון
+    DB exact match: מבואות החרמון
+    DB padded(0055): —
+  Excel: sym='13', name=מגידו
+    DB exact match: מגידו
+    DB padded(0013): —
+  Excel: sym='74', name=מגילות ים המלח
+    DB exact match: מגילות ים המלח
+    DB padded(0074): —
+  Excel: sym='04', name=מטה אשר
+    DB exact match: —
+    DB padded(0004): —
+  Excel: sym='73', name=מטה בנימין
+    DB exact match: מטה בנימין
+    DB padded(0073): —
+  Excel: sym='26', name=מטה יהודה
+    DB exact match: ראש פינה
+    DB padded(0026): —
+  Excel: sym='14', name=מנשה
+    DB exact match: מנשה
+    DB padded(0014): —
+  Excel: sym='52', name=מעלה יוסף
+    DB exact match: מעלה יוסף
+    DB padded(0052): —
+  Excel: sym='02', name=מרום הגליל
+    DB exact match: —
+    DB padded(0002): —
+  Excel: sym='42', name=מרחבים
+    DB exact match: מרחבים
+    DB padded(0042): —
+  Excel: sym='56', name=משגב
+    DB exact match: משגב
+    DB padded(0056): —
+  Excel: sym='68', name=נווה מדבר
+    DB exact match: נווה מדבר
+    DB padded(0068): —
+  Excel: sym='31', name=נחל שורק
+    DB exact match: אופקים
+    DB padded(0031): —
+  Excel: sym='06', name=עמק הירדן
+    DB exact match: —
+    DB padded(0006): —
+  Excel: sym='07', name=עמק המעיינות
+    DB exact match: —
+    DB padded(0007): —
+  Excel: sym='16', name=עמק חפר
+    DB exact match: עמק חפר
+    DB padded(0016): —
+  Excel: sym='09', name=עמק יזרעאל
+    DB exact match: —
+    DB padded(0009): —
+  Excel: sym='40', name=עמק לוד
+    DB exact match: שדות דן
+    DB padded(0040): —
+  Excel: sym='75', name=ערבות הירדן
+    DB exact match: ערבות הירדן
+    DB padded(0075): —
+  Excel: sym='48', name=רמת נגב
+    DB exact match: רמת נגב
+    DB padded(0048): —
+  Excel: sym='39', name=שדות נגב
+    DB exact match: שדות נגב
+    DB padded(0039): —
+  Excel: sym='72', name=שומרון
+    DB exact match: שומרון
+    DB padded(0072): —
+  Excel: sym='37', name=שער הנגב
+    DB exact match: שער הנגב
+    DB padded(0037): —
+  Excel: sym='34', name=שפיר
+    DB exact match: שפיר
+    DB padded(0034): —
+  Excel: sym='51', name=תמר
+    DB exact match: תמר
+    DB padded(0051): —
+
+=== אופקים ===
+  DB: symbol_cbs='31'
+  Excel sym for אופקים: ['0031']

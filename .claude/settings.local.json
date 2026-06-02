@@ -4,7 +4,12 @@
       "Bash(cmd /c \"cd /d c:\\\\new\\\\frontend && npm run build\")",
       "Read(//c/new/frontend/**)",
       "Bash(npm run *)",
-      "PowerShell(cd c:\\\\new\\\\backend; $env:PYTHONIOENCODING=\"utf-8\"; c:\\\\new\\\\venv\\\\Scripts\\\\python.exe scripts/reingest_all.py)"
+      "PowerShell(cd c:\\\\new\\\\backend; $env:PYTHONIOENCODING=\"utf-8\"; c:\\\\new\\\\venv\\\\Scripts\\\\python.exe scripts/reingest_all.py)",
+      "PowerShell(netstat -ano)",
+      "PowerShell(head -5)",
+      "PowerShell(Start-Sleep -Seconds 3; $r = Invoke-WebRequest \"http://localhost:8001/api/v1/data/kpis/504?year=2022\" -UseBasicParsing; \\($r.Content | ConvertFrom-Json\\)[0] | Select-Object indicator_code, value, is_percentage)",
+      "Bash(node --input-type=module --eval \"import\\('./src/pages/DashboardPage.jsx'\\)\")",
+      "Bash(node_modules/.bin/vite build *)"
     ]
   }
 }
