@@ -1,145 +1,2630 @@
 [
-  {"name": "ירושלים", "symbol_cbs": "3000", "municipality_type": "עיר", "district": "ירושלים", "region": "ירושלים", "name_aliases": ["Jerusalem", "ירושלים"]},
-  {"name": "תל אביב-יפו", "symbol_cbs": "5000", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["תל אביב", "תל-אביב", "ת\"א", "תל אביב יפו", "Tel Aviv"]},
-  {"name": "חיפה", "symbol_cbs": "4000", "municipality_type": "עיר", "district": "חיפה", "region": "חיפה", "name_aliases": ["Haifa"]},
-  {"name": "ראשון לציון", "symbol_cbs": "8400", "municipality_type": "עיר", "district": "מרכז", "region": "רחובות", "name_aliases": ["ראשל\"צ", "ראשון-לציון"]},
-  {"name": "פתח תקווה", "symbol_cbs": "7900", "municipality_type": "עיר", "district": "מרכז", "region": "פתח תקווה", "name_aliases": ["פ\"ת", "פתח-תקווה"]},
-  {"name": "אשדוד", "symbol_cbs": "70", "municipality_type": "עיר", "district": "דרום", "region": "אשקלון", "name_aliases": ["Ashdod"]},
-  {"name": "נתניה", "symbol_cbs": "7400", "municipality_type": "עיר", "district": "מרכז", "region": "נתניה", "name_aliases": ["Netanya"]},
-  {"name": "באר שבע", "symbol_cbs": "9000", "municipality_type": "עיר", "district": "דרום", "region": "באר שבע", "name_aliases": ["ב\"ש", "באר-שבע", "Beer Sheva"]},
-  {"name": "בני ברק", "symbol_cbs": "6100", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["בני-ברק", "Bnei Brak"]},
-  {"name": "רמת גן", "symbol_cbs": "8700", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["רמת-גן"]},
-  {"name": "אשקלון", "symbol_cbs": "2550", "municipality_type": "עיר", "district": "דרום", "region": "אשקלון", "name_aliases": ["Ashkelon"]},
-  {"name": "חולון", "symbol_cbs": "6600", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["Holon"]},
-  {"name": "בת ים", "symbol_cbs": "6200", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["בת-ים"]},
-  {"name": "הרצליה", "symbol_cbs": "6500", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["Herzliya"]},
-  {"name": "כפר סבא", "symbol_cbs": "6900", "municipality_type": "עיר", "district": "מרכז", "region": "פתח תקווה", "name_aliases": ["כפר-סבא"]},
-  {"name": "רעננה", "symbol_cbs": "8600", "municipality_type": "עיר", "district": "מרכז", "region": "פתח תקווה", "name_aliases": ["Raanana"]},
-  {"name": "מודיעין-מכבים-רעות", "symbol_cbs": "1207", "municipality_type": "עיר", "district": "מרכז", "region": "רמלה", "name_aliases": ["מודיעין", "מודיעין מכבים רעות", "מכבים-רעות", "מכבים רעות"]},
-  {"name": "לוד", "symbol_cbs": "7000", "municipality_type": "עיר", "district": "מרכז", "region": "רמלה", "name_aliases": ["Lod"]},
-  {"name": "רמלה", "symbol_cbs": "8300", "municipality_type": "עיר", "district": "מרכז", "region": "רמלה", "name_aliases": ["Ramla"]},
-  {"name": "נצרת", "symbol_cbs": "7300", "municipality_type": "עיר", "district": "צפון", "region": "יזרעאל", "name_aliases": ["Nazareth", "נצרת עילית"]},
-  {"name": "עפולה", "symbol_cbs": "7700", "municipality_type": "עיר", "district": "צפון", "region": "יזרעאל", "name_aliases": ["Afula"]},
-  {"name": "טבריה", "symbol_cbs": "5600", "municipality_type": "עיר", "district": "צפון", "region": "כנרת", "name_aliases": ["Tiberias"]},
-  {"name": "צפת", "symbol_cbs": "7600", "municipality_type": "עיר", "district": "צפון", "region": "צפת", "name_aliases": ["Safed", "Zfat"]},
-  {"name": "קריית גת", "symbol_cbs": "8100", "municipality_type": "עיר", "district": "דרום", "region": "אשקלון", "name_aliases": ["ק\"ג", "קרית גת"]},
-  {"name": "אילת", "symbol_cbs": "100", "municipality_type": "עיר", "district": "דרום", "region": "אילת", "name_aliases": ["Eilat"]},
-  {"name": "קריית ביאליק", "symbol_cbs": "8000", "municipality_type": "עיר", "district": "חיפה", "region": "חיפה", "name_aliases": ["קרית ביאליק"]},
-  {"name": "קריית ים", "symbol_cbs": "8200", "municipality_type": "עיר", "district": "חיפה", "region": "חיפה", "name_aliases": ["קרית ים"]},
-  {"name": "קריית אתא", "symbol_cbs": "7800", "municipality_type": "עיר", "district": "חיפה", "region": "חיפה", "name_aliases": ["קרית אתא"]},
-  {"name": "קריית מוצקין", "symbol_cbs": "8050", "municipality_type": "עיר", "district": "חיפה", "region": "חיפה", "name_aliases": ["קרית מוצקין"]},
-  {"name": "נהריה", "symbol_cbs": "7200", "municipality_type": "עיר", "district": "צפון", "region": "עכו", "name_aliases": ["Nahariya"]},
-  {"name": "עכו", "symbol_cbs": "7500", "municipality_type": "עיר", "district": "צפון", "region": "עכו", "name_aliases": ["Acre", "Akko"]},
-  {"name": "רהט", "symbol_cbs": "8545", "municipality_type": "עיר", "district": "דרום", "region": "באר שבע", "name_aliases": ["Rahat"]},
-  {"name": "אום אל-פחם", "symbol_cbs": "510", "municipality_type": "עיר", "district": "חיפה", "region": "חדרה", "name_aliases": ["אום אל פחם", "Umm al-Fahm"]},
-  {"name": "סח'נין", "symbol_cbs": "9400", "municipality_type": "עיר", "district": "צפון", "region": "עכו", "name_aliases": ["סחנין", "Sakhnin"]},
-  {"name": "שפרעם", "symbol_cbs": "9600", "municipality_type": "עיר", "district": "צפון", "region": "עכו", "name_aliases": ["Shfaram"]},
-  {"name": "אלעד", "symbol_cbs": "626", "municipality_type": "עיר", "district": "מרכז", "region": "פתח תקווה", "name_aliases": ["Elad"]},
-  {"name": "בית שמש", "symbol_cbs": "790", "municipality_type": "עיר", "district": "ירושלים", "region": "ירושלים", "name_aliases": ["בית-שמש", "Beit Shemesh"]},
-  {"name": "אופקים", "symbol_cbs": "200", "municipality_type": "עיר", "district": "דרום", "region": "באר שבע", "name_aliases": ["Ofakim"]},
-  {"name": "דימונה", "symbol_cbs": "1064", "municipality_type": "עיר", "district": "דרום", "region": "באר שבע", "name_aliases": ["Dimona"]},
-  {"name": "ערד", "symbol_cbs": "680", "municipality_type": "עיר", "district": "דרום", "region": "באר שבע", "name_aliases": ["Arad"]},
-  {"name": "קריית שמונה", "symbol_cbs": "8060", "municipality_type": "עיר", "district": "צפון", "region": "צפת", "name_aliases": ["קרית שמונה", "Kiryat Shmona"]},
-  {"name": "מעלות-תרשיחא", "symbol_cbs": "1158", "municipality_type": "עיר", "district": "צפון", "region": "עכו", "name_aliases": ["מעלות תרשיחא", "מעלות"]},
-  {"name": "יבנה", "symbol_cbs": "2620", "municipality_type": "עיר", "district": "מרכז", "region": "רחובות", "name_aliases": ["Yavne"]},
-  {"name": "רחובות", "symbol_cbs": "8500", "municipality_type": "עיר", "district": "מרכז", "region": "רחובות", "name_aliases": ["Rehovot"]},
-  {"name": "נס ציונה", "symbol_cbs": "7100", "municipality_type": "עיר", "district": "מרכז", "region": "רחובות", "name_aliases": ["נס-ציונה"]},
-  {"name": "הוד השרון", "symbol_cbs": "6300", "municipality_type": "עיר", "district": "מרכז", "region": "פתח תקווה", "name_aliases": ["הוד-השרון"]},
-  {"name": "גבעתיים", "symbol_cbs": "2400", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["Givatayim"]},
-  {"name": "רמת השרון", "symbol_cbs": "8750", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["רמת-השרון"]},
-  {"name": "אור יהודה", "symbol_cbs": "540", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["אור-יהודה"]},
-  {"name": "קריית אונו", "symbol_cbs": "7950", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["קרית אונו"]},
-  {"name": "גבעת שמואל", "symbol_cbs": "2360", "municipality_type": "עיר", "district": "תל אביב", "region": "תל אביב", "name_aliases": []},
-  {"name": "אזור", "symbol_cbs": "60", "municipality_type": "מועצה מקומית", "district": "תל אביב", "region": "תל אביב", "name_aliases": []},
-  {"name": "יהוד-מונוסון", "symbol_cbs": "2630", "municipality_type": "עיר", "district": "מרכז", "region": "פתח תקווה", "name_aliases": ["יהוד"]},
-  {"name": "קדימה-צורן", "symbol_cbs": "1259", "municipality_type": "עיר", "district": "מרכז", "region": "נתניה", "name_aliases": ["קדימה", "צורן", "קדימה צורן"]},
-  {"name": "אלפי מנשה", "symbol_cbs": "575", "municipality_type": "מועצה מקומית", "district": "מרכז", "region": "נתניה", "name_aliases": []},
-  {"name": "טירת כרמל", "symbol_cbs": "5800", "municipality_type": "עיר", "district": "חיפה", "region": "חיפה", "name_aliases": ["טירת הכרמל"]},
-  {"name": "כרמיאל", "symbol_cbs": "1139", "municipality_type": "עיר", "district": "צפון", "region": "עכו", "name_aliases": ["Karmiel"]},
-  {"name": "נשר", "symbol_cbs": "7350", "municipality_type": "עיר", "district": "חיפה", "region": "חיפה", "name_aliases": []},
-  {"name": "זכרון יעקב", "symbol_cbs": "2100", "municipality_type": "מועצה מקומית", "district": "חיפה", "region": "חדרה", "name_aliases": []},
-  {"name": "חדרה", "symbol_cbs": "6400", "municipality_type": "עיר", "district": "חיפה", "region": "חדרה", "name_aliases": ["Hadera"]},
-  {"name": "פרדס חנה-כרכור", "symbol_cbs": "7820", "municipality_type": "מועצה מקומית", "district": "חיפה", "region": "חדרה", "name_aliases": ["פרדס חנה"]},
-  {"name": "יוקנעם עילית", "symbol_cbs": "2700", "municipality_type": "עיר", "district": "חיפה", "region": "יזרעאל", "name_aliases": ["יוקנעם"]},
-  {"name": "מגדל העמק", "symbol_cbs": "1060", "municipality_type": "עיר", "district": "צפון", "region": "יזרעאל", "name_aliases": []},
-  {"name": "בית שאן", "symbol_cbs": "720", "municipality_type": "עיר", "district": "צפון", "region": "בית שאן", "name_aliases": ["Beit She'an"]},
-  {"name": "נוף הגליל", "symbol_cbs": "7400", "municipality_type": "עיר", "district": "צפון", "region": "יזרעאל", "name_aliases": ["נצרת עילית"]},
-  {"name": "כפר יסיף", "symbol_cbs": "6820", "municipality_type": "מועצה מקומית", "district": "צפון", "region": "עכו", "name_aliases": []},
-  {"name": "מגאר", "symbol_cbs": "1062", "municipality_type": "מועצה מקומית", "district": "צפון", "region": "עכו", "name_aliases": []},
-  {"name": "ירכא", "symbol_cbs": "2660", "municipality_type": "מועצה מקומית", "district": "צפון", "region": "עכו", "name_aliases": []},
-  {"name": "ג'לג'וליה", "symbol_cbs": "2200", "municipality_type": "מועצה מקומית", "district": "מרכז", "region": "פתח תקווה", "name_aliases": ["ג'לג'וליה"]},
-  {"name": "טייבה", "symbol_cbs": "5500", "municipality_type": "עיר", "district": "מרכז", "region": "נתניה", "name_aliases": ["Tayibe"]},
-  {"name": "כפר קאסם", "symbol_cbs": "6960", "municipality_type": "מועצה מקומית", "district": "מרכז", "region": "פתח תקווה", "name_aliases": ["כפר קסם"]},
-  {"name": "טירה", "symbol_cbs": "5700", "municipality_type": "עיר", "district": "מרכז", "region": "נתניה", "name_aliases": ["Tire"]},
-  {"name": "קלנסווה", "symbol_cbs": "7980", "municipality_type": "עיר", "district": "מרכז", "region": "נתניה", "name_aliases": []},
-  {"name": "באקה אל-גרביה", "symbol_cbs": "140", "municipality_type": "עיר", "district": "חיפה", "region": "חדרה", "name_aliases": ["באקה-ג'ת", "באקה"]},
-  {"name": "נתיבות", "symbol_cbs": "7380", "municipality_type": "עיר", "district": "דרום", "region": "באר שבע", "name_aliases": ["Netivot"]},
-  {"name": "שדרות", "symbol_cbs": "9500", "municipality_type": "עיר", "district": "דרום", "region": "אשקלון", "name_aliases": ["Sderot"]},
-  {"name": "קריית מלאכי", "symbol_cbs": "8070", "municipality_type": "עיר", "district": "דרום", "region": "אשקלון", "name_aliases": ["קרית מלאכי"]},
-  {"name": "גדרה", "symbol_cbs": "2300", "municipality_type": "עיר", "district": "מרכז", "region": "רחובות", "name_aliases": []},
-  {"name": "גן יבנה", "symbol_cbs": "2340", "municipality_type": "מועצה מקומית", "district": "מרכז", "region": "רחובות", "name_aliases": []},
-  {"name": "מבשרת ציון", "symbol_cbs": "1063", "municipality_type": "מועצה מקומית", "district": "ירושלים", "region": "ירושלים", "name_aliases": []},
-  {"name": "בית אל", "symbol_cbs": "702", "municipality_type": "מועצה מקומית", "district": "יהודה ושומרון", "region": "יהודה ושומרון", "name_aliases": []},
-  {"name": "מעלה אדומים", "symbol_cbs": "1157", "municipality_type": "עיר", "district": "יהודה ושומרון", "region": "יהודה ושומרון", "name_aliases": []},
-  {"name": "ביתר עילית", "symbol_cbs": "1261", "municipality_type": "עיר", "district": "יהודה ושומרון", "region": "יהודה ושומרון", "name_aliases": ["ביתר"]},
-  {"name": "מודיעין עילית", "symbol_cbs": "1266", "municipality_type": "עיר", "district": "יהודה ושומרון", "region": "יהודה ושומרון", "name_aliases": ["קרית ספר"]},
-  {"name": "אריאל", "symbol_cbs": "648", "municipality_type": "עיר", "district": "יהודה ושומרון", "region": "יהודה ושומרון", "name_aliases": []},
-  {"name": "בקה-ג'ת", "symbol_cbs": "175", "municipality_type": "מועצה מקומית", "district": "חיפה", "region": "חדרה", "name_aliases": []},
-  {"name": "אבו גוש", "symbol_cbs": "10", "municipality_type": "מועצה מקומית", "district": "ירושלים", "region": "ירושלים", "name_aliases": []},
-  {"name": "מצפה רמון", "symbol_cbs": "1200", "municipality_type": "מועצה מקומית", "district": "דרום", "region": "באר שבע", "name_aliases": []},
-  {"name": "ירוחם", "symbol_cbs": "2670", "municipality_type": "מועצה מקומית", "district": "דרום", "region": "באר שבע", "name_aliases": []},
-  {"name": "כסיפה", "symbol_cbs": "1139", "municipality_type": "מועצה מקומית", "district": "דרום", "region": "באר שבע", "name_aliases": []},
-  {"name": "רהט", "symbol_cbs": "8545", "municipality_type": "עיר", "district": "דרום", "region": "באר שבע", "name_aliases": []},
-  {"name": "הר הנגב", "symbol_cbs": "2530", "municipality_type": "מועצה אזורית", "district": "דרום", "region": "באר שבע", "name_aliases": []},
-  {"name": "מרחבים", "symbol_cbs": "1168", "municipality_type": "מועצה אזורית", "district": "דרום", "region": "באר שבע", "name_aliases": []},
-  {"name": "שדות נגב", "symbol_cbs": "2054", "municipality_type": "מועצה אזורית", "district": "דרום", "region": "אשקלון", "name_aliases": []},
-  {"name": "אשכול", "symbol_cbs": "698", "municipality_type": "מועצה אזורית", "district": "דרום", "region": "אשקלון", "name_aliases": []},
-  {"name": "שפיר", "symbol_cbs": "2058", "municipality_type": "מועצה אזורית", "district": "דרום", "region": "אשקלון", "name_aliases": []},
-  {"name": "יואב", "symbol_cbs": "2660", "municipality_type": "מועצה אזורית", "district": "דרום", "region": "אשקלון", "name_aliases": []},
-  {"name": "בני שמעון", "symbol_cbs": "938", "municipality_type": "מועצה אזורית", "district": "דרום", "region": "באר שבע", "name_aliases": []},
-  {"name": "עמק יזרעאל", "symbol_cbs": "2038", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "יזרעאל", "name_aliases": []},
-  {"name": "מגידו", "symbol_cbs": "1066", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "יזרעאל", "name_aliases": []},
-  {"name": "גלבוע", "symbol_cbs": "2014", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "יזרעאל", "name_aliases": []},
-  {"name": "גליל עליון", "symbol_cbs": "2022", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "צפת", "name_aliases": []},
-  {"name": "מרום הגליל", "symbol_cbs": "2034", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "צפת", "name_aliases": []},
-  {"name": "מטה אשר", "symbol_cbs": "2030", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "עכו", "name_aliases": []},
-  {"name": "עמק הירדן", "symbol_cbs": "2042", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "כנרת", "name_aliases": []},
-  {"name": "כנרות", "symbol_cbs": "2026", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "כנרת", "name_aliases": []},
-  {"name": "עמק המעיינות", "symbol_cbs": "2046", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "בית שאן", "name_aliases": []},
-  {"name": "גולן", "symbol_cbs": "4702", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "גולן", "name_aliases": []},
-  {"name": "מנשה", "symbol_cbs": "2036", "municipality_type": "מועצה אזורית", "district": "חיפה", "region": "חדרה", "name_aliases": []},
-  {"name": "חוף הכרמל", "symbol_cbs": "2016", "municipality_type": "מועצה אזורית", "district": "חיפה", "region": "חיפה", "name_aliases": []},
-  {"name": "זבולון", "symbol_cbs": "2010", "municipality_type": "מועצה אזורית", "district": "חיפה", "region": "חיפה", "name_aliases": []},
-  {"name": "מגידו", "symbol_cbs": "1066", "municipality_type": "מועצה אזורית", "district": "חיפה", "region": "חיפה", "name_aliases": []},
-  {"name": "אלונה", "symbol_cbs": "520", "municipality_type": "מועצה אזורית", "district": "חיפה", "region": "חדרה", "name_aliases": []},
-  {"name": "שומרון", "symbol_cbs": "2060", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "נתניה", "name_aliases": []},
-  {"name": "חוף השרון", "symbol_cbs": "2018", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "נתניה", "name_aliases": []},
-  {"name": "לב השרון", "symbol_cbs": "2028", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "נתניה", "name_aliases": []},
-  {"name": "דרום השרון", "symbol_cbs": "2012", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "פתח תקווה", "name_aliases": []},
-  {"name": "מודיעין מכבים רעות", "symbol_cbs": "1207", "municipality_type": "עיר", "district": "מרכז", "region": "רמלה", "name_aliases": ["מודיעין-מכבים-רעות", "מכבים-רעות", "מכבים רעות"]},
-  {"name": "גזר", "symbol_cbs": "2020", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "רמלה", "name_aliases": []},
-  {"name": "נחל שורק", "symbol_cbs": null, "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "שורקות", "name_aliases": []},
-  {"name": "גן רווה", "symbol_cbs": "1310", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "רחובות", "name_aliases": []},
-  {"name": "ברנר", "symbol_cbs": "950", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "רחובות", "name_aliases": []},
-  {"name": "שדות דן", "symbol_cbs": "2056", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "צפת", "name_aliases": []},
-  {"name": "מטה יהודה", "symbol_cbs": "2032", "municipality_type": "מועצה אזורית", "district": "ירושלים", "region": "ירושלים", "name_aliases": []},
-  {"name": "מגילות ים המלח", "symbol_cbs": "3598", "municipality_type": "מועצה אזורית", "district": "יהודה ושומרון", "region": "יהודה ושומרון", "name_aliases": []},
-  {"name": "גוש עציון", "symbol_cbs": "3570", "municipality_type": "מועצה אזורית", "district": "יהודה ושומרון", "region": "יהודה ושומרון", "name_aliases": []},
-  {"name": "מטה בנימין", "symbol_cbs": "3574", "municipality_type": "מועצה אזורית", "district": "יהודה ושומרון", "region": "יהודה ושומרון", "name_aliases": []},
-  {"name": "שומרון", "symbol_cbs": "3578", "municipality_type": "מועצה אזורית", "district": "יהודה ושומרון", "region": "יהודה ושומרון", "name_aliases": []},
-
-  {"name": "אבו בסמה", "symbol_cbs": "67", "municipality_type": "מועצה מקומית", "district": "דרום", "region": "באר שבע", "name_aliases": ["Abu Basma", "הורה"]},
-  {"name": "אפעל", "symbol_cbs": "24", "municipality_type": "מועצה מקומית", "district": "תל אביב", "region": "תל אביב", "name_aliases": ["Efal"]},
-  {"name": "כנרת (מושבה)", "symbol_cbs": "63", "municipality_type": "מועצה מקומית", "district": "צפון", "region": "כנרת", "name_aliases": ["כנרת", "Kinneret", "נוף הגליל"]},
-  {"name": "מכבים-רעות", "symbol_cbs": "1273", "municipality_type": "מועצה מקומית", "district": "מרכז", "region": "רמלה", "name_aliases": ["מכבים רעות"]},
-  {"name": "נווה אפרים", "symbol_cbs": "1062", "municipality_type": "מועצה מקומית", "district": "מרכז", "region": "פתח תקווה", "name_aliases": ["נוה אפרים"]},
-  {"name": "צורן", "symbol_cbs": "1308", "municipality_type": "מועצה מקומית", "district": "מרכז", "region": "נתניה", "name_aliases": []},
-  {"name": "רמות השבים", "symbol_cbs": "206", "municipality_type": "מועצה מקומית", "district": "מרכז", "region": "נתניה", "name_aliases": ["Ramot Hashavim"]},
-  {"name": "שבי ציון", "symbol_cbs": "282", "municipality_type": "מועצה מקומית", "district": "צפון", "region": "עכו", "name_aliases": ["Shavei Zion"]},
-  {"name": "חוף עזה", "symbol_cbs": "77", "municipality_type": "מועצה אזורית", "district": "דרום", "region": "אשקלון", "name_aliases": ["Hof Aza"]},
-  {"name": "שער שומרון", "symbol_cbs": "3826", "municipality_type": "מועצה מקומית", "district": "יהודה ושומרון", "region": "יהודה ושומרון", "name_aliases": []},
-  {"name": "צור הדסה", "symbol_cbs": "1113", "municipality_type": "מועצה מקומית", "district": "ירושלים", "region": "ירושלים", "name_aliases": ["Zur Hadassa"]},
-  {"name": "אל-בטוף", "symbol_cbs": "5565", "municipality_type": "מועצה אזורית", "district": "צפון", "region": "יזרעאל", "name_aliases": ["אלבטוף", "Al-Butouf"]},
-  {"name": "חבל יבנה", "symbol_cbs": "5529", "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "רחובות", "name_aliases": ["Hevel Yavne"]},
-  {"name": "עמק לוד", "symbol_cbs": null, "municipality_type": "מועצה אזורית", "district": "מרכז", "region": "עמק לוד", "name_aliases": []}
+  {
+    "name": "אבו בסמה",
+    "symbol_cbs": "67",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": "באר שבע",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "Abu Basma",
+      "הורה"
+    ]
+  },
+  {
+    "name": "אבו גוש",
+    "symbol_cbs": "472",
+    "municipality_type": "מועצה מקומית",
+    "district": "ירושלים",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "אבו סנאן",
+    "symbol_cbs": "473",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "אבן יהודה",
+    "symbol_cbs": "182",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "אום אל-פחם",
+    "symbol_cbs": "2710",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "אופקים",
+    "symbol_cbs": "31",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": [
+      "Ofakim"
+    ]
+  },
+  {
+    "name": "אור יהודה",
+    "symbol_cbs": "2400",
+    "municipality_type": "עיר",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": [
+      "Givatayim",
+      "אור-יהודה"
+    ]
+  },
+  {
+    "name": "אור עקיבא",
+    "symbol_cbs": "1020",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "אורנית",
+    "symbol_cbs": "3760",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "אזור",
+    "symbol_cbs": "565",
+    "municipality_type": "מועצה מקומית",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "אילת",
+    "symbol_cbs": "2600",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": [
+      "Eilat"
+    ]
+  },
+  {
+    "name": "אכסאל",
+    "symbol_cbs": "478",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "אל-בטוף",
+    "symbol_cbs": "5565",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": "יזרעאל",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "אלבטוף",
+      "Al-Butouf"
+    ]
+  },
+  {
+    "name": "אל קסום",
+    "symbol_cbs": "69",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": []
+  },
+  {
+    "name": "אלונה",
+    "symbol_cbs": "45",
+    "municipality_type": "מועצה אזורית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "אליכין",
+    "symbol_cbs": "41",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "אלעד",
+    "symbol_cbs": "1309",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": [
+      "Elad"
+    ]
+  },
+  {
+    "name": "אלפי מנשה",
+    "symbol_cbs": "3750",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "אלקנה",
+    "symbol_cbs": "3560",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "אעבלין",
+    "symbol_cbs": "529",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "אפעל",
+    "symbol_cbs": "24",
+    "municipality_type": "מועצה מקומית",
+    "district": "תל אביב",
+    "region": "תל אביב",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "Efal"
+    ]
+  },
+  {
+    "name": "אפרת",
+    "symbol_cbs": "3650",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "אריאל",
+    "symbol_cbs": "3570",
+    "municipality_type": "עיר",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "אשדוד",
+    "symbol_cbs": "70",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": [
+      "Ashdod"
+    ]
+  },
+  {
+    "name": "אשכול",
+    "symbol_cbs": "38",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "אשקלון",
+    "symbol_cbs": "7100",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": [
+      "נס-ציונה"
+    ]
+  },
+  {
+    "name": "באקה אל-גרביה",
+    "symbol_cbs": "6000",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": [
+      "באקה-ג'ת",
+      "באקה"
+    ]
+  },
+  {
+    "name": "באר טוביה",
+    "symbol_cbs": "33",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "באר יעקב",
+    "symbol_cbs": "2530",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "באר שבע",
+    "symbol_cbs": "9000",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": [
+      "ב\"ש",
+      "באר-שבע",
+      "Beer Sheva"
+    ]
+  },
+  {
+    "name": "בוסתן אל-מרג'",
+    "symbol_cbs": "66",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "בועיינה-נוג'ידאת",
+    "symbol_cbs": "482",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "בוקעאתא",
+    "symbol_cbs": "4001",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "ביר אל-מכסור",
+    "symbol_cbs": "998",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "בית אל",
+    "symbol_cbs": "3574",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "בית אריה",
+    "symbol_cbs": "3652",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "בית ג'ן",
+    "symbol_cbs": "480",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "בית דגן",
+    "symbol_cbs": "466",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "בית שאן",
+    "symbol_cbs": "9200",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": [
+      "Beit She'an"
+    ]
+  },
+  {
+    "name": "בית שמש",
+    "symbol_cbs": "2610",
+    "municipality_type": "עיר",
+    "district": "ירושלים",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": [
+      "Beit Shemesh",
+      "בית-שמש"
+    ]
+  },
+  {
+    "name": "ביתר עילית",
+    "symbol_cbs": "3780",
+    "municipality_type": "עיר",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": [
+      "ביתר"
+    ]
+  },
+  {
+    "name": "בני ברק",
+    "symbol_cbs": "6100",
+    "municipality_type": "עיר",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": [
+      "Bnei Brak",
+      "בני-ברק"
+    ]
+  },
+  {
+    "name": "בני עי\"ש",
+    "symbol_cbs": "1066",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "בני שמעון",
+    "symbol_cbs": "938",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": "באר שבע",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "בנימינה-גבעת עדה",
+    "symbol_cbs": "9800",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "בנימינה-גבעת עדה*"
+    ]
+  },
+  {
+    "name": "בסמ\"ה",
+    "symbol_cbs": "1326",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "בסמת טבעון",
+    "symbol_cbs": "944",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "בענה",
+    "symbol_cbs": "483",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "בקה-ג'ת",
+    "symbol_cbs": "175",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": "חדרה",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "ברנר",
+    "symbol_cbs": "950",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": "רחובות",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "בת ים",
+    "symbol_cbs": "6200",
+    "municipality_type": "עיר",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": [
+      "בת-ים"
+    ]
+  },
+  {
+    "name": "ג'דיידה-מכר",
+    "symbol_cbs": "1292",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "ג'ולס",
+    "symbol_cbs": "485",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "ג'לג'וליה",
+    "symbol_cbs": "627",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "ג'סר א-זרקא",
+    "symbol_cbs": "541",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "ג'ש (גוש חלב)",
+    "symbol_cbs": "487",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "ג'ת",
+    "symbol_cbs": "628",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "גבעת זאב",
+    "symbol_cbs": "3730",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "גבעת שמואל",
+    "symbol_cbs": "681",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "גבעתיים",
+    "symbol_cbs": "6300",
+    "municipality_type": "עיר",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "הוד-השרון"
+    ]
+  },
+  {
+    "name": "גדרה",
+    "symbol_cbs": "2550",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": [
+      "Ashkelon"
+    ]
+  },
+  {
+    "name": "גדרות",
+    "symbol_cbs": "32",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "גולן",
+    "symbol_cbs": "71",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "גוש עציון",
+    "symbol_cbs": "76",
+    "municipality_type": "מועצה אזורית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "גזר",
+    "symbol_cbs": "30",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "גלבוע",
+    "symbol_cbs": "2014",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": "יזרעאל",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "גליל עליון",
+    "symbol_cbs": "2022",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": "צפת",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "גן יבנה",
+    "symbol_cbs": "166",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "גן רווה",
+    "symbol_cbs": "27",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "גני תקווה",
+    "symbol_cbs": "229",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "דאלית אל-כרמל",
+    "symbol_cbs": "494",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "דבורייה",
+    "symbol_cbs": "489",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "דייר אל-אסד",
+    "symbol_cbs": "490",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "דייר חנא",
+    "symbol_cbs": "492",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "דימונה",
+    "symbol_cbs": "2200",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": [
+      "ג'לג'וליה",
+      "Dimona"
+    ]
+  },
+  {
+    "name": "דרום השרון",
+    "symbol_cbs": "20",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "הגלבוע",
+    "symbol_cbs": "8",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "הגליל העליון",
+    "symbol_cbs": "1",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "הגליל התחתון",
+    "symbol_cbs": "3",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "הוד השרון",
+    "symbol_cbs": "9700",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "הערבה התיכונה",
+    "symbol_cbs": "54",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "הר אדר",
+    "symbol_cbs": "3769",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "הר חברון",
+    "symbol_cbs": "78",
+    "municipality_type": "מועצה אזורית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "הרצליה",
+    "symbol_cbs": "6400",
+    "municipality_type": "עיר",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "Hadera"
+    ]
+  },
+  {
+    "name": "זבולון",
+    "symbol_cbs": "12",
+    "municipality_type": "מועצה אזורית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "זכרון יעקב",
+    "symbol_cbs": "9300",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "זמר",
+    "symbol_cbs": "1290",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "זרזיר",
+    "symbol_cbs": "975",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "חבל אילות",
+    "symbol_cbs": "53",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "חבל יבנה",
+    "symbol_cbs": "5529",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": "רחובות",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "Hevel Yavne"
+    ]
+  },
+  {
+    "name": "חבל מודיעין",
+    "symbol_cbs": "25",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "חדרה",
+    "symbol_cbs": "6500",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": [
+      "Herzliya"
+    ]
+  },
+  {
+    "name": "חולון",
+    "symbol_cbs": "6600",
+    "municipality_type": "עיר",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": [
+      "Holon"
+    ]
+  },
+  {
+    "name": "חוף אשקלון",
+    "symbol_cbs": "36",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "חוף הכרמל",
+    "symbol_cbs": "15",
+    "municipality_type": "מועצה אזורית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "חוף השרון",
+    "symbol_cbs": "19",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "חוף עזה",
+    "symbol_cbs": "77",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": "אשקלון",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "Hof Aza"
+    ]
+  },
+  {
+    "name": "חורה",
+    "symbol_cbs": "1303",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": []
+  },
+  {
+    "name": "חורפיש",
+    "symbol_cbs": "496",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "חיפה",
+    "symbol_cbs": "4000",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": [
+      "Haifa"
+    ]
+  },
+  {
+    "name": "חצור הגלילית",
+    "symbol_cbs": "2034",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "חריש",
+    "symbol_cbs": "1247",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "טבריה",
+    "symbol_cbs": "6700",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": [
+      "Tiberias"
+    ]
+  },
+  {
+    "name": "טובא-זנגרייה",
+    "symbol_cbs": "962",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "טורעאן",
+    "symbol_cbs": "498",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "טייבה",
+    "symbol_cbs": "2730",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": [
+      "Tayibe"
+    ]
+  },
+  {
+    "name": "טירה",
+    "symbol_cbs": "2720",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": [
+      "Tire"
+    ]
+  },
+  {
+    "name": "טירת כרמל",
+    "symbol_cbs": "2100",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": [
+      "טירת הכרמל"
+    ]
+  },
+  {
+    "name": "טמרה",
+    "symbol_cbs": "8900",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "יאנוח-ג'ת",
+    "symbol_cbs": "1295",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "יבנאל",
+    "symbol_cbs": "46",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "יבנה",
+    "symbol_cbs": "2660",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "יהוד",
+    "symbol_cbs": "9400",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "סחנין",
+      "Sakhnin"
+    ]
+  },
+  {
+    "name": "יואב",
+    "symbol_cbs": "35",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "יוקנעם עילית",
+    "symbol_cbs": "2700",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": "יזרעאל",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "יוקנעם"
+    ]
+  },
+  {
+    "name": "יסוד המעלה",
+    "symbol_cbs": "29",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "יפיע",
+    "symbol_cbs": "499",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "יקנעם עילית",
+    "symbol_cbs": "240",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "ירוחם",
+    "symbol_cbs": "831",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "ירושלים",
+    "symbol_cbs": "3000",
+    "municipality_type": "עיר",
+    "district": "ירושלים",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": [
+      "Jerusalem",
+      "ירושלים"
+    ]
+  },
+  {
+    "name": "ירכא",
+    "symbol_cbs": "502",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "כאבול",
+    "symbol_cbs": "504",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "כאוכב אבו אל-היג'א",
+    "symbol_cbs": "505",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "כוכב יאיר",
+    "symbol_cbs": "1224",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "כנרות",
+    "symbol_cbs": "2026",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": "כנרת",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "כנרת (מושבה)",
+    "symbol_cbs": "63",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": "כנרת",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "כנרת",
+      "Kinneret",
+      "נוף הגליל"
+    ]
+  },
+  {
+    "name": "כסיפה",
+    "symbol_cbs": "1059",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": []
+  },
+  {
+    "name": "כסרא-סמיע",
+    "symbol_cbs": "1296",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "כעביה-טבאש-חג'אג'רה",
+    "symbol_cbs": "978",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "כפר ברא",
+    "symbol_cbs": "633",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "כפר ורדים",
+    "symbol_cbs": "1263",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "כפר יאסיף",
+    "symbol_cbs": "507",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "כפר יונה",
+    "symbol_cbs": "168",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "כפר יסיף",
+    "symbol_cbs": "6820",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": "עכו",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "כפר כמא",
+    "symbol_cbs": "508",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "כפר כנא",
+    "symbol_cbs": "509",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "כפר מנדא",
+    "symbol_cbs": "510",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": [
+      "Umm al-Fahm",
+      "אום אל פחם"
+    ]
+  },
+  {
+    "name": "כפר סבא",
+    "symbol_cbs": "6900",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "כפר-סבא"
+    ]
+  },
+  {
+    "name": "כפר קאסם",
+    "symbol_cbs": "634",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": [
+      "כפר קסם"
+    ]
+  },
+  {
+    "name": "כפר קרע",
+    "symbol_cbs": "654",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "כפר שמריהו",
+    "symbol_cbs": "267",
+    "municipality_type": "מועצה מקומית",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 10,
+    "name_aliases": []
+  },
+  {
+    "name": "כפר תבור",
+    "symbol_cbs": "47",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "כרמיאל",
+    "symbol_cbs": "1139",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": [
+      "Karmiel"
+    ]
+  },
+  {
+    "name": "לב השרון",
+    "symbol_cbs": "18",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "להבים",
+    "symbol_cbs": "1271",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "לוד",
+    "symbol_cbs": "7000",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": [
+      "Lod"
+    ]
+  },
+  {
+    "name": "לכיש",
+    "symbol_cbs": "50",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "לקיה",
+    "symbol_cbs": "1060",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": []
+  },
+  {
+    "name": "מבואות החרמון",
+    "symbol_cbs": "55",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "מבשרת ציון",
+    "symbol_cbs": "1015",
+    "municipality_type": "מועצה מקומית",
+    "district": "ירושלים",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "מג'ד אל-כרום",
+    "symbol_cbs": "516",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "מג'דל שמס",
+    "symbol_cbs": "4201",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "מגאר",
+    "symbol_cbs": "481",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "מגדל",
+    "symbol_cbs": "65",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "מגדל העמק",
+    "symbol_cbs": "874",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "מגידו",
+    "symbol_cbs": "13",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "מגילות ים המלח",
+    "symbol_cbs": "74",
+    "municipality_type": "מועצה אזורית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "מודיעין-מכבים-רעות",
+    "symbol_cbs": "1200",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "מודיעין-מכבים-רעות*"
+    ]
+  },
+  {
+    "name": "מודיעין עילית",
+    "symbol_cbs": "3797",
+    "municipality_type": "עיר",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": [
+      "קרית ספר"
+    ]
+  },
+  {
+    "name": "מזכרת בתיה",
+    "symbol_cbs": "28",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "מזרעה",
+    "symbol_cbs": "517",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "מטה אשר",
+    "symbol_cbs": "4",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "מטה בנימין",
+    "symbol_cbs": "73",
+    "municipality_type": "מועצה אזורית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "מטה יהודה",
+    "symbol_cbs": "2032",
+    "municipality_type": "מועצה אזורית",
+    "district": "ירושלים",
+    "region": "ירושלים",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "מטולה",
+    "symbol_cbs": "43",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "מיתר",
+    "symbol_cbs": "1268",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "מכבים-רעות",
+    "symbol_cbs": "1273",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": "רמלה",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "מכבים רעות"
+    ]
+  },
+  {
+    "name": "מנשה",
+    "symbol_cbs": "14",
+    "municipality_type": "מועצה אזורית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "מסעדה",
+    "symbol_cbs": "4203",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "מעיליא",
+    "symbol_cbs": "518",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "מעלה אדומים",
+    "symbol_cbs": "3616",
+    "municipality_type": "עיר",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "מעלה אפרים",
+    "symbol_cbs": "3608",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "מעלה יוסף",
+    "symbol_cbs": "52",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "מעלה עירון",
+    "symbol_cbs": "1327",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "מעלות-תרשיחא",
+    "symbol_cbs": "1063",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": [
+      "מעלות",
+      "מעלות תרשיחא"
+    ]
+  },
+  {
+    "name": "מצפה רמון",
+    "symbol_cbs": "99",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "מרום הגליל",
+    "symbol_cbs": "2",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "מרחבים",
+    "symbol_cbs": "42",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "משגב",
+    "symbol_cbs": "56",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "משהד",
+    "symbol_cbs": "520",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "נהריה",
+    "symbol_cbs": "9100",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "נווה מדבר",
+    "symbol_cbs": "68",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": []
+  },
+  {
+    "name": "נחל שורק",
+    "symbol_cbs": null,
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": "שורקות",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "נחף",
+    "symbol_cbs": "522",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "נס ציונה",
+    "symbol_cbs": "7200",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "Nahariya"
+    ]
+  },
+  {
+    "name": "נצרת",
+    "symbol_cbs": "7300",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": [
+      "נצרת עילית",
+      "Nazareth"
+    ]
+  },
+  {
+    "name": "נצרת עילית",
+    "symbol_cbs": "1061",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "נשר",
+    "symbol_cbs": "2500",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "נתיבות",
+    "symbol_cbs": "246",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": [
+      "Netivot"
+    ]
+  },
+  {
+    "name": "נתניה",
+    "symbol_cbs": "7400",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": [
+      "Netanya"
+    ]
+  },
+  {
+    "name": "סאג'ור",
+    "symbol_cbs": "525",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "סביון",
+    "symbol_cbs": "587",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 10,
+    "name_aliases": [
+      "סביון*"
+    ]
+  },
+  {
+    "name": "סח'נין",
+    "symbol_cbs": "7500",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": [
+      "Acre",
+      "Akko"
+    ]
+  },
+  {
+    "name": "ע'ג'ר",
+    "symbol_cbs": "4501",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "עומר",
+    "symbol_cbs": "666",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "עיילבון",
+    "symbol_cbs": "530",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "עילוט",
+    "symbol_cbs": "511",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "עין מאהל",
+    "symbol_cbs": "532",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "עין קנייא",
+    "symbol_cbs": "4502",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "עכו",
+    "symbol_cbs": "7600",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": [
+      "Safed",
+      "Zfat"
+    ]
+  },
+  {
+    "name": "עמנואל",
+    "symbol_cbs": "3660",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "עמק הירדן",
+    "symbol_cbs": "6",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "עמק המעיינות",
+    "symbol_cbs": "7",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "עמק חפר",
+    "symbol_cbs": "16",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "עמק יזרעאל",
+    "symbol_cbs": "9",
+    "municipality_type": "מועצה אזורית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "עמק לוד",
+    "symbol_cbs": null,
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": "עמק לוד",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "עספיא",
+    "symbol_cbs": "534",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "עפולה",
+    "symbol_cbs": "7700",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": [
+      "Afula"
+    ]
+  },
+  {
+    "name": "עראבה",
+    "symbol_cbs": "531",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "ערבות הירדן",
+    "symbol_cbs": "75",
+    "municipality_type": "מועצה אזורית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "ערד",
+    "symbol_cbs": "2560",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": [
+      "Arad"
+    ]
+  },
+  {
+    "name": "ערערה",
+    "symbol_cbs": "637",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "ערערה-בנגב",
+    "symbol_cbs": "1192",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": []
+  },
+  {
+    "name": "פוריידיס",
+    "symbol_cbs": "537",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "פסוטה",
+    "symbol_cbs": "535",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "פקיעין (בוקייעה)",
+    "symbol_cbs": "536",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "פרדס חנה-כרכור",
+    "symbol_cbs": "7800",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": [
+      "קרית אתא",
+      "פרדס חנה"
+    ]
+  },
+  {
+    "name": "פרדסייה",
+    "symbol_cbs": "171",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "פתח תקווה",
+    "symbol_cbs": "7900",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": [
+      "פתח-תקווה",
+      "פ\"ת"
+    ]
+  },
+  {
+    "name": "צור הדסה",
+    "symbol_cbs": "1113",
+    "municipality_type": "מועצה מקומית",
+    "district": "ירושלים",
+    "region": "ירושלים",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "Zur Hadassa"
+    ]
+  },
+  {
+    "name": "צורן",
+    "symbol_cbs": "1308",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": "נתניה",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "צפת",
+    "symbol_cbs": "8000",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": [
+      "קרית ביאליק"
+    ]
+  },
+  {
+    "name": "קדומים",
+    "symbol_cbs": "3557",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "קדימה-צורן",
+    "symbol_cbs": "195",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "קדימה",
+      "צורן",
+      "קדימה צורן"
+    ]
+  },
+  {
+    "name": "קלנסווה",
+    "symbol_cbs": "638",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "קצרין",
+    "symbol_cbs": "4100",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "קריית אונו",
+    "symbol_cbs": "2620",
+    "municipality_type": "עיר",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "קרית אונו",
+      "Yavne"
+    ]
+  },
+  {
+    "name": "קריית ארבע",
+    "symbol_cbs": "3611",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "קריית אתא",
+    "symbol_cbs": "6800",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "קריית ביאליק",
+    "symbol_cbs": "9500",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": [
+      "Sderot"
+    ]
+  },
+  {
+    "name": "קריית גת",
+    "symbol_cbs": "2630",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": [
+      "ק\"ג",
+      "קרית גת",
+      "יהוד"
+    ]
+  },
+  {
+    "name": "קריית טבעון",
+    "symbol_cbs": "2300",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "קריית ים",
+    "symbol_cbs": "9600",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": [
+      "Shfaram"
+    ]
+  },
+  {
+    "name": "קריית יערים",
+    "symbol_cbs": "1137",
+    "municipality_type": "מועצה מקומית",
+    "district": "ירושלים",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "קריית מוצקין",
+    "symbol_cbs": "8200",
+    "municipality_type": "עיר",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": [
+      "קרית ים",
+      "קרית מוצקין"
+    ]
+  },
+  {
+    "name": "קריית מלאכי",
+    "symbol_cbs": "1034",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": [
+      "קרית מלאכי"
+    ]
+  },
+  {
+    "name": "קריית עקרון",
+    "symbol_cbs": "469",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "קריית שמונה",
+    "symbol_cbs": "2800",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": [
+      "Kiryat Shmona",
+      "קרית שמונה"
+    ]
+  },
+  {
+    "name": "קרני שומרון",
+    "symbol_cbs": "3640",
+    "municipality_type": "מועצה מקומית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "ראמה",
+    "symbol_cbs": "543",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "ראש העין",
+    "symbol_cbs": "2640",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "ראש פינה",
+    "symbol_cbs": "26",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "ראשון לציון",
+    "symbol_cbs": "8300",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": [
+      "Ramla"
+    ]
+  },
+  {
+    "name": "רהט",
+    "symbol_cbs": "1161",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": [
+      "Rahat"
+    ]
+  },
+  {
+    "name": "רחובות",
+    "symbol_cbs": "8400",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": [
+      "ראשל\"צ",
+      "ראשון-לציון"
+    ]
+  },
+  {
+    "name": "ריינה",
+    "symbol_cbs": "542",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "רכסים",
+    "symbol_cbs": "922",
+    "municipality_type": "מועצה מקומית",
+    "district": "חיפה",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "רמות השבים",
+    "symbol_cbs": "206",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": "נתניה",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "Ramot Hashavim"
+    ]
+  },
+  {
+    "name": "רמלה",
+    "symbol_cbs": "8500",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": [
+      "Rehovot"
+    ]
+  },
+  {
+    "name": "רמת גן",
+    "symbol_cbs": "8600",
+    "municipality_type": "עיר",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "Raanana"
+    ]
+  },
+  {
+    "name": "רמת השרון",
+    "symbol_cbs": "2650",
+    "municipality_type": "עיר",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": [
+      "רמת-השרון"
+    ]
+  },
+  {
+    "name": "רמת ישי",
+    "symbol_cbs": "122",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "רמת נגב",
+    "symbol_cbs": "48",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "רעננה",
+    "symbol_cbs": "8700",
+    "municipality_type": "עיר",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "רמת-גן"
+    ]
+  },
+  {
+    "name": "שבי ציון",
+    "symbol_cbs": "282",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": "עכו",
+    "socioeconomic_cluster": null,
+    "name_aliases": [
+      "Shavei Zion"
+    ]
+  },
+  {
+    "name": "שבלי - אום אל-גנם",
+    "symbol_cbs": "913",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "שגב-שלום",
+    "symbol_cbs": "1286",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": []
+  },
+  {
+    "name": "שדות דן",
+    "symbol_cbs": "40",
+    "municipality_type": "מועצה אזורית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "שדות נגב",
+    "symbol_cbs": "39",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "שדרות",
+    "symbol_cbs": "1031",
+    "municipality_type": "עיר",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 4,
+    "name_aliases": []
+  },
+  {
+    "name": "שוהם",
+    "symbol_cbs": "1304",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 9,
+    "name_aliases": []
+  },
+  {
+    "name": "שומרון",
+    "symbol_cbs": "72",
+    "municipality_type": "מועצה אזורית",
+    "district": "אזור יהודה והשומרון",
+    "region": null,
+    "socioeconomic_cluster": 6,
+    "name_aliases": []
+  },
+  {
+    "name": "שלומי",
+    "symbol_cbs": "812",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "שעב",
+    "symbol_cbs": "538",
+    "municipality_type": "מועצה מקומית",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 2,
+    "name_aliases": []
+  },
+  {
+    "name": "שער הנגב",
+    "symbol_cbs": "37",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  },
+  {
+    "name": "שער שומרון",
+    "symbol_cbs": "3826",
+    "municipality_type": "מועצה מקומית",
+    "district": "יהודה ושומרון",
+    "region": "יהודה ושומרון",
+    "socioeconomic_cluster": null,
+    "name_aliases": []
+  },
+  {
+    "name": "שפיר",
+    "symbol_cbs": "34",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 5,
+    "name_aliases": []
+  },
+  {
+    "name": "שפרעם",
+    "symbol_cbs": "8800",
+    "municipality_type": "עיר",
+    "district": "צפון",
+    "region": null,
+    "socioeconomic_cluster": 3,
+    "name_aliases": []
+  },
+  {
+    "name": "תל אביב -יפו",
+    "symbol_cbs": "5000",
+    "municipality_type": "עיר",
+    "district": "תל אביב",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": [
+      "תל אביב יפו",
+      "תל-אביב",
+      "תל אביב",
+      "ת\"א",
+      "Tel Aviv"
+    ]
+  },
+  {
+    "name": "תל מונד",
+    "symbol_cbs": "154",
+    "municipality_type": "מועצה מקומית",
+    "district": "מרכז",
+    "region": null,
+    "socioeconomic_cluster": 8,
+    "name_aliases": []
+  },
+  {
+    "name": "תל שבע",
+    "symbol_cbs": "1054",
+    "municipality_type": "מועצה מקומית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 1,
+    "name_aliases": []
+  },
+  {
+    "name": "תמר",
+    "symbol_cbs": "51",
+    "municipality_type": "מועצה אזורית",
+    "district": "דרום",
+    "region": null,
+    "socioeconomic_cluster": 7,
+    "name_aliases": []
+  }
 ]
