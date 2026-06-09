@@ -32,6 +32,11 @@ python scripts/seed_coordinates.py
 # Re-ingest all CBS files from data/uploads/ (naming: cbs_2020.xlsx)
 python scripts/reingest_all.py
 
+# Auto-ingest on startup: ingests any CBS file in data/uploads/ not yet in DB
+# (also runs automatically via Procfile on Railway before uvicorn starts)
+# Skips years that already have ≥200 municipalities in DB; re-ingests partial years
+python scripts/auto_ingest.py
+
 # Download + ingest CBS files
 python scripts/download_cbs.py --years 2015,2016,2017
 
@@ -121,13 +126,15 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 ### Database
 
 ```
-DATABASE_URL=postgresql+psycopg2://postgres:1234@localhost:5432/israel_municipal
+DATABASE_URL=postgresql+psycopg2://postgres:1234@127.0.0.1:5432/israel_municipal
 ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-`.env` file goes in `backend/`. Single Alembic migration (`initial_schema`) covers all 4 tables. Swagger docs at `http://localhost:8000/docs`.
+`.env` file goes in `backend/`. **Use `127.0.0.1` not `localhost`** — see local DB fix note below. Single Alembic migration (`initial_schema`) covers all 4 tables. Swagger docs at `http://localhost:8000/docs`.
 
-**Seed data** lives in `backend/data/seed/`: `municipalities_seed.json` (267 entries with aliases) and `indicators_seed.json` (~60 indicators with `cbs_column_variants`). Changes to these files take effect via `python scripts/seed_db.py` (re-seeds) or `python scripts/update_seed.py` (variants only). CBS Excel files land in `backend/data/uploads/` named `cbs_<year>.xlsx` or `cbs_<year>.xls`.
+**Seed data** lives in `backend/data/seed/`: `municipalities_seed.json` (267 entries with aliases) and `indicators_seed.json` (~60 indicators with `cbs_column_variants`). Changes to these files take effect via `python scripts/seed_db.py` (re-seeds) or `python scripts/update_seed.py` (variants only). CBS Excel files live in `backend/data/uploads/` named `cbs_<year>.xls` (1999–2015) or `cbs_<year>.xlsx` (2016–2024) and are committed to the repo (31 MB total). `auto_ingest.py` ingests any file not yet in DB on startup; it skips years that already have ≥ 200 municipalities in DB and re-ingests partial years.
+
+**Local DB fix:** `DATABASE_URL` must use `127.0.0.1` (not `localhost`) — on Windows, psycopg2 resolves `localhost` to IPv6 (`::1`) which fails PostgreSQL auth even with the correct password.
 
 ### Frontend (`frontend/src/`)
 
