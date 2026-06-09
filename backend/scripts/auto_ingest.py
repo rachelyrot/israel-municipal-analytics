@@ -15,9 +15,14 @@ from app.services.ingestion import pipeline
 UPLOAD_DIR = Path(__file__).resolve().parents[1] / "data" / "uploads"
 
 
-def years_in_db(db) -> set[int]:
+MIN_MUNICIPALITIES_PER_YEAR = 200  # פחות מזה — נחשב לחלקי ויש לרענן
+
+
+def years_complete_in_db(db) -> set[int]:
     from sqlalchemy import text
-    rows = db.execute(text("SELECT DISTINCT year FROM data_points")).fetchall()
+    rows = db.execute(text(
+        "SELECT year FROM data_points GROUP BY year HAVING COUNT(DISTINCT municipality_id) >= :min"
+    ), {"min": MIN_MUNICIPALITIES_PER_YEAR}).fetchall()
     return {r[0] for r in rows}
 
 
@@ -36,7 +41,7 @@ def main() -> None:
 
     db = SessionLocal()
     try:
-        existing = years_in_db(db)
+        existing = years_complete_in_db(db)
         missing = {y: f for y, f in files.items() if y not in existing}
 
         if not missing:
