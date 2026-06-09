@@ -41,8 +41,11 @@ python scripts/audit_unmatched.py
 python scripts/analyze_mappings.py  # detailed column-to-indicator mapping analysis
 
 # Maintenance / one-off fixes
-python scripts/fix_muni_names.py   # fix misspelled municipality names already in DB
-python scripts/fix_land_area.py    # patch LAND_TOTAL_AREA indicator if column mis-mapped
+python scripts/fix_muni_names.py              # fix misspelled municipality names already in DB
+python scripts/fix_land_area.py               # patch LAND_TOTAL_AREA indicator if column mis-mapped
+python scripts/fix_students_total.py          # fix EDU_STUDENTS_TOTAL values (~25 instead of real counts for 2016-2024)
+python scripts/compute_student_teacher_ratio.py  # derive student-teacher ratio directly from CBS Excel files (2018–2023)
+python scripts/find_area_headers.py           # scan CBS Excel files to locate area-related column headers
 python scripts/update_seed.py      # edit indicators_seed.json then run to propagate cbs_column_variants to DB
 python scripts/update_seeds.py    # more comprehensive: upserts both indicators AND municipalities from seed JSONs (preferred over seed_db.py for incremental changes)
 

@@ -10,9 +10,6 @@ __pycache__/
 frontend/node_modules/
 frontend/dist/
 
-# Data (large files, not for repo)
-backend/data/uploads/*.xls
-backend/data/uploads/*.xlsx
 
 # IDE
 .vscode/

@@ -1,1 +1,1 @@
-web: alembic upgrade head && python scripts/seed_db.py && python scripts/seed_coordinates.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+web: alembic upgrade head && python scripts/seed_db.py && python scripts/seed_coordinates.py && python scripts/auto_ingest.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT
