@@ -3,6 +3,7 @@
 ingest אוטומטי של קבצי CBS שקיימים ב-data/uploads/ אבל טרם נטענו ל-DB.
 מופעל ב-Procfile לפני הפעלת השרת.
 """
+import os
 import re
 import sys
 from pathlib import Path
@@ -39,9 +40,11 @@ def main() -> None:
         print("[auto_ingest] לא נמצאו קבצי CBS ב-data/uploads/ — דולג.")
         return
 
+    force = os.environ.get("FORCE_REINGEST", "").lower() in ("1", "true", "yes")
+
     db = SessionLocal()
     try:
-        existing = years_complete_in_db(db)
+        existing = set() if force else years_complete_in_db(db)
         missing = {y: f for y, f in files.items() if y not in existing}
 
         if not missing:
