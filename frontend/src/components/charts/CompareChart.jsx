@@ -4,7 +4,7 @@ import {
   Tooltip, ResponsiveContainer,
 } from 'recharts'
 
-const COLORS = ['#2563eb', '#16a34a', '#dc2626', '#d97706', '#7c3aed', '#0891b2', '#db2777', '#ea580c']
+const getMuniColor = (i) => `hsl(${Math.round((i * 137.508 + 220) % 360)}, 65%, 48%)`
 const DISTRICT_COLORS = ['#f59e0b', '#10b981', '#8b5cf6', '#06b6d4', '#f97316']
 const TYPE_COLORS = ['#e11d48', '#0284c7', '#7c3aed']
 
@@ -103,7 +103,7 @@ export function CompareChart({ data, height = 300 }) {
           <ToggleBtn
             key={m.id}
             label={m.name}
-            color={COLORS[i % COLORS.length]}
+            color={getMuniColor(i)}
             dashed={false}
             active={!hidden.has(m.name)}
             onClick={() => toggle(m.name)}
@@ -159,7 +159,7 @@ export function CompareChart({ data, height = 300 }) {
             <Line
               key={m.id}
               dataKey={m.name}
-              stroke={COLORS[i % COLORS.length]}
+              stroke={getMuniColor(i)}
               strokeWidth={2.5}
               dot={{ r: 3 }}
               activeDot={{ r: 5 }}

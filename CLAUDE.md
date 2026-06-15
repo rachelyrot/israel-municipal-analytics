@@ -6,6 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Israeli Municipal Analytics platform — ingests CBS (Central Bureau of Statistics) Excel files (1999–2024) into PostgreSQL and exposes a REST API. Frontend is React + Vite + Tailwind. UI is Hebrew/RTL.
 
+## First-time local setup
+
+Run once in order (from `c:\new\backend\` with venv active). This mirrors `backend/Procfile` which Railway uses on startup:
+
+```bash
+c:\new\venv\Scripts\activate
+alembic upgrade head
+python scripts/seed_db.py
+python scripts/seed_coordinates.py   # populates lat/lon; required for map + PDF
+python scripts/auto_ingest.py        # ingests CBS files in data/uploads/ not yet in DB
+uvicorn app.main:app --reload
+```
+
 ## Backend Commands
 
 All backend commands run from `c:\new\backend\` with the venv active:
@@ -54,6 +67,11 @@ python scripts/find_area_headers.py           # scan CBS Excel files to locate a
 python scripts/update_seed.py      # edit indicators_seed.json then run to propagate cbs_column_variants to DB
 python scripts/update_seeds.py    # more comprehensive: upserts both indicators AND municipalities from seed JSONs (preferred over seed_db.py for incremental changes)
 
+# Debug / one-off checks
+python scripts/check_munis.py     # search municipality names by keyword
+python scripts/check_seed.py      # validate indicators_seed.json structure and cbs_column_variants
+python scripts/debug_area.py      # inspect land-area data points for a specific municipality
+
 # Run tests (no tests are implemented yet — only __init__.py exists)
 pytest
 pytest tests/test_specific.py::test_name
@@ -78,10 +96,10 @@ Tailwind CSS v4 is used via `@tailwindcss/vite` plugin — there is no `tailwind
 
 - `main.py` — FastAPI app, CORS for localhost:5173/3000, mounts 7 routers under `/api/v1/`
 - `database.py` — SQLAlchemy engine + `get_db()` dependency
-- `config.py` — pydantic-settings, reads `backend/.env`; fields: `database_url`, `app_name`, `debug`, `anthropic_api_key`
+- `config.py` — pydantic-settings, reads `backend/.env`; fields: `database_url`, `app_name`, `debug`, `anthropic_api_key`, `allowed_origins` (comma-separated CORS origins), `disable_ssl_verify` (NetFree workaround, mirrors the `httpx` flag in `claude_client.py`)
 
 **4 core tables** (SQLAlchemy models in `app/models/`):
-- `municipalities` — 267 Israeli local authorities (255 active in 2016, plus 12 historical/newer); fields include `symbol_cbs` (CBS code), `district`, `region`, `lat`/`lon`, `socioeconomic_cluster` (1–10), `name_aliases` (JSON for fuzzy match)
+- `municipalities` — 272 Israeli local authorities; fields include `symbol_cbs` (CBS code), `district`, `region`, `lat`/`lon`, `socioeconomic_cluster` (1–10), `name_aliases` (JSON for fuzzy match)
 - `indicators` — ~60 indicators by domain (population/employment/education/welfare/budget/infrastructure/taxes); `code` is the stable key (e.g. `POP_TOTAL`); `cbs_column_variants` (JSON) drives column matching
 - `data_points` — time-series (municipality × indicator × year); `ON CONFLICT DO UPDATE` enforces last-write-wins upsert
 - `national_averages` — pre-computed avg/median/p25/p75 per (indicator, year), auto-refreshed after each ingestion
@@ -132,7 +150,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 
 `.env` file goes in `backend/`. **Use `127.0.0.1` not `localhost`** — see local DB fix note below. Single Alembic migration (`initial_schema`) covers all 4 tables. Swagger docs at `http://localhost:8000/docs`.
 
-**Seed data** lives in `backend/data/seed/`: `municipalities_seed.json` (267 entries with aliases) and `indicators_seed.json` (~60 indicators with `cbs_column_variants`). Changes to these files take effect via `python scripts/seed_db.py` (re-seeds) or `python scripts/update_seed.py` (variants only). CBS Excel files live in `backend/data/uploads/` named `cbs_<year>.xls` (1999–2015) or `cbs_<year>.xlsx` (2016–2024) and are committed to the repo (31 MB total). `auto_ingest.py` ingests any file not yet in DB on startup; it skips years that already have ≥ 200 municipalities in DB and re-ingests partial years.
+**Seed data** lives in `backend/data/seed/`: `municipalities_seed.json` (272 entries with aliases) and `indicators_seed.json` (~60 indicators with `cbs_column_variants`). Changes to these files take effect via `python scripts/seed_db.py` (re-seeds) or `python scripts/update_seed.py` (variants only). CBS Excel files live in `backend/data/uploads/` named `cbs_<year>.xls` (1999–2015) or `cbs_<year>.xlsx` (2016–2024) and are committed to the repo (31 MB total). `auto_ingest.py` ingests any file not yet in DB on startup; it skips years that already have ≥ 200 municipalities in DB and re-ingests partial years. `data/uploads/unmatched_munis.json` is an auto-generated output file written by `audit_unmatched.py` — tracked in git for reference but not a seed file.
 
 **Local DB fix:** `DATABASE_URL` must use `127.0.0.1` (not `localhost`) — on Windows, psycopg2 resolves `localhost` to IPv6 (`::1`) which fails PostgreSQL auth even with the correct password.
 
