@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { CompareChart } from '../components/charts/CompareChart'
 import { api } from '../api/client'
 
@@ -18,7 +18,6 @@ const DOMAIN_HE = {
   social: 'רווחה חברתית',
 }
 
-// Golden-angle HSL — generates perceptually distinct colors for any number of series
 const getMuniColor = (i) => `hsl(${Math.round((i * 137.508 + 220) % 360)}, 65%, 48%)`
 
 function MuniAdder({ onAdd, excluded }) {
@@ -89,12 +88,84 @@ function MuniAdder({ onAdd, excluded }) {
   )
 }
 
+function IndicatorSearch({ indicatorsByDomain, onSelect }) {
+  const [query, setQuery] = useState('')
+  const [open, setOpen] = useState(false)
+  const containerRef = useRef(null)
+
+  const allIndicators = useMemo(() =>
+    Object.entries(indicatorsByDomain).flatMap(([domain, inds]) =>
+      inds.map(ind => ({ ...ind, domain }))
+    ), [indicatorsByDomain])
+
+  const results = useMemo(() => {
+    if (query.length < 2) return []
+    const q = query.toLowerCase()
+    return allIndicators.filter(ind => ind.name_he.toLowerCase().includes(q)).slice(0, 12)
+  }, [query, allIndicators])
+
+  useEffect(() => {
+    setOpen(results.length > 0)
+  }, [results])
+
+  useEffect(() => {
+    function handleClick(e) {
+      if (containerRef.current && !containerRef.current.contains(e.target)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  const handleSelect = (ind) => {
+    onSelect(ind)
+    setQuery('')
+    setOpen(false)
+  }
+
+  return (
+    <div ref={containerRef} className="relative flex-shrink-0">
+      <div className="flex items-center border border-slate-200 rounded-lg bg-slate-50 px-3 py-1.5 gap-2 w-52">
+        <span className="text-slate-400 text-sm">🔍</span>
+        <input
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          onFocus={() => results.length > 0 && setOpen(true)}
+          placeholder="חפש מדד..."
+          className="flex-1 outline-none text-sm text-right bg-transparent placeholder-slate-400"
+          dir="rtl"
+        />
+        {query && (
+          <button onClick={() => { setQuery(''); setOpen(false) }} className="text-slate-300 hover:text-slate-500 leading-none">×</button>
+        )}
+      </div>
+      {open && (
+        <div className="absolute top-full mt-1 left-0 w-72 bg-white border border-gray-200 rounded-lg shadow-xl z-50 max-h-72 overflow-y-auto">
+          {results.map(ind => (
+            <div
+              key={ind.code}
+              onClick={() => handleSelect(ind)}
+              className="px-4 py-2.5 hover:bg-blue-50 cursor-pointer flex justify-between items-center gap-3"
+              dir="rtl"
+            >
+              <span className="font-medium text-sm">{ind.name_he}</span>
+              <span className="text-xs text-slate-400 whitespace-nowrap shrink-0 bg-slate-100 px-2 py-0.5 rounded-full">
+                {DOMAIN_HE[ind.domain] || ind.domain}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export function AnalyticsPage() {
   const [munis, setMunis] = useState([])
   const [indicatorsByDomain, setIndicatorsByDomain] = useState({})
   const [selectedDomain, setSelectedDomain] = useState(null)
   const [domainCharts, setDomainCharts] = useState([])
   const [loading, setLoading] = useState(false)
+  const [highlightedCode, setHighlightedCode] = useState(null)
   const reqRef = useRef(0)
 
   useEffect(() => {
@@ -113,6 +184,22 @@ export function AnalyticsPage() {
   }
 
   const removeMuni = (id) => setMunis(prev => prev.filter(m => m.id !== id))
+
+  const handleIndicatorSelect = (ind) => {
+    setSelectedDomain(ind.domain)
+    setHighlightedCode(ind.code)
+  }
+
+  // Scroll to highlighted chart once it's rendered
+  useEffect(() => {
+    if (!highlightedCode || loading) return
+    const el = document.getElementById(`chart-${highlightedCode}`)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      const timer = setTimeout(() => setHighlightedCode(null), 2500)
+      return () => clearTimeout(timer)
+    }
+  }, [highlightedCode, loading, domainCharts])
 
   const selectedIds = munis.map(m => m.id)
   const excludedIds = new Set(selectedIds)
@@ -187,24 +274,30 @@ export function AnalyticsPage() {
       ) : (
         <div className="flex flex-col flex-1 overflow-hidden">
 
-          {/* ── Domain tabs ── */}
-          <div className="bg-white border-b px-6 flex gap-1 overflow-x-auto flex-shrink-0 py-2">
-            {domains.map(d => (
-              <button
-                key={d}
-                onClick={() => setSelectedDomain(d)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition ${
-                  selectedDomain === d
-                    ? 'bg-blue-600 text-white shadow-sm'
-                    : 'text-slate-600 hover:bg-slate-100'
-                }`}
-              >
-                {DOMAIN_HE[d] || d}
-                <span className="mr-1.5 text-[10px] opacity-60">
-                  {indicatorsByDomain[d]?.length}
-                </span>
-              </button>
-            ))}
+          {/* ── Domain tabs + indicator search ── */}
+          <div className="bg-white border-b px-6 flex items-center gap-3 flex-shrink-0 py-2">
+            <div className="flex gap-1 overflow-x-auto flex-1">
+              {domains.map(d => (
+                <button
+                  key={d}
+                  onClick={() => setSelectedDomain(d)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition ${
+                    selectedDomain === d
+                      ? 'bg-blue-600 text-white shadow-sm'
+                      : 'text-slate-600 hover:bg-slate-100'
+                  }`}
+                >
+                  {DOMAIN_HE[d] || d}
+                  <span className="mr-1.5 text-[10px] opacity-60">
+                    {indicatorsByDomain[d]?.length}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <IndicatorSearch
+              indicatorsByDomain={indicatorsByDomain}
+              onSelect={handleIndicatorSelect}
+            />
           </div>
 
           {/* ── Charts grid ── */}
@@ -224,7 +317,12 @@ export function AnalyticsPage() {
             {!loading && domainCharts.length > 0 && (
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
                 {domainCharts.map(data => (
-                  <CompareChart key={data.indicator.code} data={data} height={240} />
+                  <CompareChart
+                    key={data.indicator.code}
+                    data={data}
+                    height={240}
+                    highlighted={data.indicator.code === highlightedCode}
+                  />
                 ))}
               </div>
             )}

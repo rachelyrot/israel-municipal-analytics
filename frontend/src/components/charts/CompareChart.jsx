@@ -32,7 +32,7 @@ function ToggleBtn({ label, color, dashed, active, onClick }) {
   )
 }
 
-export function CompareChart({ data, height = 300 }) {
+export function CompareChart({ data, height = 300, highlighted = false }) {
   const [hidden, setHidden] = useState(new Set())
 
   if (!data) return null
@@ -91,7 +91,10 @@ export function CompareChart({ data, height = 300 }) {
   const unit = indicator?.unit ?? ''
 
   return (
-    <div className="bg-white rounded-xl shadow p-4">
+    <div
+      id={`chart-${indicator?.code}`}
+      className={`bg-white rounded-xl shadow p-4 transition-all duration-700 ${highlighted ? 'ring-2 ring-blue-500 shadow-lg shadow-blue-100' : ''}`}
+    >
       <h2 className="text-base font-semibold mb-3" dir="rtl">
         {indicator?.name_he}
         {unit && <span className="text-xs text-gray-400 mr-2">({unit})</span>}
