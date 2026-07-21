@@ -13,8 +13,6 @@ Ingests ~25 years of **Israel Central Bureau of Statistics (CBS)** data and expo
 [![Claude](https://img.shields.io/badge/AI-Claude-D97757?logo=anthropic&logoColor=white)](https://www.anthropic.com/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
-<img src="frontend/src/assets/hero.png" alt="Israel Municipal Analytics — dashboard preview" width="800"/>
-
 </div>
 
 ---
